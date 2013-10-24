@@ -21,6 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="hu.bmeter.bmeter.DisplayMessageActivity"
+            android:label="@string/title_activity_display_message"
+            android:parentActivityName="hu.bmeter.bmeter.BMeterMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hu.bmeter.bmeter.BMeterMainActivity" />
+        </activity>
     </application>
 
 </manifest>
