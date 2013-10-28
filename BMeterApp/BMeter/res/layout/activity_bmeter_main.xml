@@ -1,20 +1,66 @@
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >    
+    android:layout_gravity="center_horizontal"
+    android:background="#000000"
+    android:orientation="vertical" >
 
-    <EditText 
-        android:id="@+id/edit_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@string/edit_message"/>
-    
-    <Button 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send"
-        android:onClick="sendMessage"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:padding="15dp"
+            android:text="@string/gps_booting"
+            android:textAlignment="center"
+            android:textColor="#eeeeee" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dip"
+        android:minHeight="80dip"
+        android:text="@string/start"
+        android:textColor="#eeeeee"
+        android:textColorHint="#dddddd"
+        android:textSize="40sp"
+        android:onClick="StartButtonClicked" />
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:padding="15dp"
+            android:text="@string/gps_count"
+            android:textAlignment="center"
+            android:textColor="#ffeeee"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dip"
+        android:minHeight="80dip"
+        android:text="@string/stop"
+        android:textColor="#eeeeee"
+        android:textColorHint="#dddddd"
+        android:textSize="40sp"
+        android:onClick="StopButtonClicked" />
+
 </LinearLayout>
