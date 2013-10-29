@@ -10,15 +10,20 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,33 +39,83 @@ public class BMeterMainActivity
 	public static final String APPTAG = "BiViaDebugTag";
 	
 	private float myDistance;
-	private TextView myDistanceTextView;
+	private boolean myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = false;
 	
-    //region --- Creation and starting -----------------------------------------
+    //region --- Lifecycle management ------------------------------------------
 	public static final String EXTRA_MESSAGE = "hu.bmeter.bmeter.MESSAGE";
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);                      
-        setupGPS();                       
         
         setContentView(R.layout.activity_bmeter_main);
-        myDistanceTextView = (TextView)findViewById(R.id.distanceTextView);
+        getUIElements();
+        DisableUI();
+        
+        checkForEnabledGPS();
+        
+        setupGPS();                               
     }    
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bmeter_main, menu);
+        //getMenuInflater().inflate(R.menu.bmeter_main, menu);
         return true;
     }    
            
+	@Override
+	public void onDestroy(){
+		if(myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware){
+			android.os.Process.killProcess(android.os.Process.myPid());
+			super.onDestroy();
+		}
+	}
 	
-    //endregion --- Creation and starting --------------------------------------
+    //endregion --- Lifecycle management ---------------------------------------
     
     //region --- UI handling ---------------------------------------------------
 	
 	private DecimalFormat myDecimalFormatter = new DecimalFormat("000.000");
+	
+	private TextView myGPSStateView, myDistanceTextView;	
+	private Button myStartButton, myStopButton;
+	private ProgressBar myGPSProgressBar;
+	
+	public void getUIElements(){	
+		myGPSProgressBar = (ProgressBar)findViewById(R.id.gps_progress);
+		myGPSStateView = (TextView)findViewById(R.id.gpsStatusTextView);
+		myDistanceTextView = (TextView)findViewById(R.id.distanceTextView);
+		myStartButton = (Button)findViewById(R.id.startButton);
+		myStopButton = (Button)findViewById(R.id.stopButton);
+	}
+	
+	/**
+	 * Hides the GPS init. animation and enables the controls
+	 */
+	public void EnableUI(){
+		Toast.makeText(this, R.string.gps_connected, Toast.LENGTH_SHORT).show();
+		myGPSStateView.setText(R.string.gps_ok);
+		myGPSProgressBar.setVisibility(View.GONE);		
+		ResetUIButtons(false);		
+	}	
+	
+	/**
+	 * Disables controls, shows a GPS init. animation
+	 */
+	public void DisableUI(){
+		myStartButton.setEnabled(false);
+		myStopButton.setEnabled(false);
+	}
+	
+	/**
+	 * Resets Start/Stop based on the input.
+	 * @param isMeasuring
+	 */
+	public void ResetUIButtons(boolean isMeasuring){
+		myStartButton.setEnabled(!isMeasuring);
+		myStopButton.setEnabled(isMeasuring);
+	}
 	
     /**
      * Called when the start button is clicked
@@ -70,7 +125,7 @@ public class BMeterMainActivity
     	if(servicesConnected()){
     		myDistance = 0;
     		DisplayDistance(myDistance);
-    		myLocationClient.requestLocationUpdates(myLocationRequest, this);
+    		setMeasureDistance(true);    		    		    		 	
     	}    	
     }
 
@@ -91,8 +146,45 @@ public class BMeterMainActivity
      * @param view
      */
     public void StopButtonClicked(View view){
-    	myLocationClient.removeLocationUpdates(this);
+    	setMeasureDistance(false);
+    	
+    	// TODO: add to list...
     }
+    
+    /**
+     * Shows alert and exit, should never be called (Defensieve Programmierung)
+     */
+    public void showExitDialog(){
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+		alertBuilder.setMessage(R.string.no_gps_service)
+		.setTitle(R.string.forced_exit)
+		.setCancelable(false)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {					
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = true;
+				finish();
+			}
+		}).create().show();
+    }
+    
+    /**
+     * Propmts the user to enable GPS
+     */
+    public void showEnableGPSDialog(){    	
+    	 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+         alertDialogBuilder.setMessage(R.string.enable_gps_prompt)
+         .setTitle(R.string.enable_gps_title)
+         .setCancelable(false)
+         .setPositiveButton(R.string.enable_gps_button,
+                 new DialogInterface.OnClickListener(){
+             public void onClick(DialogInterface dialog, int id){
+                 Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                 startActivity(callGPSSettingIntent);                 
+             }
+         }).create().show();               
+    }
+    
     //endregion --- UI handling ------------------------------------------------
     
     //region --- GPS stuff -----------------------------------------------------
@@ -103,10 +195,54 @@ public class BMeterMainActivity
     private LocationClient myLocationClient;
     private Location myLocation;
     private LocationRequest myLocationRequest;
+    private LocationManager myLocationManager;
     
+    private boolean myIsGPSOK = false;
+    public boolean getIsGPSOK(){ 
+    	return myIsGPSOK; 
+    }           
+    public void setIsGPSOK(boolean newValue){
+    	myIsGPSOK = newValue;
+    	
+    	if(myIsGPSOK){
+    		EnableUI();
+    	} else {
+    		setMeasureDistance(false);
+    		DisableUI();
+    	}    		
+    }
+    
+    private boolean myMeasureDistance = false;
+    public boolean getMeasureDistance(){
+    	return myMeasureDistance;
+    }    
+    public void setMeasureDistance(boolean newValue){
+    	myMeasureDistance = newValue;
+    	ResetUIButtons(myMeasureDistance);
+    }
+    
+    /**
+     * Prompts the user if GPS is disabled
+     */
+    private void checkForEnabledGPS(){
+    	if(myLocationManager == null){
+    		myLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+    		// no GPS service
+    		if(myLocationManager != null){
+    			if (!myLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+    				showEnableGPSDialog();
+    			}
+    		} else {
+    			showExitDialog();    			
+    		}
+    	}    	    	
+    		
+    }
+    
+    /**
+     * Sets up GPS and starts updates
+     */
     private void setupGPS() {
-
-    	//Create a new location client, using the enclosing class to handle callbacks.
         myLocationClient = new LocationClient(this, this, this);
         myLocationClient.connect();
 		
@@ -114,7 +250,7 @@ public class BMeterMainActivity
         myLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILISECONDS);
         myLocationRequest.setFastestInterval(UPDATE_INTERVAL_IN_MILISECONDS);
         myLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS);
-        myLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);              
+        myLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);         
 	}
     
     /**
@@ -124,22 +260,35 @@ public class BMeterMainActivity
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
     /**
-     * Handle results returned to the FragmentActivity
-     * by Google Play location services
+     * Handle results returned to this Activity by other Activities started with
+     * startActivityForResult(). In particular, the method onConnectionFailed() in
+     * LocationUpdateRemover and LocationUpdateRequester may call startResolutionForResult() to
+     * start an Activity that handles Google Play services problems. The result of this
+     * call returns here, to onActivityResult.
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Decide what to do based on the original request code
-        switch (requestCode) {            
-            case CONNECTION_FAILURE_RESOLUTION_REQUEST :            
-             // If the result code is Activity.RESULT_OK, try to connect again             
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode) {
+            case CONNECTION_FAILURE_RESOLUTION_REQUEST :
                 switch (resultCode) {
-                    case Activity.RESULT_OK :
-                    //@TODO: Try the request again
+                    // If Google Play services resolved the problem
+                    case Activity.RESULT_OK:
+                        // Log the result
+                        Log.d(APPTAG, getString(R.string.problem_resolved_by_play_services));
                     break;
-                }            
+
+                    // If any other result was returned by Google Play services
+                    default:
+                        // Log the result
+                        Log.d(APPTAG, getString(R.string.problem_not_resolved_by_play_services));
+                        setIsGPSOK(false);
+                    break;
+                }
+            default:
+               Log.d(APPTAG, getString(R.string.unknown_activity_request_code, requestCode));
+               break;
         }
-     }
+    }
 
     /**
      * Verify that Google Play services is available before making a request.
@@ -171,7 +320,6 @@ public class BMeterMainActivity
             return false;
         }
     }   
-
 
     /**
      * Called by Location Services if the attempt to
@@ -211,9 +359,11 @@ public class BMeterMainActivity
      * request the current location or start periodic updates
      */
 	@Override
-	public void onConnected(Bundle arg0) {
-		// Display the connection status
-        Toast.makeText(this, R.string.gps_connected, Toast.LENGTH_SHORT).show();		
+	public void onConnected(Bundle bundle) {
+		// does not mean that the GPS is on, wait for the first update
+		if(servicesConnected()){
+			myLocationClient.requestLocationUpdates(myLocationRequest, this);
+		}
 	}
 
 	/**
@@ -222,16 +372,27 @@ public class BMeterMainActivity
      */
 	@Override
 	public void onDisconnected() {
+		setIsGPSOK(false);
 		Toast.makeText(this, R.string.gps_disconnected, Toast.LENGTH_SHORT).show();		
 	}
 	
 	@Override
 	public void onLocationChanged(Location newLocation) {
-		if(myLocation != null){			
-			myDistance += newLocation.distanceTo(myLocation);
-			DisplayDistance(myDistance);
+		if(newLocation != null){
+			
+			if(!getIsGPSOK()){
+				setIsGPSOK(true);				
+			}
+			
+			if(getMeasureDistance()){
+				if(myLocation != null){
+					myDistance += newLocation.distanceTo(myLocation);
+					DisplayDistance(myDistance);
+				}
+			
+				myLocation = newLocation;
+			}
 		}
-		myLocation = newLocation;		
 	}
     
     //endregion --- GPS stuff --------------------------------------------------
