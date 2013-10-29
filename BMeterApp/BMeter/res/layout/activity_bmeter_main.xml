@@ -11,7 +11,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/gpsStatusTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/distanceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -56,11 +56,12 @@
         android:id="@+id/stopButton"
         android:layout_width="match_parent"
         android:layout_height="80dip"
+        android:clickable="false"
         android:minHeight="80dip"
+        android:onClick="StopButtonClicked"
         android:text="@string/stop"
         android:textColor="#eeeeee"
         android:textColorHint="#dddddd"
-        android:textSize="40sp"
-        android:onClick="StopButtonClicked" />
+        android:textSize="40sp" />
 
 </LinearLayout>

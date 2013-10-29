@@ -1,9 +1,13 @@
 package hu.bmeter.bmeter;
 
+import java.text.DecimalFormat;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,6 +19,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class BMeterMainActivity 
@@ -22,58 +27,95 @@ public class BMeterMainActivity
 		FragmentActivity 
 	implements 
 		GooglePlayServicesClient.ConnectionCallbacks,
-		GooglePlayServicesClient.OnConnectionFailedListener 
+		GooglePlayServicesClient.OnConnectionFailedListener, 
+		LocationListener 
 	{  
 	
 	public static final String APPTAG = "BiViaDebugTag";
+	
+	private float myDistance;
+	private TextView myDistanceTextView;
 	
     //region --- Creation and starting -----------------------------------------
 	public static final String EXTRA_MESSAGE = "hu.bmeter.bmeter.MESSAGE";
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);       
+        super.onCreate(savedInstanceState);                      
+        setupGPS();                       
         
-        //Create a new location client, using the enclosing class to handle callbacks.
-        myLocationClient = new LocationClient(this, this, this);
-        myLocationClient.connect();
-        
-        setContentView(R.layout.activity_bmeter_main);        
-    }
+        setContentView(R.layout.activity_bmeter_main);
+        myDistanceTextView = (TextView)findViewById(R.id.distanceTextView);
+    }    
 
-    @Override
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.bmeter_main, menu);
         return true;
     }    
            
+	
     //endregion --- Creation and starting --------------------------------------
     
     //region --- UI handling ---------------------------------------------------
+	
+	private DecimalFormat myDecimalFormatter = new DecimalFormat("000.000");
+	
     /**
      * Called when the start button is clicked
      * @param view
      */
     public void StartButtonClicked(View view){
     	if(servicesConnected()){
-    		myLocation = myLocationClient.getLastLocation();
+    		myDistance = 0;
+    		DisplayDistance(myDistance);
+    		myLocationClient.requestLocationUpdates(myLocationRequest, this);
     	}    	
     }
 
     /**
+     * Formats and displays the current distance.
+     * @param distanceInMeters
+     */
+    private void DisplayDistance(float distanceInMeters) {
+    	if(myDistanceTextView != null){
+    		String formattedDistance = myDecimalFormatter.format(distanceInMeters / 1000) + 
+    				" km";
+    		myDistanceTextView.setText(formattedDistance);
+    	}
+	}
+
+	/**
      * Called when the stop button is clicked
      * @param view
      */
     public void StopButtonClicked(View view){
-    	StartButtonClicked(view);
+    	myLocationClient.removeLocationUpdates(this);
     }
     //endregion --- UI handling ------------------------------------------------
     
     //region --- GPS stuff -----------------------------------------------------
     
-    LocationClient myLocationClient;
-    Location myLocation;
+    private static final int UPDATE_INTERVAL_IN_MILISECONDS = 1 * 1000;
+    private static final float SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS = (float)1;
+    
+    private LocationClient myLocationClient;
+    private Location myLocation;
+    private LocationRequest myLocationRequest;
+    
+    private void setupGPS() {
+
+    	//Create a new location client, using the enclosing class to handle callbacks.
+        myLocationClient = new LocationClient(this, this, this);
+        myLocationClient.connect();
+		
+        myLocationRequest = new LocationRequest();
+        myLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILISECONDS);
+        myLocationRequest.setFastestInterval(UPDATE_INTERVAL_IN_MILISECONDS);
+        myLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS);
+        myLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);              
+	}
     
     /**
      * Define a request code to send to Google Play services
@@ -181,6 +223,15 @@ public class BMeterMainActivity
 	@Override
 	public void onDisconnected() {
 		Toast.makeText(this, R.string.gps_disconnected, Toast.LENGTH_SHORT).show();		
+	}
+	
+	@Override
+	public void onLocationChanged(Location newLocation) {
+		if(myLocation != null){			
+			myDistance += newLocation.distanceTo(myLocation);
+			DisplayDistance(myDistance);
+		}
+		myLocation = newLocation;		
 	}
     
     //endregion --- GPS stuff --------------------------------------------------

@@ -12,6 +12,6 @@
     <string name="gps_booting">Booting up GPS</string>
     <string name="gps_connected">GPS connected</string>
     <string name="gps_disconnected">GPS gone. Please reconnect!</string>
-    <string name="gps_count">12.456 km</string>
+    <string name="gps_count">......</string>
 
 </resources>
