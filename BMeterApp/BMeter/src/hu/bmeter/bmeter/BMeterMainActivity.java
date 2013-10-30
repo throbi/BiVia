@@ -15,6 +15,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -25,7 +26,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class BMeterMainActivity 
 	extends 
@@ -33,7 +33,8 @@ public class BMeterMainActivity
 	implements 
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener, 
-		LocationListener 
+		LocationListener,
+		GpsStatus.Listener
 	{  
 	
 	public static final String APPTAG = "BiViaDebugTag";
@@ -50,7 +51,7 @@ public class BMeterMainActivity
         
         setContentView(R.layout.activity_bmeter_main);
         getUIElements();
-        DisableUI();
+        disableUI();
         
         checkForEnabledGPS();
         
@@ -82,6 +83,9 @@ public class BMeterMainActivity
 	private Button myStartButton, myStopButton;
 	private ProgressBar myGPSProgressBar;
 	
+	/**
+	 * Gets references to UI elements.
+	 */
 	public void getUIElements(){	
 		myGPSProgressBar = (ProgressBar)findViewById(R.id.gps_progress);
 		myGPSStateView = (TextView)findViewById(R.id.gpsStatusTextView);
@@ -93,27 +97,47 @@ public class BMeterMainActivity
 	/**
 	 * Hides the GPS init. animation and enables the controls
 	 */
-	public void EnableUI(){
-		Toast.makeText(this, R.string.gps_connected, Toast.LENGTH_SHORT).show();
-		myGPSStateView.setText(R.string.gps_ok);
-		myGPSProgressBar.setVisibility(View.GONE);		
-		ResetUIButtons(false);		
+	public void enableUI(){
+		hideGPSProgressBar();
+		resetUIButtons(getMeasureDistance());		
 	}	
-	
+		
 	/**
 	 * Disables controls, shows a GPS init. animation
 	 */
-	public void DisableUI(){
+	public void disableUI(){
 		myStartButton.setEnabled(false);
-		myStopButton.setEnabled(false);
+		
+		// should be able to stop even if there is no GPS
+		myStopButton.setEnabled(getMeasureDistance());
+		
+		showGPSProgressBar();
+	}
+	
+	/**
+	 * Notifies the user about waiting for GPS fix.
+	 */
+	public void hideGPSProgressBar(){
+		myGPSStateView.setText(R.string.gps_ok);
+		myGPSProgressBar.setVisibility(View.GONE);
+	}
+	
+	/**
+	 * Notifies user about GPS fix
+	 */
+	public void showGPSProgressBar(){
+		myGPSStateView.setText(R.string.gps_booting);
+		myGPSProgressBar.setVisibility(View.VISIBLE);
 	}
 	
 	/**
 	 * Resets Start/Stop based on the input.
 	 * @param isMeasuring
 	 */
-	public void ResetUIButtons(boolean isMeasuring){
-		myStartButton.setEnabled(!isMeasuring);
+	public void resetUIButtons(boolean isMeasuring){
+		if(myIsGPSEnabled){
+			myStartButton.setEnabled(!isMeasuring);
+		}
 		myStopButton.setEnabled(isMeasuring);
 	}
 	
@@ -121,10 +145,10 @@ public class BMeterMainActivity
      * Called when the start button is clicked
      * @param view
      */
-    public void StartButtonClicked(View view){
+    public void startButtonClicked(View view){
     	if(servicesConnected()){
     		myDistance = 0;
-    		DisplayDistance(myDistance);
+    		displayDistance(myDistance);
     		setMeasureDistance(true);    		    		    		 	
     	}    	
     }
@@ -133,7 +157,7 @@ public class BMeterMainActivity
      * Formats and displays the current distance.
      * @param distanceInMeters
      */
-    private void DisplayDistance(float distanceInMeters) {
+    private void displayDistance(float distanceInMeters) {
     	if(myDistanceTextView != null){
     		String formattedDistance = myDecimalFormatter.format(distanceInMeters / 1000) + 
     				" km";
@@ -145,7 +169,7 @@ public class BMeterMainActivity
      * Called when the stop button is clicked
      * @param view
      */
-    public void StopButtonClicked(View view){
+    public void stopButtonClicked(View view){
     	setMeasureDistance(false);
     	
     	// TODO: add to list...
@@ -189,6 +213,11 @@ public class BMeterMainActivity
     
     //region --- GPS stuff -----------------------------------------------------
     
+    /**
+     * Define a request code to send to Google Play services
+     * This code is returned in Activity.onActivityResult
+     */
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final int UPDATE_INTERVAL_IN_MILISECONDS = 1 * 1000;
     private static final float SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS = (float)1;
     
@@ -197,18 +226,19 @@ public class BMeterMainActivity
     private LocationRequest myLocationRequest;
     private LocationManager myLocationManager;
     
-    private boolean myIsGPSOK = false;
-    public boolean getIsGPSOK(){ 
-    	return myIsGPSOK; 
+    private boolean myIsGPSEnabled = false;
+    private boolean myIsGPSInitialized = false;
+    public boolean getIsGPSInitializedK(){ 
+    	return myIsGPSInitialized; 
     }           
-    public void setIsGPSOK(boolean newValue){
-    	myIsGPSOK = newValue;
+    public void setIsGPSInitialized(boolean newValue){
+    	myIsGPSInitialized = newValue;
     	
-    	if(myIsGPSOK){
-    		EnableUI();
+    	if(myIsGPSInitialized){
+    		enableUI();
     	} else {
     		setMeasureDistance(false);
-    		DisableUI();
+    		disableUI();
     	}    		
     }
     
@@ -218,7 +248,7 @@ public class BMeterMainActivity
     }    
     public void setMeasureDistance(boolean newValue){
     	myMeasureDistance = newValue;
-    	ResetUIButtons(myMeasureDistance);
+    	resetUIButtons(myMeasureDistance);
     }
     
     /**
@@ -231,12 +261,11 @@ public class BMeterMainActivity
     		if(myLocationManager != null){
     			if (!myLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
     				showEnableGPSDialog();
-    			}
+    			}     		
     		} else {
     			showExitDialog();    			
     		}
-    	}    	    	
-    		
+    	}    	    	    		
     }
     
     /**
@@ -250,15 +279,9 @@ public class BMeterMainActivity
         myLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILISECONDS);
         myLocationRequest.setFastestInterval(UPDATE_INTERVAL_IN_MILISECONDS);
         myLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS);
-        myLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);         
+        myLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 	}
     
-    /**
-     * Define a request code to send to Google Play services
-     * This code is returned in Activity.onActivityResult
-     */
-    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-
     /**
      * Handle results returned to this Activity by other Activities started with
      * startActivityForResult(). In particular, the method onConnectionFailed() in
@@ -281,7 +304,7 @@ public class BMeterMainActivity
                     default:
                         // Log the result
                         Log.d(APPTAG, getString(R.string.problem_not_resolved_by_play_services));
-                        setIsGPSOK(false);
+                        setIsGPSInitialized(false);
                     break;
                 }
             default:
@@ -361,7 +384,15 @@ public class BMeterMainActivity
 	@Override
 	public void onConnected(Bundle bundle) {
 		// does not mean that the GPS is on, wait for the first update
+		requestGPSUpdates();
+	}
+	
+	/**
+	 * Tells the location clinet to send some location updates
+	 */
+	public void requestGPSUpdates(){
 		if(servicesConnected()){
+			myLocationManager.addGpsStatusListener(this);
 			myLocationClient.requestLocationUpdates(myLocationRequest, this);
 		}
 	}
@@ -372,22 +403,24 @@ public class BMeterMainActivity
      */
 	@Override
 	public void onDisconnected() {
-		setIsGPSOK(false);
-		Toast.makeText(this, R.string.gps_disconnected, Toast.LENGTH_SHORT).show();		
+		setIsGPSInitialized(false);
 	}
 	
 	@Override
 	public void onLocationChanged(Location newLocation) {
 		if(newLocation != null){
 			
-			if(!getIsGPSOK()){
-				setIsGPSOK(true);				
+			if(!getIsGPSInitializedK()){
+				setIsGPSInitialized(true);				
+			} else if (!myIsGPSEnabled){				
+				myIsGPSEnabled = true;
+				enableUI();
 			}
 			
 			if(getMeasureDistance()){
 				if(myLocation != null){
 					myDistance += newLocation.distanceTo(myLocation);
-					DisplayDistance(myDistance);
+					displayDistance(myDistance);
 				}
 			
 				myLocation = newLocation;
@@ -395,7 +428,19 @@ public class BMeterMainActivity
 		}
 	}
     
-    //endregion --- GPS stuff --------------------------------------------------
+	@Override
+	public void onGpsStatusChanged(int event) {
+		switch (event) {        
+        	case GpsStatus.GPS_EVENT_STOPPED:
+        		myIsGPSEnabled = false;
+        		showEnableGPSDialog();
+        		disableUI();
+        		break;
+		}
+		
+	}
+	
+	//endregion --- GPS stuff --------------------------------------------------
 	
 	//region --- utils ---------------------------------------------------------
 	
@@ -427,4 +472,5 @@ public class BMeterMainActivity
         }
     }
    //endregion --- utils -------------------------------------------------------
+
 }

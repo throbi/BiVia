@@ -11,7 +11,7 @@
     <string name="play_services_available">Play services found</string>
     <string name="gps_booting">Waiting for GPS&#8230;</string>
     <string name="gps_ok">GPS is up &amp; running</string>
-    <string name="gps_connected">GPS connected</string>
+    <string name="gps_connected">GPS service connected</string>
     <string name="gps_disconnected">GPS gone. Please reconnect!</string>
     <string name="gps_count">- - -</string>
     <string name="no_gps_service">No GPS service found on this piece of hardware!</string>

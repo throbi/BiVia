@@ -45,7 +45,7 @@
         android:textColor="#eeeeee"
         android:textColorHint="#dddddd"
         android:textSize="40sp"
-        android:onClick="StartButtonClicked" />
+        android:onClick="startButtonClicked" />
    
    <RelativeLayout
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
         android:layout_height="80dip"
         android:linksClickable="true"
         android:minHeight="80dip"
-        android:onClick="StopButtonClicked"
+        android:onClick="stopButtonClicked"
         android:text="@string/stop"
         android:textColor="#eeeeee"
         android:textColorHint="#dddddd"
