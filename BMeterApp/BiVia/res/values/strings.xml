@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BiVia</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_message">Enter a message!</string>
+    <string name="send">Send</string>
+    <string name="title_activity_display_message">Message from myself</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>         
+    <string name="play_services_available">Play services found</string>
+    <string name="gps_booting">Waiting for GPS&#8230;</string>
+    <string name="gps_ok">GPS is up &amp; running</string>
+    <string name="gps_connected">GPS service connected</string>
+    <string name="gps_disconnected">GPS gone. Please reconnect!</string>
+    <string name="gps_count">- - -</string>
+    <string name="no_gps_service">No GPS service found on this piece of hardware!</string>
+    <string name="forced_exit">Exiting&#8230;</string>
+    <string name="enable_gps_title">GPS is disabled</string>
+    <string name="enable_gps_prompt">BiVia needs GPS data to measure distances.</string>
+    <string name="enable_gps_button">OK, let me do enable GPS</string>
+    
+    <string name="ok">OK</string>
+    
+    <!-- log messages -->
+    <string name="problem_resolved_by_play_services">Problem resolved by Google Play Service</string>
+    <string name="problem_not_resolved_by_play_services">Problem could not be resolved by Google Play Service</string>
+    <string name="unknown_activity_request_code">Unknown activity request code!</string>
+</resources>
