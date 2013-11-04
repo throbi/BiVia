@@ -42,20 +42,39 @@ public class BiViaMainActivity
 	private float myDistance;
 	private boolean myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = false;
 	
+	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
+
+	/**
+	 * Allows injection for test cases. Must be removed from releases!
+	 * @param mockLocationManager
+	 */
+	public void _test_setLocacationManager(LocationManager mockLocationManager){		
+		if(myLocationManager != null){
+			myLocationManager.removeGpsStatusListener(this);
+			myEnableGPSDialog.hide();
+		}
+		
+		myLocationManager = mockLocationManager;			
+	}
+	
+	//endregion --- injections for testing - !!! REMOVE FROM RELEASE !!! -------
+	
     //region --- Lifecycle management ------------------------------------------
-	public static final String EXTRA_MESSAGE = "hu.bivia.bivia.MESSAGE";
+	public static final String EXTRA_MESSAGE = "hu.bivia.bivia.MESSAGE";		
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);                      
         
+        // UI
+        createDialogs();
         setContentView(R.layout.activity_bmeter_main);
         getUIElements();
         disableUI();
         
-        checkForEnabledGPS();
-        
-        setupGPS();                               
+        // GPS
+        setupGPS();
+        checkForEnabledGPS();                                               
     }    
 
 	@Override
@@ -82,6 +101,8 @@ public class BiViaMainActivity
 	private TextView myGPSStateView, myDistanceTextView;	
 	private Button myStartButton, myStopButton;
 	private ProgressBar myGPSProgressBar;
+	
+	private AlertDialog myEnableGPSDialog;
 	
 	/**
 	 * Gets references to UI elements.
@@ -190,25 +211,22 @@ public class BiViaMainActivity
 				finish();
 			}
 		}).create().show();
-    }
+    }       
     
-    /**
-     * Propmts the user to enable GPS
-     */
-    public void showEnableGPSDialog(){    	
-    	 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+    private void createDialogs(){
+    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
          alertDialogBuilder.setMessage(R.string.enable_gps_prompt)
-         .setTitle(R.string.enable_gps_title)
-         .setCancelable(false)
-         .setPositiveButton(R.string.enable_gps_button,
-                 new DialogInterface.OnClickListener(){
-             public void onClick(DialogInterface dialog, int id){
-                 Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                 startActivity(callGPSSettingIntent);                 
-             }
-         }).create().show();               
+        .setTitle(R.string.enable_gps_title)
+        .setCancelable(false)
+        .setPositiveButton(R.string.enable_gps_button,
+                new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int id){
+                Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(callGPSSettingIntent);                 
+            }
+        });
+        myEnableGPSDialog = alertDialogBuilder.create();
     }
-    
     //endregion --- UI handling ------------------------------------------------
     
     //region --- GPS stuff -----------------------------------------------------
@@ -254,19 +272,21 @@ public class BiViaMainActivity
     /**
      * Prompts the user if GPS is disabled
      */
-    private void checkForEnabledGPS(){
+    public void checkForEnabledGPS(){
     	if(myLocationManager == null){
     		myLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+    	}
+    		
+    	if(myLocationManager != null){
+    		if (!myLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+    			// user should enable GPS
+    			myEnableGPSDialog.show();
+    		}     		
+    	} else {
     		// no GPS service
-    		if(myLocationManager != null){
-    			if (!myLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-    				showEnableGPSDialog();
-    			}     		
-    		} else {
-    			showExitDialog();    			
-    		}
-    	}    	    	    		
-    }
+    		showExitDialog();    			
+    	}
+    }    	    	    		    
     
     /**
      * Sets up GPS and starts updates
@@ -433,7 +453,7 @@ public class BiViaMainActivity
 		switch (event) {        
         	case GpsStatus.GPS_EVENT_STOPPED:
         		myIsGPSEnabled = false;
-        		showEnableGPSDialog();
+        		myEnableGPSDialog.show();
         		disableUI();
         		break;
 		}
