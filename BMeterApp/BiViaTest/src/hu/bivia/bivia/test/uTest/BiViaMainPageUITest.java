@@ -4,6 +4,7 @@ import com.jayway.android.robotium.solo.Solo;
 
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
@@ -44,7 +45,9 @@ public class BiViaMainPageUITest
 		myViewModel = myView._test_getViewModel();
 		myTargetContext = getInstrumentation().getTargetContext();
 		
-		solo = new Solo(getInstrumentation(), getActivity());
+		Instrumentation instrumentation = getInstrumentation();
+		
+		solo = new Solo(instrumentation, myView);
 		
 		myMockViewModel = mock(BiViaMainPageViewModel.class);
 		
@@ -109,6 +112,7 @@ public class BiViaMainPageUITest
 	}
 	
 	
+	@UiThreadTest
 	public void testShowEnableGPSDialog(){		
 		myView.enableUI();
 		myView.showEnableGPSDialog();
@@ -130,6 +134,7 @@ public class BiViaMainPageUITest
 		assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_button), true));
 	}
 	
+	@UiThreadTest
 	public void testHideEnableGPSDialogByViewModel(){
 		testPreconditions();
 		testShowEnableGPSDialog();
@@ -183,6 +188,7 @@ public class BiViaMainPageUITest
 		assertEquals(View.VISIBLE, solo.getView(hu.bivia.bivia.R.id.gps_progress).getVisibility());
 	}
 	
+	@UiThreadTest
 	public void testDisableUI(){
 		testPreconditions();
 		
@@ -204,6 +210,7 @@ public class BiViaMainPageUITest
 		assertEquals(View.GONE, solo.getView(hu.bivia.bivia.R.id.gps_progress).getVisibility());		
 	}
 	
+	@UiThreadTest
 	public void testResetUIButtons_GPSEnabled(){
 		testPreconditions();
 		
@@ -224,6 +231,7 @@ public class BiViaMainPageUITest
 		assertFalse(solo.getButton(hu.bivia.bivia.R.id.startButton).isEnabled());
 	}
 	
+	@UiThreadTest
 	public void testResetUIButtons_GPSDisabled(){
 		testPreconditions();
 		

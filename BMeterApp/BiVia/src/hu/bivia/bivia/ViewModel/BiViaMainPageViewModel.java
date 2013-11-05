@@ -45,6 +45,9 @@ public class BiViaMainPageViewModel implements
 	
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 
+	public BiViaMainPageViewModel() {
+	}
+	
 	/**
 	 * Allows injection for test cases. Must be removed from releases!
 	 * @param mockLocationManager
@@ -159,7 +162,7 @@ public class BiViaMainPageViewModel implements
     /**
      * Prompts the user if GPS is disabled
      */
-    private void checkForEnabledGPS(){
+    public void checkForEnabledGPS(){
     	if(myLocationManager == null){
     		myLocationManager = (LocationManager) 
     				myActivity.getSystemService(android.content.Context.LOCATION_SERVICE);
@@ -225,7 +228,7 @@ public class BiViaMainPageViewModel implements
      *
      * @return true if Google Play services is available, otherwise false
      */
-    private boolean servicesConnected() {
+    public boolean servicesConnected() {
 
         // Check that Google Play services is available
         int resultCode =

@@ -1,10 +1,6 @@
 package hu.bivia.bivia.test.uTest;
 
-import org.junit.runner.RunWith;
 import org.mockito.internal.util.reflection.Whitebox;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import hu.bivia.bivia.View.IBiViaView;
@@ -16,8 +12,6 @@ import static org.mockito.Mockito.*;
 /**
  * Unit tests for the main page view model
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(BiViaMainPageViewModel.class)
 public class BiViaMainPageViewModelUnitTest 
 	extends
 		ActivityInstrumentationTestCase2<BiViaMainActivityView>{
@@ -65,51 +59,31 @@ public class BiViaMainPageViewModelUnitTest
 	//region --- handle user input ---------------------------------------------
 	
 	public void testStartMeasurement_serviceConnected_expectMeasurementStart(){
-		BiViaMainPageViewModel mockTarget = PowerMockito.mock(BiViaMainPageViewModel.class);
+		BiViaMainPageViewModel mockTarget = mock(BiViaMainPageViewModel.class);
 		Whitebox.setInternalState(mockTarget, "myDistance", 11.1);		
 		
-		try {
-			PowerMockito.when(mockTarget, "servicesConnected").thenReturn(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertFalse("failed to mock private method 'servicesConnected()'", true);
-		}
+		when(mockTarget.servicesConnected()).thenReturn(true);
 		
 		mockTarget.startDistanceMeasurement();
 		
 		assertTrue(mockTarget.getIsMeasuring());
 		assertEquals(0.0, Whitebox.getInternalState(mockTarget, "myDistance"));
 		
-		try {
-			PowerMockito.verifyPrivate(mockTarget, times(1));
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertFalse("failed to verify mocked private method 'servicesConnected()'", true);
-		}
+		verify(mockTarget, times(1)).servicesConnected();
 	}
 	
 	public void testStartMeasurement_serviceNotConnected_expectNothing(){
-		BiViaMainPageViewModel mockTarget = PowerMockito.mock(BiViaMainPageViewModel.class);
+		BiViaMainPageViewModel mockTarget = mock(BiViaMainPageViewModel.class);
 		Whitebox.setInternalState(mockTarget, "myDistance", 11.1);		
 		
-		try {
-			PowerMockito.when(mockTarget, "servicesConnected").thenReturn(false);
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertFalse("failed to mock private method 'servicesConnected()'", true);
-		}
+		when(mockTarget.servicesConnected()).thenReturn(false);
 		
 		mockTarget.startDistanceMeasurement();
 		
 		assertFalse(mockTarget.getIsMeasuring());
 		assertEquals(11.1, Whitebox.getInternalState(mockTarget, "myDistance"));
 		
-		try {
-			PowerMockito.verifyPrivate(mockTarget, times(0));
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertFalse("failed to verify mocked private method 'servicesConnected()'", true);
-		}
+		verify(mockTarget, times(0)).servicesConnected();
 	}
 	//endregion --- handle user input ------------------------------------------
 }

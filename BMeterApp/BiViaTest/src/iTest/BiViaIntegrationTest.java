@@ -3,8 +3,6 @@ package iTest;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.powermock.reflect.Whitebox;
-
 import com.jayway.android.robotium.solo.Solo;
 
 import hu.bivia.bivia.View.BiViaMainActivityView;
@@ -60,13 +58,7 @@ public class BiViaIntegrationTest extends
 		BiViaMainPageViewModel viewModel = myView._test_getViewModel();
 		viewModel._test_setLocacationManager(mockLocationManager);
 		
-		//myView._test_getViewModel().checkForEnabledGPS();
-		try {
-			Whitebox.invokeMethod(viewModel, "checkForEnabledGPS");
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertFalse("could not call private 'checkForEnabledGPS()'", true);
-		}				
+		myView._test_getViewModel().checkForEnabledGPS();					
 	
 		BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);
 		
@@ -88,13 +80,7 @@ public class BiViaIntegrationTest extends
 		BiViaMainPageViewModel viewModel = myView._test_getViewModel();
 		viewModel._test_setLocacationManager(mockLocationManager);
 		
-		//myView._test_getViewModel().checkForEnabledGPS();
-		try {
-			Whitebox.invokeMethod(viewModel, "checkForEnabledGPS");
-		} catch (Exception e) {
-			e.printStackTrace();
-			assertFalse("could not call private 'checkForEnabledGPS()'", true);
-		}
+		myView._test_getViewModel().checkForEnabledGPS();		
 	
 		BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);		
 		
