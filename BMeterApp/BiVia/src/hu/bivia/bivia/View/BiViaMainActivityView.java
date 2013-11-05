@@ -168,11 +168,17 @@ public class BiViaMainActivityView
 	public void displayGooglePlayErrorDialog(int resultCode, int requestCode) {
 		// Display an error dialog
         Dialog dialog = GooglePlayServicesUtil.getErrorDialog(resultCode, this, requestCode);            
-    	if (dialog != null) {
-            ErrorDialogFragment errorFragment = new ErrorDialogFragment();
-            errorFragment.setDialog(dialog);
-            errorFragment.show(getSupportFragmentManager(), BiViaMainPageViewModel.APPTAG);
-        }	
+    	if (dialog == null) {        	
+        	dialog = new Dialog(this);
+        	dialog.setTitle(getString(R.string.googleError_title));
+        	TextView textView = new TextView(this);
+        	textView.setText(getString(R.string.googleError_text));
+            dialog.setContentView(textView);
+        }
+    	
+    	ErrorDialogFragment errorFragment = new ErrorDialogFragment();
+    	errorFragment.setDialog(dialog);
+        errorFragment.show(getSupportFragmentManager(), BiViaMainPageViewModel.APPTAG);
 	}
 	
     //endregion --- IBiViaView implementations ---------------------------------

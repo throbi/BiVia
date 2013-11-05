@@ -178,24 +178,84 @@ public class BiViaMainPageUITest
 				solo.getText(hu.bivia.bivia.R.id.distanceTextView).getText().toString());
 		
 		
+		// GPS progress bar visible
+		assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.gps_booting), true));
+		assertEquals(View.VISIBLE, solo.getView(hu.bivia.bivia.R.id.gps_progress).getVisibility());
 	}
 	
 	public void testDisableUI(){
 		testPreconditions();
+		
+		myView.disableUI();
+		
+		// no prompt dialog
+		assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
+		assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_prompt), true));
+		assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_button), true));
+				
+		// start enabled, stop disabled, no distance displayed
+		assertTrue(solo.getButton(hu.bivia.bivia.R.id.startButton).isEnabled());
+		assertFalse(solo.getButton(hu.bivia.bivia.R.id.stopButton).isEnabled());
+		assertEquals(myTargetContext.getString(hu.bivia.bivia.R.string.gps_count), 
+		solo.getText(hu.bivia.bivia.R.id.distanceTextView).getText().toString());
+								
+		// GPS progress bar hidden visible
+		assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.gps_ok), true));
+		assertEquals(View.GONE, solo.getView(hu.bivia.bivia.R.id.gps_progress).getVisibility());		
 	}
 	
-	public void testResetUIButtons(boolean isMeasuring){
+	public void testResetUIButtons_GPSEnabled(){
 		testPreconditions();
+		
+		when(myMockViewModel.isGPSEnabled()).thenReturn(true);
+		
+		myView.enableUI();
+		
+		myView.resetUIButtons(true);
+
+		// start enabled, stop disabled
+		assertTrue(solo.getButton(hu.bivia.bivia.R.id.startButton).isEnabled());
+		assertFalse(solo.getButton(hu.bivia.bivia.R.id.stopButton).isEnabled());
+				
+		myView.resetUIButtons(false);
+		
+		// stop enabled, start disabled
+		assertTrue(solo.getButton(hu.bivia.bivia.R.id.stopButton).isEnabled());
+		assertFalse(solo.getButton(hu.bivia.bivia.R.id.startButton).isEnabled());
+	}
+	
+	public void testResetUIButtons_GPSDisabled(){
+		testPreconditions();
+		
+		when(myMockViewModel.isGPSEnabled()).thenReturn(true);
+		
+		myView.enableUI();
+		
+		myView.resetUIButtons(true);
+
+		// both disabled
+		assertFalse(solo.getButton(hu.bivia.bivia.R.id.startButton).isEnabled());
+		assertFalse(solo.getButton(hu.bivia.bivia.R.id.stopButton).isEnabled());
+				
+		myView.resetUIButtons(false);
+		
+		// stop enabled, start disabled
+		assertTrue(solo.getButton(hu.bivia.bivia.R.id.stopButton).isEnabled());
+		assertFalse(solo.getButton(hu.bivia.bivia.R.id.startButton).isEnabled());
 	}
 	
 	public void testShowExitDialog(){
 		testPreconditions();
+		
+		myView.showExitDialog();
+		
+		assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.forced_exit)));
 	}
 	
 	public void _testDisplayGooglePlayErrorDialog(){
 		testPreconditions();
 		
-		// should create some google play error, first
+		// TODO: should create some google play error, first
 	}
 	
 	

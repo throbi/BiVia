@@ -53,7 +53,8 @@ public interface IBiViaView {
 	public void disableUI();
 	
 	/**
-	 * Resets Start/Stop based on the input.
+	 * Enables/disables Start/Stop buttons based on the input and GPS state:
+	 * start is enabled only when GPS is fixed.
 	 * @param isMeasuring
 	 */
 	public void resetUIButtons(boolean isMeasuring);

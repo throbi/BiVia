@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BiVia</string>
+    <string name="action_settings">Beállítások</string>
+    <string name="edit_message">Írj ide valamit!</string>
+    <string name="send">Küldés</string>
+    <string name="title_activity_display_message">Üzenet saját magamtól</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="play_services_available">Play szolgáltatások megtalálva</string>    
+	<string name="gps_booting">Várakozás a GPS-re&#8230;</string>
+    <string name="gps_connected">GPS szolga csatlakozva</string>
+    <string name="gps_ok">Pozíció belőve!</string>
+    <string name="gps_disconnected">GPS szolga kipurccant. Csatlakoztasd újra!</string>
+    <string name="gps_count">- - -</string>
+    <string name="forced_exit">Kilépés&#8230;</string>
+    <string name="no_gps_service">Nem található a GPS ezen a kütyűn!</string>
+   
+    <string name="enable_gps_title">A GPS ki van kapcsolva</string>
+    <string name="enable_gps_prompt">A BiViának szüksége van a GPS adatokra, hogy lemérhesse a megtett távot.</string>
+    <string name="enable_gps_button">Rendben, bekapcsolom</string>
+    
+    <string name="ok">Rendben</string>
+    
+    <string name="googleError_title">Hiba</string>
+    <string name="googleError_text">A Google Play Location Services épp elkúrt valamit&#8230;</string>    
+    
+    <!-- log messages -->
+    <string name="problem_resolved_by_play_services">A Google Play szolgáltatások megoldottak egy problémát.</string>
+    <string name="problem_not_resolved_by_play_services">A Google Play szolgáltatások nem tudtak megoldani egy problémát.</string>
+    <string name="unknown_activity_request_code">Ismeretlen activity kérési kód!</string>
+</resources>

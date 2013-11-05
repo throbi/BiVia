@@ -22,6 +22,9 @@
     
     <string name="ok">OK</string>
     
+    <string name="googleError_title">Error</string>
+    <string name="googleError_text">Google Play Location Services have just messed up something&#8230;</string>
+    
     <!-- log messages -->
     <string name="problem_resolved_by_play_services">Problem resolved by Google Play Service</string>
     <string name="problem_not_resolved_by_play_services">Problem could not be resolved by Google Play Service</string>

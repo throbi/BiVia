@@ -159,7 +159,7 @@ public class BiViaMainPageViewModel implements
     /**
      * Prompts the user if GPS is disabled
      */
-    public void checkForEnabledGPS(){
+    private void checkForEnabledGPS(){
     	if(myLocationManager == null){
     		myLocationManager = (LocationManager) 
     				myActivity.getSystemService(android.content.Context.LOCATION_SERVICE);
@@ -245,6 +245,14 @@ public class BiViaMainPageViewModel implements
         }
     }   
 
+	public boolean isGPSEnabled() {
+		return myIsGPSEnabled;
+	}
+	
+	//endregion --- GPS stuff --------------------------------------------------
+	
+	//region --- interface implementations -------------------------------------
+	
     /**
      * Called by Location Services if the attempt to
      * Location Services fails.
@@ -337,16 +345,15 @@ public class BiViaMainPageViewModel implements
         		myView.showEnableGPSDialog();
         		myView.disableUI();
         		break;
+        	case GpsStatus.GPS_EVENT_STARTED:
+        		myIsGPSEnabled = true;
+        		myView.hideEnableGPSDialog();        		
+        		break;
 		}
 		
 	}
-	
-	public boolean isGPSEnabled() {
-		return myIsGPSEnabled;
-	}
-	
-	//endregion --- GPS stuff --------------------------------------------------
-	
+	//endregion --- interface implementations ----------------------------------
+		
 	//region --- utils ---------------------------------------------------------	    
     /**
      * Gets localized string from the resources
