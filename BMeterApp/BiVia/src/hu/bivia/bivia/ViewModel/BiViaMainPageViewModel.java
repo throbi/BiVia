@@ -117,7 +117,8 @@ public class BiViaMainPageViewModel {
 	 * The measurer is happy that GPS is enabled
 	 */
 	public void reportGPSEnabled() {
-		myView.hideEnableGPSDialog();		
+		myView.hideEnableGPSDialog();
+		myView.enableUI();
 	}	
 	
 	/**

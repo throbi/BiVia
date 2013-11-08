@@ -11,11 +11,11 @@
 ------+--------+----------------------------------------------------------------
   104 |  DONE  | Testing: unit test framework + enabled/disabled GPS tests                                                             
 ------+--------+----------------------------------------------------------------
-      |        | Bug: gps progress bar hidden too soon
+  105 |  DONE  | Bug: gps progress bar hidden too soon
 ------+--------+----------------------------------------------------------------
-      |        | Bug: gps not found even when other apps see it (sporadic)                                                              
+  106 |  IW    | Bug: gps not found even when other apps see it (sporadic)                                                              
 ------+--------+----------------------------------------------------------------
-      |        | Bug: on re-enabling GPS the progress bar is still there                                                             
+  107 |  DONE  | Bug: on re-enabling GPS the progress bar is still there                                                             
 ------+--------+----------------------------------------------------------------
       |        |                                                              
 ------+--------+----------------------------------------------------------------
