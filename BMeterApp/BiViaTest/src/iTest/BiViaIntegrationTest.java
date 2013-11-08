@@ -5,13 +5,12 @@ import static org.mockito.Mockito.when;
 
 import com.jayway.android.robotium.solo.Solo;
 
+import hu.bivia.bivia.Logic.Measurer;
 import hu.bivia.bivia.View.BiViaMainActivityView;
-import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import hu.bivia.bivia.test.uTest.BiViaMainPageUITest;
 import android.content.Context;
 import android.location.LocationManager;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
 
 public class BiViaIntegrationTest extends 
 		ActivityInstrumentationTestCase2<BiViaMainActivityView>{
@@ -46,46 +45,63 @@ public class BiViaIntegrationTest extends
 	//endregion --- test setup -------------------------------------------------
 
 	//region --- start up tests ------------------------------------------------
-	@UiThreadTest
-	public void testStartup_GPSEnabled_expectDisabledUI(){
-		testPreconditions();
+	public void testStartup_GPSEnabled_expectDisabledUI(){		
 		
-		LocationManager mockLocationManager = mock(LocationManager.class);
-		
-		when(mockLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-			.thenReturn(true);
+		myView.runOnUiThread(new Runnable() {			
+			@Override
+			public void run() {
+				LocationManager mockLocationManager = mock(LocationManager.class);
 				
-		BiViaMainPageViewModel viewModel = myView._test_getViewModel();
-		viewModel._test_setLocacationManager(mockLocationManager);
+				when(mockLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+					.thenReturn(true);
+				
+				Measurer measurer = myView._test_getViewModel()._test_getMeasurer();
+				measurer._test_setLocacationManager(mockLocationManager);				
+				measurer.checkForEnabledGPS();
+			}
+		});
 		
-		myView._test_getViewModel().checkForEnabledGPS();					
-	
-		BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);
+		getInstrumentation().waitForIdleSync();
 		
-		// enable GPS dialog should not be visible
-		boolean enableGPSDialogVisible = solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true);
-		
-		assertFalse(enableGPSDialogVisible);
+		myView.runOnUiThread(new Runnable() {			
+			@Override
+			public void run() {
+				BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);		
+				
+				// check for visible dialog		
+				assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
+			}
+		});		
 	}		
 
-	@UiThreadTest
-	public void testStartup_GPSDisabled_expectDisabledUIAndPromptDialog(){
-		testPreconditions();
+
+	public void testStartup_GPSDisabled_expectDisabledUIAndPromptDialog(){		
 		
-		LocationManager mockLocationManager = mock(LocationManager.class);
-		
-		when(mockLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-			.thenReturn(false);
+		myView.runOnUiThread(new Runnable() {			
+			@Override
+			public void run() {
+				LocationManager mockLocationManager = mock(LocationManager.class);
 				
-		BiViaMainPageViewModel viewModel = myView._test_getViewModel();
-		viewModel._test_setLocacationManager(mockLocationManager);
+				when(mockLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+					.thenReturn(false);
+								
+				Measurer measurer = myView._test_getViewModel()._test_getMeasurer();
+				measurer._test_setLocacationManager(mockLocationManager);				
+				measurer.checkForEnabledGPS();
+			}
+		});
 		
-		myView._test_getViewModel().checkForEnabledGPS();		
-	
-		BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);		
+		getInstrumentation().waitForIdleSync();
 		
-		// check for visible dialog
-		assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
+		myView.runOnUiThread(new Runnable() {			
+			@Override
+			public void run() {			
+				BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);		
+				
+				// check for visible dialog				
+				assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
+			}
+		});		
 	}
 	//endregion --- start up tests ---------------------------------------------
 }

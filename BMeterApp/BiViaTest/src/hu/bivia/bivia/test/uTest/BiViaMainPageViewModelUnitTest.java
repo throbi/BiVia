@@ -1,9 +1,7 @@
 package hu.bivia.bivia.test.uTest;
 
-import org.mockito.internal.util.reflection.Whitebox;
-
+import hu.bivia.bivia.Logic.Measurer;
 import hu.bivia.bivia.View.BiViaMainActivityView;
-import hu.bivia.bivia.View.IBiViaView;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -16,7 +14,7 @@ public class BiViaMainPageViewModelUnitTest
 	extends
 		ActivityInstrumentationTestCase2<BiViaMainActivityView>{
 
-	private IBiViaView myMockView;
+	private BiViaMainActivityView myMockView;
 	private BiViaMainPageViewModel myTestTarget;
 	
 	//region --- test setup ----------------------------------------------------
@@ -33,11 +31,11 @@ public class BiViaMainPageViewModelUnitTest
 	protected void setUp() throws Exception {	
 		super.setUp();
 		
-		myMockView = mock(IBiViaView.class);
+		myMockView = mock(BiViaMainActivityView.class);
 		myTestTarget = new BiViaMainPageViewModel(myMockView);
 	}
 	
-	private void testPreconditions() {
+	public void testPreconditions() {
 		assertNotNull(myMockView);
 		assertNotNull(myTestTarget);
 	}
@@ -48,6 +46,8 @@ public class BiViaMainPageViewModelUnitTest
 	
 	public void testCreation_OK(){
 		testPreconditions();
+		
+		// the rest is alredy tested on the UI
 	}
 	
 	// creation is tested  by integration tests:
@@ -56,34 +56,85 @@ public class BiViaMainPageViewModelUnitTest
 	
 	//endregion --- Lifecycle management ---------------------------------------
 
-	//region --- handle user input ---------------------------------------------
+	//region --- calling Measurer API ------------------------------------------		
 	
-	public void testStartMeasurement_serviceConnected_expectMeasurementStart(){
-		BiViaMainPageViewModel mockTarget = mock(BiViaMainPageViewModel.class);
-		Whitebox.setInternalState(mockTarget, "myDistance", 11.1);		
+	public void testStartMeasurement(){
 		
-		when(mockTarget.servicesConnected()).thenReturn(true);
+		Measurer mockMeasurer = mock(Measurer.class);		
+		when(mockMeasurer.getIsMeasuring()).thenReturn(true);
+				
+		myTestTarget._test_setMeasurer(mockMeasurer);						
 		
-		mockTarget.startDistanceMeasurement();
+		myTestTarget.startDistanceMeasurement();
 		
-		assertTrue(mockTarget.getIsMeasuring());
-		assertEquals(0.0, Whitebox.getInternalState(mockTarget, "myDistance"));
+		assertTrue(myTestTarget.getIsMeasuring());
 		
-		verify(mockTarget, times(1)).servicesConnected();
+		verify(mockMeasurer, times(1)).startMeasuring();
+		verify(mockMeasurer, times(1)).getIsMeasuring();
 	}
 	
-	public void testStartMeasurement_serviceNotConnected_expectNothing(){
-		BiViaMainPageViewModel mockTarget = mock(BiViaMainPageViewModel.class);
-		Whitebox.setInternalState(mockTarget, "myDistance", 11.1);		
+	public void testStopMeasurement(){
 		
-		when(mockTarget.servicesConnected()).thenReturn(false);
+		Measurer mockMeasurer = mock(Measurer.class);		
+		when(mockMeasurer.getIsMeasuring()).thenReturn(false);
+				
+		myTestTarget._test_setMeasurer(mockMeasurer);						
 		
-		mockTarget.startDistanceMeasurement();
+		myTestTarget.stopDistanceMeasurement();
 		
-		assertFalse(mockTarget.getIsMeasuring());
-		assertEquals(11.1, Whitebox.getInternalState(mockTarget, "myDistance"));
+		assertFalse(myTestTarget.getIsMeasuring());
 		
-		verify(mockTarget, times(0)).servicesConnected();
+		verify(mockMeasurer, times(1)).stopMeasuring();
+		verify(mockMeasurer, times(1)).getIsMeasuring();
 	}
-	//endregion --- handle user input ------------------------------------------
+	
+	public void testGetIsMeasuring(){
+		Measurer mockMeasurer = mock(Measurer.class);				
+		myTestTarget._test_setMeasurer(mockMeasurer);	
+		
+		myTestTarget.getIsMeasuring();
+		
+		verify(mockMeasurer, times(1)).getIsMeasuring();
+	}
+	//endregion --- calling Measurer API ---------------------------------------
+
+	//region --- handling calls from the measurer ------------------------------
+	
+	public void testReportGPSEnabled(){
+		myTestTarget.reportGPSEnabled();
+		verify(myMockView, times(1)).hideEnableGPSDialog();
+	}
+	
+	public void testReportMeasuredDistance(){
+		myTestTarget.reportMeasuredDistance(111);
+		verify(myMockView, times(1)).displayDistance(111);
+	}
+	
+	public void testReportNoGPSService(){
+		myTestTarget.reportNoGPSService();
+		verify(myMockView, times(1)).showExitDialog();
+	}	
+	
+	public void testRequestEnableGPS(){		
+		myTestTarget.requestEnableGPS();		
+		verify(myMockView, times(1)).showEnableGPSDialog();
+	}
+	
+	public void testReportIsGPSFixed(){
+		myTestTarget.reportIsGPSFixed(true);
+		verify(myMockView, times(1)).enableUI();
+
+		myTestTarget.reportIsGPSFixed(false);
+		verify(myMockView, times(1)).disableUI();
+	}
+	
+	public void testReportIsMeasuring(){
+		myTestTarget.reportIsMeasuring(true);
+		verify(myMockView, times(1)).resetUIButtons(true);
+	
+		myTestTarget.reportIsMeasuring(false);
+		verify(myMockView, times(1)).resetUIButtons(false);
+	}
+	//endregion --- handling calls from the measurer ---------------------------
+	
 }

@@ -22,9 +22,7 @@ import android.widget.TextView;
 
 public class BiViaMainActivityView 
 	extends 
-		FragmentActivity 
-	implements
-		IBiViaView{  
+		FragmentActivity {  
 		
 	private BiViaMainPageViewModel myViewModel;
 
@@ -94,18 +92,15 @@ public class BiViaMainActivityView
 	
     //endregion --- Activity stuff ---------------------------------------------
 	
-    //region --- IBiViaView implementations ------------------------------------
-	@Override
+    //region --- view implementations ------------------------------------------
 	public void startButtonClicked(View view){
 		myViewModel.startDistanceMeasurement();    	
 	}
 	
-	@Override
 	public void stopButtonClicked(View view){
 		myViewModel.stopDistanceMeasurement();
 	}
 	
-	@Override
 	public void displayDistance(float distanceInMeters) {
 		if(myDistanceTextView != null){
 			String formattedDistance = myDecimalFormatter.format(distanceInMeters / 1000) + 
@@ -114,23 +109,19 @@ public class BiViaMainActivityView
 		}
 	}
 	
-	@Override
 	public void hideEnableGPSDialog() {
 		myEnableGPSDialog.hide();
 	}
 	
-	@Override
 	public void showEnableGPSDialog() {
 		myEnableGPSDialog.show();
 	}
 	
-	@Override
 	public void enableUI(){
 		hideGPSProgressBar();
 		resetUIButtons(myViewModel.getIsMeasuring());		
 	}	
-		
-	@Override
+			
 	public void disableUI(){
 		myStartButton.setEnabled(false);
 		
@@ -140,7 +131,6 @@ public class BiViaMainActivityView
 		showGPSProgressBar();
 	}
 	
-	@Override
 	public void resetUIButtons(boolean isMeasuring){
 		if(myViewModel.isGPSEnabled()){
 			myStartButton.setEnabled(!isMeasuring);
@@ -149,7 +139,6 @@ public class BiViaMainActivityView
 				
 	}
 	    
-    @Override
 	public void showExitDialog(){
 		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
 		alertBuilder.setMessage(R.string.no_gps_service)
@@ -164,7 +153,6 @@ public class BiViaMainActivityView
 		}).create().show();
     }     
     
-    @Override
 	public void displayGooglePlayErrorDialog(int resultCode, int requestCode) {
 		// Display an error dialog
         Dialog dialog = GooglePlayServicesUtil.getErrorDialog(resultCode, this, requestCode);            
@@ -181,7 +169,7 @@ public class BiViaMainActivityView
         errorFragment.show(getSupportFragmentManager(), BiViaMainPageViewModel.APPTAG);
 	}
 	
-    //endregion --- IBiViaView implementations ---------------------------------
+    //endregion --- view implementations ------------------------------------------
 	
     //region --- UI handling ---------------------------------------------------
 	

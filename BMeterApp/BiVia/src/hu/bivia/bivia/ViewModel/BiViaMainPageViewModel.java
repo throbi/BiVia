@@ -1,66 +1,45 @@
 package hu.bivia.bivia.ViewModel;
 
-import hu.bivia.bivia.R;
-import hu.bivia.bivia.View.IBiViaView;
-import android.app.Activity;
+import hu.bivia.bivia.Logic.Measurer;
+import hu.bivia.bivia.View.BiViaMainActivityView;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.location.GpsStatus;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
+public class BiViaMainPageViewModel {
 
-public class BiViaMainPageViewModel implements 
-	GooglePlayServicesClient.ConnectionCallbacks,
-	GooglePlayServicesClient.OnConnectionFailedListener, 
-	LocationListener,
-	GpsStatus.Listener{
-
-	private IBiViaView myView;
+	private BiViaMainActivityView myView;
 	
-	/**
-	 * MVVM on Android :)
-	 * View must be an Activity, but there is no interface for it...
-	 */
-	private Activity myActivity;
+	private Measurer myMeasurer;
 
 	public static final String APPTAG = "BiViaDebugTag";
-	private float myDistance;
+	
 	
 	private boolean myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = false;
+
 	public void setUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware(boolean newValue) {
 		myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = newValue;
-	}
-	public boolean getUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware(){
-		return myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware;
 	}
 	
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 
+	/**
+	 * Needed for mocking.
+	 */
 	public BiViaMainPageViewModel() {
-	}
+	}	
 	
 	/**
 	 * Allows injection for test cases. Must be removed from releases!
-	 * @param mockLocationManager
+	 * @param mockMeasurer
 	 */
-	public void _test_setLocacationManager(LocationManager mockLocationManager){		
-		if(myLocationManager != null){
-			myLocationManager.removeGpsStatusListener(this);
-			myView.hideEnableGPSDialog();
-		}
-		
-		myLocationManager = mockLocationManager;			
+	public Measurer _test_getMeasurer() {
+		return myMeasurer;
 	}
 	
+	public void _test_setMeasurer(Measurer mockMeasurer) {
+		myMeasurer = mockMeasurer;
+	}
 	//endregion --- injections for testing - !!! REMOVE FROM RELEASE !!! -------
 
 	//region --- Lifecycle management ------------------------------------------
@@ -68,20 +47,20 @@ public class BiViaMainPageViewModel implements
 	
 	/**
 	 * Prepare the GPS
-	 * @param view 
+	 * @param activityView 
 	 */
-	public BiViaMainPageViewModel(IBiViaView view) {
-		if(view != null){
-			myView = view;			
-			myActivity = (Activity)view;
+	public BiViaMainPageViewModel(BiViaMainActivityView activityView) {
+		if(activityView != null){
+			myView = activityView;			
 		} else {
 			forceExit();
-		}		
+		}
+		
+		myMeasurer = new Measurer(this, activityView);
 	}
 	
 	public void onUICreate(Bundle savedInstanceState) {
-		setupGPS();
-	    checkForEnabledGPS();        
+		myMeasurer.initialize();        
 	}    
 
 	public void onDestroy(){
@@ -90,7 +69,8 @@ public class BiViaMainPageViewModel implements
 		}			
 	}
 	
-	private void forceExit() {
+	public static void forceExit() {
+		Log.d(APPTAG, "Exiting...");
 		android.os.Process.killProcess(android.os.Process.myPid());		
 	}
     //endregion --- Lifecycle management ---------------------------------------
@@ -101,272 +81,110 @@ public class BiViaMainPageViewModel implements
 	 * User wants to start the distance measurement
 	 */
 	public void startDistanceMeasurement() {
-		if(servicesConnected()){
-    		myDistance = 0;
-    		myView.displayDistance(myDistance);
-    		setIsMeasuring(true);    		    		    		 	
-    	}		
+		myMeasurer.startMeasuring();		
 	}
 	
 	/**
 	 * User wants to stop the distance measurement
 	 */
 	public void stopDistanceMeasurement() {
-		setIsMeasuring(false);
+		myMeasurer.stopMeasuring();
     	
     	// TODO: add to list...		
 	}
 	
 	//endregion --- handle user input ------------------------------------------
-	
-	//region --- GPS stuff -----------------------------------------------------
-    
-    /**
-     * Define a request code to send to Google Play services
-     * This code is returned in Activity.onActivityResult
-     */
-    public final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-    private static final int UPDATE_INTERVAL_IN_MILISECONDS = 1 * 1000;
-    private static final float SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS = (float)1;
-    
-    private LocationClient myLocationClient;
-    private Location myLocation;
-    private LocationRequest myLocationRequest;
-    private LocationManager myLocationManager;
-    
-    private boolean myIsGPSEnabled = false;
-    private boolean myIsGPSInitialized = false;
-    public boolean getIsGPSInitializedK(){ 
-    	return myIsGPSInitialized; 
-    }           
-    public void setIsGPSInitialized(boolean newValue){
-    	myIsGPSInitialized = newValue;
-    	
-    	if(myIsGPSInitialized){
-    		myView.enableUI();
-    	} else {
-    		setIsMeasuring(false);
-    		myView.disableUI();
-    	}    		
-    }
-    
-    private boolean myIsMeasuring = false;
-    public boolean getIsMeasuring(){
-    	return myIsMeasuring;
-    }    
-    public void setIsMeasuring(boolean newValue){
-    	myIsMeasuring = newValue;
-    	myView.resetUIButtons(myIsMeasuring);
-    }
-    
-    /**
-     * Prompts the user if GPS is disabled
-     */
-    public void checkForEnabledGPS(){
-    	if(myLocationManager == null){
-    		myLocationManager = (LocationManager) 
-    				myActivity.getSystemService(android.content.Context.LOCATION_SERVICE);
-    	}
-    		
-    	if(myLocationManager != null){
-    		if (!myLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-    			// user should enable GPS
-    			myView.showEnableGPSDialog();
-    		}     		
-    	} else {
-    		// no GPS service
-    		myView.showExitDialog();    			
-    	}
-    }    	    	    		    
-    
-    /**
-     * Sets up GPS and starts updates
-     */
-    private void setupGPS() {
-        myLocationClient = new LocationClient(myActivity, this, this);
-        myLocationClient.connect();
-		
-        myLocationRequest = new LocationRequest();
-        myLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILISECONDS);
-        myLocationRequest.setFastestInterval(UPDATE_INTERVAL_IN_MILISECONDS);
-        myLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT_TO_REPORT_IN_METERS);
-        myLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-	}
-    
-    /**
-     * Handle results returned to this Activity by other Activities started with
-     * startActivityForResult(). In particular, the method onConnectionFailed() in
-     * LocationUpdateRemover and LocationUpdateRequester may call startResolutionForResult() to
-     * start an Activity that handles Google Play services problems. The result of this
-     * call returns here, to onActivityResult.
-     */    
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode) {
-            case CONNECTION_FAILURE_RESOLUTION_REQUEST :
-                switch (resultCode) {
-                    // If Google Play services resolved the problem
-                    case Activity.RESULT_OK:
-                        // Log the result
-                        Log.d(APPTAG, getString(R.string.problem_resolved_by_play_services));
-                    break;
 
-                    // If any other result was returned by Google Play services
-                    default:
-                        // Log the result
-                        Log.d(APPTAG, getString(R.string.problem_not_resolved_by_play_services));
-                        setIsGPSInitialized(false);
-                    break;
-                }
-            default:
-               Log.d(APPTAG, getString(R.string.unknown_activity_request_code) + requestCode);
-               break;
-        }
-    }
-    
-	/**
-     * Verify that Google Play services is available before making a request.
-     *
-     * @return true if Google Play services is available, otherwise false
-     */
-    public boolean servicesConnected() {
-
-        // Check that Google Play services is available
-        int resultCode =
-                GooglePlayServicesUtil.isGooglePlayServicesAvailable(myActivity);
-
-        // If Google Play services is available
-        if (ConnectionResult.SUCCESS == resultCode) {
-            // In debug mode, log the status
-            Log.d(APPTAG, getString(R.string.play_services_available));
-
-            // Continue
-            return true;
-        // Google Play services was not available for some reason
-        } else {
-        	myView.displayGooglePlayErrorDialog(resultCode, 0);            
-            return false;
-        }
-    }   
-
-	public boolean isGPSEnabled() {
-		return myIsGPSEnabled;
-	}
-	
-	//endregion --- GPS stuff --------------------------------------------------
-	
-	//region --- interface implementations -------------------------------------
-	
-    /**
-     * Called by Location Services if the attempt to
-     * Location Services fails.
-     */
-	@Override
-	public void onConnectionFailed(ConnectionResult connectionResult) {
-		/*
-         * Google Play services can resolve some errors it detects.
-         * If the error has a resolution, try sending an Intent to
-         * start a Google Play services activity that can resolve
-         * error.
-         */
-        if (connectionResult.hasResolution()) {
-            try {
-                connectionResult.startResolutionForResult((Activity)myView, CONNECTION_FAILURE_RESOLUTION_REQUEST);
-                /*
-                 * Thrown if Google Play services canceled the original
-                 * PendingIntent
-                 */
-            } catch (IntentSender.SendIntentException e) {
-                // Log the error
-                e.printStackTrace();
-            }
-        } else {
-            /*
-             * If no resolution is available, display a dialog to the
-             * user with the error.
-             */
-            myView.displayGooglePlayErrorDialog(connectionResult.getErrorCode(), CONNECTION_FAILURE_RESOLUTION_REQUEST);
-        }
-	}
-
-	/**
-     * Called by Location Services when the request to connect the
-     * client finishes successfully. At this point, one can
-     * request the current location or start periodic updates
-     */
-	@Override
-	public void onConnected(Bundle bundle) {
-		// does not mean that the GPS is on, wait for the first update
-		requestGPSUpdates();
-	}
+	//region --- call-backs ----------------------------------------------------
 	
 	/**
-	 * Tells the location clinet to send some location updates
+	 * Notifies the viewm model about measured distance update
+	 * @param distanceInMeters
 	 */
-	public void requestGPSUpdates(){
-		if(servicesConnected()){
-			myLocationManager.addGpsStatusListener(this);
-			myLocationClient.requestLocationUpdates(myLocationRequest, this);
-		}
+	public void reportMeasuredDistance(float distanceInMeters){
+		myView.displayDistance(distanceInMeters);
 	}
-
+	
 	/**
-     * Called by Location Services if the connection to the
-     * location client drops because of an error.
-     */
-	@Override
-	public void onDisconnected() {
-		setIsGPSInitialized(false);
+	 * The measurer needs the GPS to be enabled
+	 */
+	public void requestEnableGPS() {
+		myView.disableUI();
+		myView.showEnableGPSDialog();				
 	}
 	
-	@Override
-	public void onLocationChanged(Location newLocation) {
-		if(newLocation != null){
-			
-			if(!getIsGPSInitializedK()){
-				setIsGPSInitialized(true);				
-			} else if (!myIsGPSEnabled){				
-				myIsGPSEnabled = true;
-				myView.enableUI();
-			}
-			
-			if(getIsMeasuring()){
-				if(myLocation != null){
-					myDistance += newLocation.distanceTo(myLocation);
-					myView.displayDistance(myDistance);
-				}
-			
-				myLocation = newLocation;
-			}
-		}
+	/**
+	 * The measurer is happy that GPS is enabled
+	 */
+	public void reportGPSEnabled() {
+		myView.hideEnableGPSDialog();		
+	}	
+	
+	/**
+	 * The measurer needs to display an error dialog from the depths of Google
+	 * Play Location Service
+	 * @param resultCode
+	 * @param requestCode
+	 */
+	public void displayGooglePlayErrorDialog(int resultCode,int requestCode) {
+		myView.displayGooglePlayErrorDialog(resultCode, requestCode);
 	}
-    
-	@Override
-	public void onGpsStatusChanged(int event) {
-		switch (event) {        
-        	case GpsStatus.GPS_EVENT_STOPPED:
-        		myIsGPSEnabled = false;
-        		myView.showEnableGPSDialog();
-        		myView.disableUI();
-        		break;
-        	case GpsStatus.GPS_EVENT_STARTED:
-        		myIsGPSEnabled = true;
-        		myView.hideEnableGPSDialog();        		
-        		break;
+	
+	/**
+	 * Called by the measurer when there is no GPS on the device
+	 */
+	public void reportNoGPSService() {
+		myView.showExitDialog();		
+	}
+	
+	/**
+	 * Called by the measurer whenever the measured distance is updated
+	 * @param myIsMeasuring
+	 */
+	public void reportIsMeasuring(boolean myIsMeasuring) {
+		myView.resetUIButtons(myIsMeasuring);		
+	}
+	
+	/**
+	 * Called by the measurer on GPS fix or when GPS signal is lost
+	 * @param gpsIsFixed
+	 */
+	public void reportIsGPSFixed(boolean gpsIsFixed) {
+		if(gpsIsFixed){
+			myView.enableUI();
+		} else {
+			myView.disableUI();
 		}
 		
 	}
-	//endregion --- interface implementations ----------------------------------
-		
-	//region --- utils ---------------------------------------------------------	    
-    /**
-     * Gets localized string from the resources
-     * @param resId
-     * @return
-     */
-    private String getString(int resId) {
-    	return myActivity.getString(resId); 
-	}
-   //endregion --- utils -------------------------------------------------------	
 	
-
+	/**
+	 * Returns the measurer's state
+	 * @return true or false
+	 */
+	public boolean getIsMeasuring() {		
+		return myMeasurer.getIsMeasuring();
+	}
+	
+	/**
+	 * Returns whether the GPS is enabled or not
+	 * @return true or false
+	 */
+	public boolean isGPSEnabled() {
+		return myMeasurer.isGPSEnabled();
+	}
+	
+	/**
+	 * Called from the UI when the activity gets a result from outside (e.g. 
+	 * Google Play Location Service could not fix itself)
+	 * @param requestCode
+	 * @param resultCode
+	 * @param intent
+	 */
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		myMeasurer.onActivityResult(requestCode, resultCode, intent);		
+	}	
+	
+	//endregion --- call-backs -------------------------------------------------
+	
 }
