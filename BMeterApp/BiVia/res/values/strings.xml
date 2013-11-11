@@ -13,7 +13,12 @@
     <string name="gps_ok">GPS is up &amp; running</string>
     <string name="gps_connected">GPS service connected</string>
     <string name="gps_disconnected">GPS gone. Please reconnect!</string>
-    <string name="gps_count">- - -</string>
+    <string name="gps_location_update">GPS location update received</string>
+    
+    <string name="gps_count">000.000 km</string>
+    <string name="ellapsed_time">00:00:00</string>
+    <string name="average_speed">000.000 km/h</string>
+    
     <string name="no_gps_service">No GPS service found on this piece of hardware!</string>
     <string name="forced_exit">Exiting&#8230;</string>
     <string name="enable_gps_title">GPS is disabled</string>

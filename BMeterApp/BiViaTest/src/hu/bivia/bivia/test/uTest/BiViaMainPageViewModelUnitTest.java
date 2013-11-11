@@ -1,6 +1,7 @@
 package hu.bivia.bivia.test.uTest;
 
 import hu.bivia.bivia.Logic.Measurer;
+import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.test.ActivityInstrumentationTestCase2;
@@ -106,8 +107,9 @@ public class BiViaMainPageViewModelUnitTest
 	}
 	
 	public void testReportMeasuredDistance(){
-		myTestTarget.reportMeasuredDistance(111);
-		verify(myMockView, times(1)).displayDistance(111);
+		Measurement measurement = new Measurement(111, 0);
+		myTestTarget.reportMeasurement(measurement);
+		verify(myMockView, times(1)).displayDistance(measurement);
 	}
 	
 	public void testReportNoGPSService(){

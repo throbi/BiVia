@@ -1,6 +1,7 @@
 package hu.bivia.bivia.test.uTest;
 
 import hu.bivia.bivia.Logic.Measurer;
+import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.location.LocationManager;
@@ -58,8 +59,7 @@ public class MeasurerUnitTest extends
 		// gps service present
 		doReturn(true).when(spy).areServicesConnected();		
 		spy.startMeasuring();
-		assertTrue(spy.getIsMeasuring());
-		verify(myMockViewModel, times(1)).reportMeasuredDistance(0);
+		assertTrue(spy.getIsMeasuring());		
 	}
 	
 	public void testStopMeasuring(){		
@@ -71,8 +71,7 @@ public class MeasurerUnitTest extends
 		// gps service present
 		doReturn(true).when(spy).areServicesConnected();		
 		spy.startMeasuring();
-		assertTrue(spy.getIsMeasuring());
-		verify(myMockViewModel, times(1)).reportMeasuredDistance(0);
+		assertTrue(spy.getIsMeasuring());		
 		
 		spy.stopMeasuring();
 		assertFalse(spy.getIsMeasuring());

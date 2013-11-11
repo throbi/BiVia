@@ -1,30 +1,37 @@
 package hu.bivia.bivia.View;
 
 import java.text.DecimalFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import hu.bivia.bivia.ErrorDialogFragment;
 import hu.bivia.bivia.R;
+import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class BiViaMainActivityView 
 	extends 
 		FragmentActivity {  
 		
-	private BiViaMainPageViewModel myViewModel;
+	private BiViaMainPageViewModel myViewModel;	
 
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 	
@@ -39,7 +46,7 @@ public class BiViaMainActivityView
 	//endregion --- injections for testing - !!! REMOVE FROM RELEASE !!! -------
 	
     //region --- Lifecycle management ------------------------------------------
-	public static final String EXTRA_MESSAGE = "hu.bivia.bivia.MESSAGE";		
+	public static final String EXTRA_MESSAGE = "hu.bivia.bivia.MESSAGE";
 	
 	/**
 	 * Constructor, creates the view model, too
@@ -94,19 +101,25 @@ public class BiViaMainActivityView
 	
     //region --- view implementations ------------------------------------------
 	public void startButtonClicked(View view){
-		myViewModel.startDistanceMeasurement();    	
-	}
+		startTimer();		
+		myViewModel.startDistanceMeasurement();
+		myAverageSpeedTextView.setText(R.string.average_speed);
+		myDistanceTextView.setText(R.string.gps_count);
+	}	
 	
 	public void stopButtonClicked(View view){
 		myViewModel.stopDistanceMeasurement();
+		stopTimer();
 	}
 	
-	public void displayDistance(float distanceInMeters) {
-		if(myDistanceTextView != null){
-			String formattedDistance = myDecimalFormatter.format(distanceInMeters / 1000) + 
-					" km";
-			myDistanceTextView.setText(formattedDistance);
-		}
+	public void displayDistance(Measurement measurement) {
+		String formattedDistance = myDecimalFormatter.format(measurement.getDistance()) + 
+				" km";
+		myDistanceTextView.setText(formattedDistance);
+		
+		String formattedSpeed = myDecimalFormatter.format(measurement.getAverageSpeed()) + " km/h";
+		myAverageSpeedTextView.setText(formattedSpeed);
+		showGPSHit();
 	}
 	
 	public void hideEnableGPSDialog() {
@@ -119,7 +132,12 @@ public class BiViaMainActivityView
 	
 	public void enableUI(){
 		hideGPSProgressBar();
-		resetUIButtons(myViewModel.getIsMeasuring());		
+		resetUIButtons(myViewModel.getIsMeasuring());
+		showGPSHit();
+		
+		myDistanceTextView.setTextColor(Color.parseColor("#ffcccc"));
+		myEllapsedTimeTextView.setTextColor(Color.parseColor("#aaaacc"));
+		myAverageSpeedTextView.setTextColor(Color.parseColor("#aaaacc"));
 	}	
 			
 	public void disableUI(){
@@ -127,6 +145,10 @@ public class BiViaMainActivityView
 		
 		// should be able to stop even if there is no GPS
 		myStopButton.setEnabled(myViewModel.getIsMeasuring());
+		
+		myDistanceTextView.setTextColor(Color.parseColor("#333333"));
+		myEllapsedTimeTextView.setTextColor(Color.parseColor("#222222"));
+		myAverageSpeedTextView.setTextColor(Color.parseColor("#222222"));
 		
 		showGPSProgressBar();
 	}
@@ -169,43 +191,107 @@ public class BiViaMainActivityView
         errorFragment.show(getSupportFragmentManager(), BiViaMainPageViewModel.APPTAG);
 	}
 	
-    //endregion --- view implementations ------------------------------------------
+    //endregion --- view implementations ---------------------------------------
+
+	//region --- timer ---------------------------------------------------------	
+
+	private long myStartTime;
+
+	private Runnable TimerMethod = new Runnable() {
+		
+		@Override
+		public void run() {
+			DisplayEllapsedTime();			
+		}
+	};
+
+	private TimerTask myTimerTask;
+
+	private Timer myTimer;
+	
+	private void startTimer() {	
+		myStartTime = SystemClock.elapsedRealtime();
+		myTimer = new Timer();
+		myTimerTask = new TimerTask() {          
+			@Override
+			public void run() {
+				UpdateTimer();
+			}
+		};		
+	    
+		try
+		{
+			myTimer.schedule(myTimerTask, 0, 1000);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+
+	private void UpdateTimer() {
+		this.runOnUiThread(TimerMethod);		
+	}
+
+	private void DisplayEllapsedTime(){	
+		long elapsedMilllis = SystemClock.elapsedRealtime() - myStartTime;
+		
+		int seconds = (int) (elapsedMilllis / 1000) % 60 ;
+		int minutes = (int) ((elapsedMilllis / (1000*60)) % 60);
+		int hours   = (int) ((elapsedMilllis / (1000*60*60)) % 24);
+		
+		myEllapsedTimeTextView.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+	}
+	
+	public void stopTimer(){
+		myTimerTask.cancel();
+		myTimer.purge();
+	}
+	
+	//endregion --- timer ------------------------------------------------------
 	
     //region --- UI handling ---------------------------------------------------
 	
 	private DecimalFormat myDecimalFormatter = new DecimalFormat("000.000");
 	
-	private TextView myGPSStateView, myDistanceTextView;	
+	private TextView myDistanceTextView, myEllapsedTimeTextView, myAverageSpeedTextView;	
 	private Button myStartButton, myStopButton;
-	private ProgressBar myGPSProgressBar;
 	
 	private AlertDialog myEnableGPSDialog;
+
+	private ViewGroup myGPSHitGroup;
+	private Animation myFadeOutAnimation;
+	private ViewGroup myGPSWaitingGroups;
 	
 	/**
 	 * Gets references to UI elements.
 	 */
-	private void getUIElements(){	
-		myGPSProgressBar = (ProgressBar)findViewById(R.id.gps_progress);
-		myGPSStateView = (TextView)findViewById(R.id.gpsStatusTextView);
+	private void getUIElements(){			
 		myDistanceTextView = (TextView)findViewById(R.id.distanceTextView);
+		myEllapsedTimeTextView = (TextView)findViewById(R.id.ellapsedTime);
+		myAverageSpeedTextView = (TextView)findViewById(R.id.averageSpeed);
 		myStartButton = (Button)findViewById(R.id.startButton);
 		myStopButton = (Button)findViewById(R.id.stopButton);
+		
+		myGPSHitGroup = (ViewGroup)findViewById(R.id.gpsHitGroup);
+		myGPSWaitingGroups = (ViewGroup)findViewById(R.id.gpsWaitingGroup);
+		
+		myFadeOutAnimation = AnimationUtils.loadAnimation(this, R.animator.gpshit_animator);
 	}
 	
 	/**
 	 * Notifies the user about waiting for GPS fix.
 	 */
 	private void hideGPSProgressBar(){
-		myGPSStateView.setText(R.string.gps_ok);
-		myGPSProgressBar.setVisibility(View.GONE);
+		myGPSWaitingGroups.setVisibility(View.INVISIBLE);
 	}
 	
 	/**
 	 * Notifies user about GPS fix
 	 */
 	private void showGPSProgressBar(){
-		myGPSStateView.setText(R.string.gps_booting);
-		myGPSProgressBar.setVisibility(View.VISIBLE);
+		myGPSHitGroup.setVisibility(View.INVISIBLE);
+		myGPSWaitingGroups.setVisibility(View.VISIBLE);
 	}
 	
     /**
@@ -226,6 +312,11 @@ public class BiViaMainActivityView
         myEnableGPSDialog = alertDialogBuilder.create();
     }
 
+    private void showGPSHit(){
+    	myGPSWaitingGroups.setVisibility(View.INVISIBLE);
+    	myGPSHitGroup.setVisibility(View.VISIBLE);
+    	myGPSHitGroup.startAnimation(myFadeOutAnimation);    	
+    }
  
 	//endregion --- UI handling ------------------------------------------------        
 }

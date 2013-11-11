@@ -1,6 +1,7 @@
 package hu.bivia.bivia.ViewModel;
 
 import hu.bivia.bivia.Logic.Measurer;
+import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -99,10 +100,10 @@ public class BiViaMainPageViewModel {
 	
 	/**
 	 * Notifies the viewm model about measured distance update
-	 * @param distanceInMeters
+	 * @param measurement
 	 */
-	public void reportMeasuredDistance(float distanceInMeters){
-		myView.displayDistance(distanceInMeters);
+	public void reportMeasurement(Measurement measurement){		
+		myView.displayDistance(measurement);
 	}
 	
 	/**
@@ -117,8 +118,7 @@ public class BiViaMainPageViewModel {
 	 * The measurer is happy that GPS is enabled
 	 */
 	public void reportGPSEnabled() {
-		myView.hideEnableGPSDialog();
-		myView.enableUI();
+		myView.hideEnableGPSDialog();		
 	}	
 	
 	/**

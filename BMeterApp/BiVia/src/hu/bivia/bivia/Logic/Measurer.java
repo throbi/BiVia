@@ -1,6 +1,7 @@
 package hu.bivia.bivia.Logic;
 
 import hu.bivia.bivia.R;
+import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -36,8 +38,13 @@ public class Measurer
 		
 	private BiViaMainPageViewModel myViewModel;
 	
+	/**
+	 * MEasured distance in meters
+	 */
 	private float myDistance;
-	
+
+	private long myStartTime;
+
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 
 	/**
@@ -104,18 +111,31 @@ public class Measurer
 		if(areServicesConnected()){
     		myDistance = 0;
     		myLatestLocation = null;
-    		myViewModel.reportMeasuredDistance(myDistance);
+    		myStartTime = SystemClock.elapsedRealtime();    		
     		setIsMeasuring(true);    		    		    		 	
     	} else {
     		myViewModel.reportNoGPSService();
     	}		
 	}
 
+	private void reportMeasurement() {
+		// milliseconds
+		long elapsedTime = (SystemClock.elapsedRealtime() - myStartTime);
+		
+		// OK to skip, will be calcaluted on next hit
+		if(elapsedTime > 0){
+			// km/h
+			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
+					elapsedTime * 3.6 /* convering to km/h*/);
+			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, averageSpeed));
+		} 
+	}
+
 	/**
 	 * Stops the current measurement.
 	 */
 	public void stopMeasuring() {
-		setIsMeasuring(false);		
+		setIsMeasuring(false);
 	}
 	//endregion --- public API -------------------------------------------------
 	
@@ -172,7 +192,10 @@ public class Measurer
     		if (!myLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
     			// user should enable GPS
     			myViewModel.requestEnableGPS();
-    		}     		
+    		} else {
+    			myIsGPSEnabled = true;
+    		}
+    			
     	} else {
     		myViewModel.reportNoGPSService();
     	}
@@ -325,13 +348,13 @@ public class Measurer
 				setIsGPSFixed(true);				
 			} else if (!myIsGPSEnabled){				
 				myIsGPSEnabled = true;
-				myViewModel.reportIsGPSFixed(true);
+				setIsGPSFixed(true);				
 			}
 			
 			if(getIsMeasuring()){
 				if(myLatestLocation != null){
 					myDistance += newLocation.distanceTo(myLatestLocation);
-					myViewModel.reportMeasuredDistance(myDistance);
+					reportMeasurement();
 				}
 			
 				myLatestLocation = newLocation;

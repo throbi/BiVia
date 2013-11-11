@@ -2,12 +2,14 @@ package hu.bivia.bivia.test.uTest;
 
 import com.jayway.android.robotium.solo.Solo;
 
+import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -57,8 +59,6 @@ public class BiViaMainPageUITest
 		testPreconditions();
 		
 		assertNotNull(myView.findViewById(hu.bivia.bivia.R.id.distanceTextView));
-		assertNotNull(myView.findViewById(hu.bivia.bivia.R.id.gps_progress));
-		assertNotNull(myView.findViewById(hu.bivia.bivia.R.id.gpsStatusTextView));
 		assertNotNull(myView.findViewById(hu.bivia.bivia.R.id.startButton));
 		assertNotNull(myView.findViewById(hu.bivia.bivia.R.id.stopButton));		
 	}
@@ -175,7 +175,7 @@ public class BiViaMainPageUITest
 			public void run() {			
 				myView.hideEnableGPSDialog();
 				myView.enableUI();
-				myView.displayDistance(111);
+				myView.displayDistance(new Measurement(111, 0));
 			}
 		});
 		
@@ -185,7 +185,7 @@ public class BiViaMainPageUITest
 			@Override
 			public void run() {			
 				assertTrue(solo.searchText("000.111 km", true));
-				myView.displayDistance(222);
+				myView.displayDistance(new Measurement(222, 0));
 			}
 		});
 		
@@ -324,8 +324,8 @@ public class BiViaMainPageUITest
 		ProgressBar gpsProgress = (ProgressBar)view.findViewById(hu.bivia.bivia.R.id.gps_progress);
 		assertEquals(View.VISIBLE, gpsProgress.getVisibility());
 		
-		TextView gpsStatusTextView = (TextView)view.findViewById(hu.bivia.bivia.R.id.gpsStatusTextView);
-		assertEquals(targetContext.getString(hu.bivia.bivia.R.string.gps_booting), gpsStatusTextView.getText().toString());
+		ViewGroup gpsWaiting = (ViewGroup)view.findViewById(hu.bivia.bivia.R.id.gpsWaitingGroup);
+		assertEquals(View.VISIBLE, gpsWaiting.getVisibility());
 		
 		Button startButton = (Button)view.findViewById(hu.bivia.bivia.R.id.startButton);
 		assertFalse(startButton.isEnabled());

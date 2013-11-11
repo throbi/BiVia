@@ -13,7 +13,9 @@
     <string name="gps_connected">GPS szolga csatlakozva</string>
     <string name="gps_ok">Pozíció belőve!</string>
     <string name="gps_disconnected">GPS szolga kipurccant. Csatlakoztasd újra!</string>
-    <string name="gps_count">- - -</string>
+    <string name="gps_location_update">Pozíció frissítve</string>
+    
+    <string name="gps_count">000,000 km</string>
     <string name="forced_exit">Kilépés&#8230;</string>
     <string name="no_gps_service">Nem található a GPS ezen a kütyűn!</string>
    
