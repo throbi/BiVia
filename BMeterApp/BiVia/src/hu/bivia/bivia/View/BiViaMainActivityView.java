@@ -60,7 +60,7 @@ public class BiViaMainActivityView
         
         // UI
         createDialogs();
-        setContentView(R.layout.activity_bmeter_main);
+        setContentView(R.layout.activity_bivia_main);
         getUIElements();
         disableUI();
                 

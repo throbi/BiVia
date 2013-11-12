@@ -40,9 +40,9 @@ public class MeasurerUnitTest extends
 		assertNotNull(myMockViewModel);
 		assertNotNull(myTestTarget);
 	}
-	//enddregion --- test setup ------------------------------------------------
+	//endregion --- test setup ------------------------------------------------
 	
-	//region --- cals from the user --------------------------------------------
+	//region --- calls from the user ------------------------------------------
 	public void testStartMeasuring(){		
 		Measurer spy = spy(myTestTarget);
 		
@@ -75,6 +75,6 @@ public class MeasurerUnitTest extends
 		spy.stopMeasuring();
 		assertFalse(spy.getIsMeasuring());
 	}
-	//endregion --- cals from the user -----------------------------------------
+	//endregion --- calls from the user --------------------------------------
 }
 
