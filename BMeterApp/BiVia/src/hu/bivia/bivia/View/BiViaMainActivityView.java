@@ -6,7 +6,6 @@ import java.util.TimerTask;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
-import hu.bivia.bivia.ErrorDialogFragment;
 import hu.bivia.bivia.R;
 import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;

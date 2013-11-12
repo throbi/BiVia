@@ -1,7 +1,6 @@
 package hu.bivia.bivia.test.uTest;
 
 import hu.bivia.bivia.Logic.Measurer;
-import hu.bivia.bivia.Model.Measurement;
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.location.LocationManager;
