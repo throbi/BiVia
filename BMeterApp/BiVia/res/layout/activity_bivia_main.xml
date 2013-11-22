@@ -1,13 +1,8 @@
-<ScrollView 
+<LinearLayout    
     xmlns:android="http://schemas.android.com/apk/res/android"    
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent"
-    android:background="#000000">
-
-<LinearLayout    
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
+    android:background="#000000"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -126,5 +121,19 @@
         android:textColorHint="#dddddd"
         android:textSize="40sp" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8sp"
+        android:background="#111111" />
+    
+    <ExpandableListView
+        android:id="@+id/measuredDays"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        />
+        
 </LinearLayout>
-</ScrollView>

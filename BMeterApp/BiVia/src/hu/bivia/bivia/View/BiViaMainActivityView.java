@@ -1,13 +1,18 @@
 package hu.bivia.bivia.View;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import hu.bivia.bivia.R;
+import hu.bivia.bivia.Model.MeasuredDay;
 import hu.bivia.bivia.Model.Measurement;
+import hu.bivia.bivia.Model.Ride;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 
 import android.app.AlertDialog;
@@ -18,19 +23,27 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 public class BiViaMainActivityView 
 	extends 
 		FragmentActivity {  
 		
-	private BiViaMainPageViewModel myViewModel;	
+	private BiViaMainPageViewModel myViewModel;
+
+	private SparseArray<MeasuredDay> myTestDays;
+
+	private ExpandableListView myListView;
+
+	private MeasuredDayExpandalbleAdapter myAdapter;	
 
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 	
@@ -65,8 +78,48 @@ public class BiViaMainActivityView
         disableUI();
                 
         myViewModel.onUICreate(savedInstanceState);
+        
+        createData();
+        myListView = (ExpandableListView) findViewById(R.id.measuredDays);
+        myAdapter = new MeasuredDayExpandalbleAdapter(this, myTestDays);
+        myListView.setAdapter(myAdapter);
     }    
 
+	private void createData() {		
+		MeasuredDay day1 = new MeasuredDay(new Date()); 
+		day1.addMeasurement(new Ride(new Date(), 22, 13.45F, (77*60+32)*1000 ));
+		day1.addMeasurement(new Ride(new Date(), 11, 22.44F, (10*60+34)*1000 ));
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		MeasuredDay day2 = new MeasuredDay(new Date()); 
+		day2.addMeasurement(new Ride(new Date(), 434, 17.45F, (43*60+32)*1000 ));
+		day2.addMeasurement(new Ride(new Date(), 344, 22.44F, (60+34)*1000 ));
+		day2.addMeasurement(new Ride(new Date(), 23, 23.44F, (60+34)*1000 ));
+		day2.addMeasurement(new Ride(new Date(), 343, 16.43F, (89*60+34)*1000 ));
+		
+		MeasuredDay day3 = new MeasuredDay(new Date()); 
+		day3.addMeasurement(new Ride(new Date(), 44, 17.45F, (43*60+32)*1000 ));
+		day3.addMeasurement(new Ride(new Date(), 34, 22.44F, (60+34)*1000 ));
+		day3.addMeasurement(new Ride(new Date(), 232, 23.44F, (60+34)*1000 ));
+		day3.addMeasurement(new Ride(new Date(), 33, 16.43F, (89*60+34)*1000 ));
+		
+		myTestDays = new SparseArray<MeasuredDay>();
+		myTestDays.append(0, day1);
+		myTestDays.append(1, day2);
+		myTestDays.append(2, day3);
+	}
+
+	@Override
+	protected void onStart() { 
+		super.onStart();
+		myListView.expandGroup(0);
+	}
+	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -112,11 +165,11 @@ public class BiViaMainActivityView
 	}
 	
 	public void displayDistance(Measurement measurement) {
-		String formattedDistance = myDecimalFormatter.format(measurement.getDistance()) + 
+		String formattedDistance = decimalFormatter.format(measurement.getDistance()) + 
 				" km";
 		myDistanceTextView.setText(formattedDistance);
 		
-		String formattedSpeed = myDecimalFormatter.format(measurement.getAverageSpeed()) + " km/h";
+		String formattedSpeed = decimalFormatter.format(measurement.getAverageSpeed()) + " km/h";
 		myAverageSpeedTextView.setText(formattedSpeed);
 		showGPSHit();
 	}
@@ -233,15 +286,11 @@ public class BiViaMainActivityView
 	}
 
 	private void DisplayEllapsedTime(){	
-		long elapsedMilllis = SystemClock.elapsedRealtime() - myStartTime;
+		long elapsedMilllis = SystemClock.elapsedRealtime() - myStartTime;				
 		
-		int seconds = (int) (elapsedMilllis / 1000) % 60 ;
-		int minutes = (int) ((elapsedMilllis / (1000*60)) % 60);
-		int hours   = (int) ((elapsedMilllis / (1000*60*60)) % 24);
-		
-		myEllapsedTimeTextView.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
-	}
-	
+		myEllapsedTimeTextView.setText(formatElapsedMillis(elapsedMilllis));
+	}	
+
 	public void stopTimer(){
 		myTimerTask.cancel();
 		myTimer.purge();
@@ -249,9 +298,7 @@ public class BiViaMainActivityView
 	
 	//endregion --- timer ------------------------------------------------------
 	
-    //region --- UI handling ---------------------------------------------------
-	
-	private DecimalFormat myDecimalFormatter = new DecimalFormat("000.000");
+    //region --- UI handling ---------------------------------------------------	
 	
 	private TextView myDistanceTextView, myEllapsedTimeTextView, myAverageSpeedTextView;	
 	private Button myStartButton, myStopButton;
@@ -318,4 +365,25 @@ public class BiViaMainActivityView
     }
  
 	//endregion --- UI handling ------------------------------------------------        
+
+    //region --- formatters ----------------------------------------------------
+	
+  	public static final DecimalFormat decimalFormatter = 
+  			new DecimalFormat("000.000");
+
+	public static final SimpleDateFormat timeFormatter = 
+			new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+  	
+	public static final SimpleDateFormat dateFormatter = 
+			new SimpleDateFormat("EEEE, yyyy/MM/dd", Locale.getDefault());
+	
+	public static String formatElapsedMillis(long elapsedMilllis) {
+		int seconds = (int) (elapsedMilllis / 1000) % 60 ;
+		int minutes = (int) ((elapsedMilllis / (1000*60)) % 60);
+		int hours   = (int) ((elapsedMilllis / (1000*60*60)) % 24);
+		
+		return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
+	}
+  	
+  	//endregion --- formatters -------------------------------------------------
 }

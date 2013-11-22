@@ -32,4 +32,5 @@
     <string name="problem_resolved_by_play_services">A Google Play szolgáltatások megoldottak egy problémát.</string>
     <string name="problem_not_resolved_by_play_services">A Google Play szolgáltatások nem tudtak megoldani egy problémát.</string>
     <string name="unknown_activity_request_code">Ismeretlen activity kérési kód!</string>
+    <string name="delete">Törlés</string>
 </resources>
