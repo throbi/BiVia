@@ -371,7 +371,7 @@ public class BiViaMainActivityView
   			new DecimalFormat("000.000");
 
 	public static final SimpleDateFormat timeFormatter = 
-			new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+			new SimpleDateFormat("H:mm:ss", Locale.getDefault());
   	
 	public static final SimpleDateFormat dateFormatter = 
 			new SimpleDateFormat("EEEE, yyyy/MM/dd", Locale.getDefault());

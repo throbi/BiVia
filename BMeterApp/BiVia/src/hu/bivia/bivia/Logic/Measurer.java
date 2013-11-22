@@ -42,7 +42,7 @@ public class Measurer
 	private BiViaMainPageViewModel myViewModel;
 	
 	/**
-	 * MEasured distance in meters
+	 * Measured distance in meters
 	 */
 	private float myDistance;
 
@@ -298,11 +298,11 @@ public class Measurer
 		long rideTimeMillis = (SystemClock.elapsedRealtime() - myStartTimeMillis);
 		
 		// OK to skip, will be calculated on next hit
-		if(rideTimeMillis > 0){	
+		if(rideTimeMillis > 0 && myDistance > 0){	
 			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
 					rideTimeMillis * 3.6 /* converting to km/h*/);
 			
-			Ride ride = new Ride(myStartTime, myDistance, averageSpeed, rideTimeMillis);
+			Ride ride = new Ride(myStartTime, myDistance / 1000, averageSpeed, rideTimeMillis);
 			myViewModel.reportRide(ride);
 		}
 	}

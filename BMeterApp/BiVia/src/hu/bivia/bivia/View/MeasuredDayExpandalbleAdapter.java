@@ -102,7 +102,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	    }
 	    
 	    String header = "<b>" + BiViaMainActivityView.dateFormatter.format(day.getDate()) + "</b><br/> " + 
-	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance() / 1000) + " km <font color=\"#000000\">/</font> " +
+	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance()) + " km <font color=\"#000000\">/</font> " +
 	    BiViaMainActivityView.formatElapsedMillis(day.getTotalTimeMillis()) + " <font color=\"#000000\">=</font> " +
 	    BiViaMainActivityView.decimalFormatter.format(day.getAverageSpeed()) + " km/h "; 
 	    

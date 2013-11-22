@@ -54,6 +54,10 @@ public class MeasuredDay {
 		return myRides.size();
 	}
 
+	/**
+	 * Day's distance in kilometers
+	 * @return
+	 */
 	public float getTotalDistance() {
 		return myTotalDistance;
 	}
