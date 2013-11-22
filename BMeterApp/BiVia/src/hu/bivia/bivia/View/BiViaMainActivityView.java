@@ -2,6 +2,8 @@ package hu.bivia.bivia.View;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
@@ -23,7 +25,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
-import android.util.SparseArray;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,11 @@ public class BiViaMainActivityView
 		
 	private BiViaMainPageViewModel myViewModel;
 
-	private SparseArray<MeasuredDay> myTestDays;
+	private ArrayList<MeasuredDay> myRidingDays;
 
 	private ExpandableListView myListView;
 
-	private MeasuredDayExpandalbleAdapter myAdapter;	
+	private MeasuredDayExpandalbleAdapter myExpandableListAdapter;	
 
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 	
@@ -77,47 +78,12 @@ public class BiViaMainActivityView
         getUIElements();
         disableUI();
                 
-        myViewModel.onUICreate(savedInstanceState);
-        
-        createData();
-        myListView = (ExpandableListView) findViewById(R.id.measuredDays);
-        myAdapter = new MeasuredDayExpandalbleAdapter(this, myTestDays);
-        myListView.setAdapter(myAdapter);
+        myViewModel.onUICreate(savedInstanceState);                               
     }    
-
-	private void createData() {		
-		MeasuredDay day1 = new MeasuredDay(new Date()); 
-		day1.addMeasurement(new Ride(new Date(), 22, 13.45F, (77*60+32)*1000 ));
-		day1.addMeasurement(new Ride(new Date(), 11, 22.44F, (10*60+34)*1000 ));
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		MeasuredDay day2 = new MeasuredDay(new Date()); 
-		day2.addMeasurement(new Ride(new Date(), 434, 17.45F, (43*60+32)*1000 ));
-		day2.addMeasurement(new Ride(new Date(), 344, 22.44F, (60+34)*1000 ));
-		day2.addMeasurement(new Ride(new Date(), 23, 23.44F, (60+34)*1000 ));
-		day2.addMeasurement(new Ride(new Date(), 343, 16.43F, (89*60+34)*1000 ));
-		
-		MeasuredDay day3 = new MeasuredDay(new Date()); 
-		day3.addMeasurement(new Ride(new Date(), 44, 17.45F, (43*60+32)*1000 ));
-		day3.addMeasurement(new Ride(new Date(), 34, 22.44F, (60+34)*1000 ));
-		day3.addMeasurement(new Ride(new Date(), 232, 23.44F, (60+34)*1000 ));
-		day3.addMeasurement(new Ride(new Date(), 33, 16.43F, (89*60+34)*1000 ));
-		
-		myTestDays = new SparseArray<MeasuredDay>();
-		myTestDays.append(0, day1);
-		myTestDays.append(1, day2);
-		myTestDays.append(2, day3);
-	}
-
+	
 	@Override
 	protected void onStart() { 
-		super.onStart();
-		myListView.expandGroup(0);
+		super.onStart();		
 	}
 	
 	@Override
@@ -164,6 +130,11 @@ public class BiViaMainActivityView
 		stopTimer();
 	}
 	
+	/**
+	 * Displays the current measurement, i.e. distance, elapsed time, average
+	 * speed 
+	 * @param measurement
+	 */
 	public void displayDistance(Measurement measurement) {
 		String formattedDistance = decimalFormatter.format(measurement.getDistance()) + 
 				" km";
@@ -174,6 +145,32 @@ public class BiViaMainActivityView
 		showGPSHit();
 	}
 	
+	/**
+	 * Adds the new ride to the expandable list
+	 * @param ride
+	 */
+	public void displayRide(Ride ride) {
+		if(myRidingDays == null){
+			myRidingDays = new ArrayList<MeasuredDay>();
+			myExpandableListAdapter = new MeasuredDayExpandalbleAdapter(this, myRidingDays);
+	        myListView.setAdapter(myExpandableListAdapter);
+		}
+
+		MeasuredDay today = null;
+		if(myRidingDays.size() > 0 && 
+				sameDay(myRidingDays.get(0).getDate(), ride.getStartTime())){
+			today = myRidingDays.get(0);
+		} else {			
+			// first ride for today
+			today = new MeasuredDay(ride.getStartTime());						
+			myRidingDays.add(0, today);			
+		}
+		
+		today.addRide(ride);		
+		myExpandableListAdapter.notifyDataSetChanged();
+		myListView.expandGroup(0);
+	}		
+
 	public void hideEnableGPSDialog() {
 		myEnableGPSDialog.hide();
 	}
@@ -253,7 +250,7 @@ public class BiViaMainActivityView
 		
 		@Override
 		public void run() {
-			DisplayEllapsedTime();			
+			displayEllapsedTime();			
 		}
 	};
 
@@ -267,7 +264,7 @@ public class BiViaMainActivityView
 		myTimerTask = new TimerTask() {          
 			@Override
 			public void run() {
-				UpdateTimer();
+				updateTimer();
 			}
 		};		
 	    
@@ -281,11 +278,11 @@ public class BiViaMainActivityView
 		}
 	}
 
-	private void UpdateTimer() {
+	private void updateTimer() {
 		this.runOnUiThread(TimerMethod);		
 	}
 
-	private void DisplayEllapsedTime(){	
+	private void displayEllapsedTime(){	
 		long elapsedMilllis = SystemClock.elapsedRealtime() - myStartTime;				
 		
 		myEllapsedTimeTextView.setText(formatElapsedMillis(elapsedMilllis));
@@ -323,6 +320,8 @@ public class BiViaMainActivityView
 		myGPSWaitingGroups = (ViewGroup)findViewById(R.id.gpsWaitingGroup);
 		
 		myFadeOutAnimation = AnimationUtils.loadAnimation(this, R.animator.gpshit_animator);
+		
+		myListView = (ExpandableListView) findViewById(R.id.measuredDays);
 	}
 	
 	/**
@@ -384,6 +383,21 @@ public class BiViaMainActivityView
 		
 		return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
 	}
-  	
+	
   	//endregion --- formatters -------------------------------------------------
+	
+	//region --- utils ---------------------------------------------------------
+		
+	private boolean sameDay(Date date1, Date date2) {
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal1.setTime(date1);
+		cal2.setTime(date2);
+		boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+		                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+
+		return sameDay;
+	}
+	
+	//endregion --- utils ------------------------------------------------------
 }

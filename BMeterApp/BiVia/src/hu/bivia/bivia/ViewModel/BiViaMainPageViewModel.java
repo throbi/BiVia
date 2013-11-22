@@ -2,6 +2,7 @@ package hu.bivia.bivia.ViewModel;
 
 import hu.bivia.bivia.Logic.Measurer;
 import hu.bivia.bivia.Model.Measurement;
+import hu.bivia.bivia.Model.Ride;
 import hu.bivia.bivia.View.BiViaMainActivityView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -106,6 +107,12 @@ public class BiViaMainPageViewModel {
 		myView.displayDistance(measurement);
 	}
 	
+	public void reportRide(Ride ride) {
+		myView.displayRide(ride);
+		
+		//TODO: save the ride
+	}
+	
 	/**
 	 * The measurer needs the GPS to be enabled
 	 */
@@ -184,7 +191,8 @@ public class BiViaMainPageViewModel {
 	 */
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		myMeasurer.onActivityResult(requestCode, resultCode, intent);		
-	}	
+	}
+		
 	
 	//endregion --- call-backs -------------------------------------------------
 	

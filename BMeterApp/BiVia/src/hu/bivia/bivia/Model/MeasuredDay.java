@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class MeasuredDay {
 
-	private ArrayList<Ride> myMeasurements = new ArrayList<Ride>();
+	private ArrayList<Ride> myRides = new ArrayList<Ride>();
 	private Date myDate;
 	
 	/**
@@ -26,32 +26,32 @@ public class MeasuredDay {
 		myTotalTimeMillis = 0;
 	}
 	
-	public void addMeasurement(Ride newMeasurement){
-		myMeasurements.add(newMeasurement);
-		myTotalDistance += newMeasurement.getDistance();
-		myTotalTimeMillis += newMeasurement.getRideTimeMillis();
+	public void addRide(Ride newRide){
+		myRides.add(newRide);
+		myTotalDistance += newRide.getDistance();
+		myTotalTimeMillis += newRide.getRideTimeMillis();
 		
 		refreshAverageSpeed();
 	}
 	
 	private void refreshAverageSpeed() {
 		float averageSpeedSum = 0;
-		for(int i=0; i< myMeasurements.size(); i++){
-			averageSpeedSum += myMeasurements.get(i).getAverageSpeed();
+		for(int i=0; i< myRides.size(); i++){
+			averageSpeedSum += myRides.get(i).getAverageSpeed();
 		}
-		myAverageSpeed = averageSpeedSum / myMeasurements.size();		
+		myAverageSpeed = averageSpeedSum / myRides.size();		
 	}
 
 	public Date getDate(){
 		return myDate;
 	}
 
-	public Ride getMeasurement(int position) {
-		return myMeasurements.get(position);
+	public Ride getRide(int position) {
+		return myRides.get(position);
 	}
 
-	public int getMeasurementCount() {
-		return myMeasurements.size();
+	public int getRideCount() {
+		return myRides.size();
 	}
 
 	public float getTotalDistance() {

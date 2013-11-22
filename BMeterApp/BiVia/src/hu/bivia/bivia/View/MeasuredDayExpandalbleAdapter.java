@@ -1,11 +1,12 @@
 package hu.bivia.bivia.View;
 
+import java.util.ArrayList;
+
 import hu.bivia.bivia.R;
 import hu.bivia.bivia.Model.MeasuredDay;
 import hu.bivia.bivia.Model.Ride;
 import android.app.Activity;
 import android.text.Html;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,11 +19,11 @@ import android.widget.Toast;
 
 public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 
-	private SparseArray<MeasuredDay> myMeasuredDays;
+	private ArrayList<MeasuredDay> myMeasuredDays;
 	private LayoutInflater myInflater;
 	private Activity myActivity;
 	
-	public MeasuredDayExpandalbleAdapter(Activity activity, SparseArray<MeasuredDay> measuredDays) {
+	public MeasuredDayExpandalbleAdapter(Activity activity, ArrayList<MeasuredDay> measuredDays) {
 		myActivity = activity;
 		myInflater = activity.getLayoutInflater();
 		myMeasuredDays = measuredDays;
@@ -32,7 +33,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
-		return myMeasuredDays.get(groupPosition).getMeasurement(childPosition);
+		return myMeasuredDays.get(groupPosition).getRide(childPosition);
 	}
 
 	@Override
@@ -73,7 +74,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return myMeasuredDays.get(groupPosition).getMeasurementCount();
+		return myMeasuredDays.get(groupPosition).getRideCount();
 	}
 
 	@Override

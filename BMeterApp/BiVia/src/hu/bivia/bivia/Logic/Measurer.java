@@ -1,7 +1,10 @@
 package hu.bivia.bivia.Logic;
 
+import java.util.Date;
+
 import hu.bivia.bivia.R;
 import hu.bivia.bivia.Model.Measurement;
+import hu.bivia.bivia.Model.Ride;
 import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.content.Intent;
@@ -43,7 +46,9 @@ public class Measurer
 	 */
 	private float myDistance;
 
-	private long myStartTime;
+	private long myStartTimeMillis;
+	
+	private Date myStartTime;
 
 	//region --- injections for testing - !!! REMOVE FROM RELEASE !!! ----------
 
@@ -111,37 +116,31 @@ public class Measurer
 		if(areServicesConnected()){
     		myDistance = 0;
     		myLatestLocation = null;
-    		myStartTime = SystemClock.elapsedRealtime();    		
+    		
+    		// this is for measuring ellapsed milliseconds
+    		myStartTimeMillis = SystemClock.elapsedRealtime();
+    		
+    		// this is for knowing when a ride starts in local time
+    		myStartTime = new Date();
     		setIsMeasuring(true);    		    		    		 	
     	} else {
     		myViewModel.reportNoGPSService();
     	}		
 	}
-
-	private void reportMeasurement() {
-		// milliseconds
-		long elapsedTime = (SystemClock.elapsedRealtime() - myStartTime);
 		
-		// OK to skip, will be calcaluted on next hit
-		if(elapsedTime > 0){
-			// km/h
-			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
-					elapsedTime * 3.6 /* convering to km/h*/);
-			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, averageSpeed));
-		} 
-	}
-
 	/**
 	 * Stops the current measurement.
 	 */
 	public void stopMeasuring() {
 		setIsMeasuring(false);
+		
+		reportRide();
 	}
 	//endregion --- public API -------------------------------------------------
 	
-	//region --- GPS stuff -----------------------------------------------------
-    
-    /**
+	//region --- GPS stuff -----------------------------------------------------        
+
+	/**
      * Define a request code to send to Google Play services
      * This code is returned in Activity.onActivityResult
      */
@@ -171,6 +170,7 @@ public class Measurer
     }
     
     private boolean myIsMeasuring = false;
+	
     public boolean getIsMeasuring(){
     	return myIsMeasuring;
     }    
@@ -272,6 +272,39 @@ public class Measurer
 
 	public boolean isGPSEnabled() {
 		return myIsGPSEnabled;
+	}
+	
+	/**
+	 * Notifies the view model about a new measurement.
+	 */
+	private void reportMeasurement() {
+		// milliseconds
+		long elapsedTime = (SystemClock.elapsedRealtime() - myStartTimeMillis);
+		
+		// OK to skip, will be calculated on next hit
+		if(elapsedTime > 0){
+			// km/h
+			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
+					elapsedTime * 3.6 /* converting to km/h*/);
+			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, averageSpeed));
+		} 
+	}
+
+	/**
+	 * Notifies the view model about a new measured ride i.e. when the STOP
+	 * button is pressed on the UI.
+	 */
+	private void reportRide() {
+		long rideTimeMillis = (SystemClock.elapsedRealtime() - myStartTimeMillis);
+		
+		// OK to skip, will be calculated on next hit
+		if(rideTimeMillis > 0){	
+			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
+					rideTimeMillis * 3.6 /* converting to km/h*/);
+			
+			Ride ride = new Ride(myStartTime, myDistance, averageSpeed, rideTimeMillis);
+			myViewModel.reportRide(ride);
+		}
 	}
 	
 	//endregion --- GPS stuff --------------------------------------------------
