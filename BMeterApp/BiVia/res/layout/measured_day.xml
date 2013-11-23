@@ -11,5 +11,5 @@
     android:paddingBottom="8dp"
     android:textSize="14sp"
     android:textAlignment="textEnd"
-    android:textColor="#aaaabb"
-    android:background="#555555" /> 
+    android:textColor="#ffffff"
+    android:background="#644f4f" /> 

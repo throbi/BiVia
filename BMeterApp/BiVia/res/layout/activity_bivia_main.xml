@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"    
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent"
-    android:background="#000000"
+    android:background="#352b2b"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -38,7 +38,7 @@
                 android:id="@+id/gps_progress"                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
+                android:layout_marginLeft="36dp"
                 android:paddingTop="8dp"
                 android:text="@string/gps_ok"
                 android:textAlignment="center"
@@ -79,7 +79,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/gps_count"
-            android:textColor="#333333"
+            android:textColor="#21addb"
             android:textSize="45sp"
             android:textStyle="bold" />
 
@@ -125,7 +125,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8sp"
-        android:background="#111111" />
+        android:background="#443838" />
     
     <ExpandableListView
         android:id="@+id/measuredDays"

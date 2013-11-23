@@ -117,8 +117,9 @@ public class Measurer
     		myDistance = 0;
     		myLatestLocation = null;
     		
-    		// this is for measuring ellapsed milliseconds
+    		// this is for measuring elapsed milliseconds
     		myStartTimeMillis = SystemClock.elapsedRealtime();
+    		myElapsedTimeMillis = 0;
     		
     		// this is for knowing when a ride starts in local time
     		myStartTime = new Date();
@@ -170,11 +171,15 @@ public class Measurer
     }
     
     private boolean myIsMeasuring = false;
+
+	private float myAverageSpeed;
+
+	private long myElapsedTimeMillis;
 	
-    public boolean getIsMeasuring(){
+    public synchronized boolean getIsMeasuring(){
     	return myIsMeasuring;
     }    
-    public void setIsMeasuring(boolean newValue){
+    public synchronized void setIsMeasuring(boolean newValue){
     	myIsMeasuring = newValue;    	
     	myViewModel.reportIsMeasuring(myIsMeasuring);
     }
@@ -279,30 +284,26 @@ public class Measurer
 	 */
 	private void reportMeasurement() {
 		// milliseconds
-		long elapsedTime = (SystemClock.elapsedRealtime() - myStartTimeMillis);
+		myElapsedTimeMillis = (SystemClock.elapsedRealtime() - myStartTimeMillis);
 		
 		// OK to skip, will be calculated on next hit
-		if(elapsedTime > 0){
+		if(myElapsedTimeMillis > 0){
 			// km/h
-			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
-					elapsedTime * 3.6 /* converting to km/h*/);
-			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, averageSpeed));
+			myAverageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
+					myElapsedTimeMillis * 3.6 /* converting to km/h*/);
+			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, myAverageSpeed));
 		} 
 	}
 
 	/**
 	 * Notifies the view model about a new measured ride i.e. when the STOP
-	 * button is pressed on the UI.
+	 * button is pressed on the UI. Time and distance until the last GPS update 
+	 * is reported (not until the push of the STOP button).
 	 */
 	private void reportRide() {
-		long rideTimeMillis = (SystemClock.elapsedRealtime() - myStartTimeMillis);
-		
-		// OK to skip, will be calculated on next hit
-		if(rideTimeMillis > 0 && myDistance > 0){	
-			float averageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
-					rideTimeMillis * 3.6 /* converting to km/h*/);
-			
-			Ride ride = new Ride(myStartTime, myDistance / 1000, averageSpeed, rideTimeMillis);
+		// do not report zero rides
+		if(myElapsedTimeMillis > 0 && myDistance > 0){	
+			Ride ride = new Ride(myStartTime, myDistance / 1000, myAverageSpeed, myElapsedTimeMillis);
 			myViewModel.reportRide(ride);
 		}
 	}

@@ -22,15 +22,16 @@
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:background="#11111f"
+            android:background="#0e4350"
             android:gravity="center"
-            android:textColor="#dddddd"
+            android:textColor="#aaaaaa"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            android:layout_weight="2">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -82,6 +83,6 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#111111" />
+        android:background="#443838" />
 
 </LinearLayout>

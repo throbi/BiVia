@@ -169,6 +169,9 @@ public class BiViaMainActivityView
 		today.addRide(ride);		
 		myExpandableListAdapter.notifyDataSetChanged();
 		myListView.expandGroup(0);
+		
+		// timer should be stopped by now, but might show a later time
+		myEllapsedTimeTextView.setText(formatElapsedMillis(ride.getRideTimeMillis()));
 	}		
 
 	public void hideEnableGPSDialog() {
@@ -184,7 +187,7 @@ public class BiViaMainActivityView
 		resetUIButtons(myViewModel.getIsMeasuring());
 		showGPSHit();
 		
-		myDistanceTextView.setTextColor(Color.parseColor("#ffcccc"));
+		myDistanceTextView.setTextColor(Color.parseColor("#21addb"));
 		myEllapsedTimeTextView.setTextColor(Color.parseColor("#aaaacc"));
 		myAverageSpeedTextView.setTextColor(Color.parseColor("#aaaacc"));
 	}	
@@ -195,7 +198,7 @@ public class BiViaMainActivityView
 		// should be able to stop even if there is no GPS
 		myStopButton.setEnabled(myViewModel.getIsMeasuring());
 		
-		myDistanceTextView.setTextColor(Color.parseColor("#333333"));
+		myDistanceTextView.setTextColor(Color.parseColor("#164757"));
 		myEllapsedTimeTextView.setTextColor(Color.parseColor("#222222"));
 		myAverageSpeedTextView.setTextColor(Color.parseColor("#222222"));
 		
