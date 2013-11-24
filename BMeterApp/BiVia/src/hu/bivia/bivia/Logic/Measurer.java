@@ -288,9 +288,8 @@ public class Measurer
 		
 		// OK to skip, will be calculated on next hit
 		if(myElapsedTimeMillis > 0){
-			// km/h
-			myAverageSpeed = (float)((myDistance * 1000 /* divided by millis*/)/
-					myElapsedTimeMillis * 3.6 /* converting to km/h*/);
+			myAverageSpeed = myDistance * 1000 /
+					myElapsedTimeMillis * 3.6F; // converting to km/h
 			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, myAverageSpeed));
 		} 
 	}

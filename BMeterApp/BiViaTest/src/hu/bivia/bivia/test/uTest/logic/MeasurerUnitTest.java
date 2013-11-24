@@ -1,4 +1,4 @@
-package hu.bivia.bivia.test.uTest;
+package hu.bivia.bivia.test.uTest.logic;
 
 import hu.bivia.bivia.Logic.Measurer;
 import hu.bivia.bivia.View.BiViaMainActivityView;
@@ -76,5 +76,9 @@ public class MeasurerUnitTest extends
 		assertFalse(spy.getIsMeasuring());
 	}
 	//endregion --- calls from the user --------------------------------------
+
+	public void testAverageSpeedCalculation(){
+		
+	}
 }
 

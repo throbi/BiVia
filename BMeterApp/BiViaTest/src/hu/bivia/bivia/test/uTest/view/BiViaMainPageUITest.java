@@ -1,4 +1,4 @@
-package hu.bivia.bivia.test.uTest;
+package hu.bivia.bivia.test.uTest.view;
 
 import com.jayway.android.robotium.solo.Solo;
 

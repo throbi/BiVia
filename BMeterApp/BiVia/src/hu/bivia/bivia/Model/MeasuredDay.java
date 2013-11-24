@@ -35,11 +35,13 @@ public class MeasuredDay {
 	}
 	
 	private void refreshAverageSpeed() {
-		float averageSpeedSum = 0;
+		float totalDistance = 0;
+		float totalRideTime = 0;
 		for(int i=0; i< myRides.size(); i++){
-			averageSpeedSum += myRides.get(i).getAverageSpeed();
+			totalDistance += myRides.get(i).getDistance();
+			totalRideTime += myRides.get(i).getRideTimeMillis();
 		}
-		myAverageSpeed = averageSpeedSum / myRides.size();		
+		myAverageSpeed = totalDistance * 1000 / totalRideTime * 3.6F;		
 	}
 
 	public Date getDate(){

@@ -249,7 +249,7 @@ public class BiViaMainActivityView
 
 	private long myStartTime;
 
-	private Runnable TimerMethod = new Runnable() {
+	private Runnable myTimerMethod = new Runnable() {
 		
 		@Override
 		public void run() {
@@ -282,7 +282,7 @@ public class BiViaMainActivityView
 	}
 
 	private void updateTimer() {
-		this.runOnUiThread(TimerMethod);		
+		this.runOnUiThread(myTimerMethod);		
 	}
 
 	private void displayEllapsedTime(){	
