@@ -125,6 +125,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
         android:background="#443838" />
     
     <ExpandableListView

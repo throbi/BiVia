@@ -1,4 +1,4 @@
-package hu.bivia.bivia.Model;
+package hu.bivia.bivia.model;
 
 public class Measurement {
 

@@ -2,8 +2,8 @@ package hu.bivia.bivia.test.uTest.model;
 
 import java.util.Date;
 
-import hu.bivia.bivia.Model.Ride;
-import hu.bivia.bivia.View.BiViaMainActivityView;
+import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.view.BiViaMainActivityView;
 import android.test.ActivityInstrumentationTestCase2;
 
 public class RideTest extends
@@ -29,6 +29,6 @@ public class RideTest extends
 		
 		assertEquals(distance, target.getDistance());
 		assertEquals(averageSpeed, target.getAverageSpeed());
-		assertEquals(rideTime, target.getRideTimeMillis());
+		assertEquals(rideTime, target.getRideTimeMs());
 	}
 }

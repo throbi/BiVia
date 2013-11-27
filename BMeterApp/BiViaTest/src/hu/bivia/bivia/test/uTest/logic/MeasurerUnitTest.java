@@ -1,8 +1,8 @@
 package hu.bivia.bivia.test.uTest.logic;
 
-import hu.bivia.bivia.Logic.Measurer;
-import hu.bivia.bivia.View.BiViaMainActivityView;
-import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
+import hu.bivia.bivia.logic.Measurer;
+import hu.bivia.bivia.view.BiViaMainActivityView;
+import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 import android.location.LocationManager;
 import android.test.ActivityInstrumentationTestCase2;
 

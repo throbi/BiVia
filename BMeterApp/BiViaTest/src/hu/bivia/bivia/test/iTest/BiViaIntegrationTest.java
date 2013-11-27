@@ -5,9 +5,9 @@ import static org.mockito.Mockito.when;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import hu.bivia.bivia.Logic.Measurer;
-import hu.bivia.bivia.View.BiViaMainActivityView;
+import hu.bivia.bivia.logic.Measurer;
 import hu.bivia.bivia.test.uTest.view.BiViaMainPageUITest;
+import hu.bivia.bivia.view.BiViaMainActivityView;
 import android.content.Context;
 import android.location.LocationManager;
 import android.test.ActivityInstrumentationTestCase2;

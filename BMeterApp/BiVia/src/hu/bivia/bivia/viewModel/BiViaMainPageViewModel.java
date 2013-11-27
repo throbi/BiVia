@@ -1,9 +1,12 @@
-package hu.bivia.bivia.ViewModel;
+package hu.bivia.bivia.viewModel;
 
-import hu.bivia.bivia.Logic.Measurer;
-import hu.bivia.bivia.Model.Measurement;
-import hu.bivia.bivia.Model.Ride;
-import hu.bivia.bivia.View.BiViaMainActivityView;
+import java.util.List;
+
+import hu.bivia.bivia.logic.Measurer;
+import hu.bivia.bivia.logic.dataAccess.BiViaDataAccessHelper;
+import hu.bivia.bivia.model.Measurement;
+import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.view.BiViaMainActivityView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,10 +62,12 @@ public class BiViaMainPageViewModel {
 		}
 		
 		myMeasurer = new Measurer(this, activityView);
+		myDataHelper = new BiViaDataAccessHelper(myView);
 	}
 	
 	public void onUICreate(Bundle savedInstanceState) {
-		myMeasurer.initialize();        
+		myMeasurer.initialize();
+		displayRidesFromDB();
 	}    
 
 	public void onDestroy(){
@@ -91,12 +96,27 @@ public class BiViaMainPageViewModel {
 	 */
 	public void stopDistanceMeasurement() {
 		myMeasurer.stopMeasuring();
-    	
-    	// TODO: add to list...		
 	}
 	
 	//endregion --- handle user input ------------------------------------------
 
+	//region --- handle db -----------------------------------------------------
+	
+	private BiViaDataAccessHelper myDataHelper;
+	
+	private void displayRidesFromDB() {
+		List<Ride> rides = myDataHelper.getAllRides();
+		
+		for(int i=0; i< rides.size(); i++){
+			displayRide(rides.get(i));
+		}
+	}
+	
+	private void saveRide(Ride ride) {
+		myDataHelper.saveRide(ride);
+	}
+	//endregion --- handle db --------------------------------------------------
+	
 	//region --- call-backs ----------------------------------------------------
 	
 	/**
@@ -107,12 +127,15 @@ public class BiViaMainPageViewModel {
 		myView.displayDistance(measurement);
 	}
 	
+	/**
+	 * Called by the Measurer to report a completed ride.
+	 * @param ride
+	 */
 	public void reportRide(Ride ride) {
-		myView.displayRide(ride);
-		
-		//TODO: save the ride
+		displayRide(ride);
+		saveRide(ride);
 	}
-	
+
 	/**
 	 * The measurer needs the GPS to be enabled
 	 */
@@ -196,4 +219,9 @@ public class BiViaMainPageViewModel {
 	
 	//endregion --- call-backs -------------------------------------------------
 	
+	//region --- notify UI -----------------------------------------------------
+	private void displayRide(Ride ride) {
+		myView.displayRide(ride);
+	}
+	//endregion --- notify UI --------------------------------------------------
 }

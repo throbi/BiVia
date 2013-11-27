@@ -2,9 +2,9 @@ package hu.bivia.bivia.test.uTest.model;
 
 import java.util.Date;
 
-import hu.bivia.bivia.Model.MeasuredDay;
-import hu.bivia.bivia.Model.Ride;
-import hu.bivia.bivia.View.BiViaMainActivityView;
+import hu.bivia.bivia.model.MeasuredDay;
+import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.view.BiViaMainActivityView;
 import android.test.ActivityInstrumentationTestCase2;
 
 public class MeasuredDayTest  extends
@@ -36,12 +36,12 @@ ActivityInstrumentationTestCase2<BiViaMainActivityView>{
 		
 		target.addRide(ride2);
 		float averageSpeed = (ride1.getDistance() + ride2.getDistance()) * 1000 /
-				(ride1.getRideTimeMillis() + ride2.getRideTimeMillis()) * 3.6F ;
+				(ride1.getRideTimeMs() + ride2.getRideTimeMs()) * 3.6F ;
 		assertEquals(averageSpeed, target.getAverageSpeed());
 		
 		target.addRide(ride3);
 		averageSpeed = (ride1.getDistance() + ride2.getDistance() + ride3.getDistance()) * 1000 /
-				(ride1.getRideTimeMillis() + ride2.getRideTimeMillis() + ride3.getRideTimeMillis()) * 3.6F ;
+				(ride1.getRideTimeMs() + ride2.getRideTimeMs() + ride3.getRideTimeMs()) * 3.6F ;
 		assertEquals(averageSpeed, target.getAverageSpeed());
 		
 	}

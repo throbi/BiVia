@@ -1,10 +1,10 @@
-package hu.bivia.bivia.View;
+package hu.bivia.bivia.view;
 
 import java.util.ArrayList;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.Model.MeasuredDay;
-import hu.bivia.bivia.Model.Ride;
+import hu.bivia.bivia.model.MeasuredDay;
+import hu.bivia.bivia.model.Ride;
 import android.app.Activity;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -56,7 +56,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	    ((TextView)convertView.findViewById(R.id.ride_distance)).
 	    	setText(BiViaMainActivityView.decimalFormatter.format(ride.getDistance()) + " km /");
 	    ((TextView)convertView.findViewById(R.id.ride_time)).
-	    		setText(BiViaMainActivityView.formatElapsedMillis(ride.getRideTimeMillis()));;
+	    		setText(BiViaMainActivityView.formatElapsedMillis(ride.getRideTimeMs()));;
 	    ((TextView)convertView.findViewById(R.id.ride_averageSpeed)).
 	    		setText((BiViaMainActivityView.decimalFormatter.format(ride.getAverageSpeed()) + " km/h"));
 	    

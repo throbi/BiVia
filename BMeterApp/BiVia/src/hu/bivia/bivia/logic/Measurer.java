@@ -1,11 +1,11 @@
-package hu.bivia.bivia.Logic;
+package hu.bivia.bivia.logic;
 
 import java.util.Date;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.Model.Measurement;
-import hu.bivia.bivia.Model.Ride;
-import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
+import hu.bivia.bivia.model.Measurement;
+import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -44,7 +44,7 @@ public class Measurer
 	/**
 	 * Measured distance in meters
 	 */
-	private float myDistance;
+	private float myDistanceMeters;
 
 	private long myStartTimeMillis;
 	
@@ -114,7 +114,7 @@ public class Measurer
 	 */
 	public void startMeasuring() {
 		if(areServicesConnected()){
-    		myDistance = 0;
+    		myDistanceMeters = 0;
     		myLatestLocation = null;
     		
     		// this is for measuring elapsed milliseconds
@@ -288,9 +288,8 @@ public class Measurer
 		
 		// OK to skip, will be calculated on next hit
 		if(myElapsedTimeMillis > 0){
-			myAverageSpeed = myDistance * 1000 /
-					myElapsedTimeMillis * 3.6F; // converting to km/h
-			myViewModel.reportMeasurement(new Measurement(myDistance / 1000, myAverageSpeed));
+			myAverageSpeed = calculateSpeedInKmPerHour(myDistanceMeters / 1000F, myElapsedTimeMillis);
+			myViewModel.reportMeasurement(new Measurement(myDistanceMeters / 1000, myAverageSpeed));
 		} 
 	}
 
@@ -301,8 +300,8 @@ public class Measurer
 	 */
 	private void reportRide() {
 		// do not report zero rides
-		if(myElapsedTimeMillis > 0 && myDistance > 0){	
-			Ride ride = new Ride(myStartTime, myDistance / 1000, myAverageSpeed, myElapsedTimeMillis);
+		if(myElapsedTimeMillis > 0 && myDistanceMeters > 0){	
+			Ride ride = new Ride(myStartTime, myDistanceMeters / 1000, myAverageSpeed, myElapsedTimeMillis);
 			myViewModel.reportRide(ride);
 		}
 	}
@@ -386,7 +385,7 @@ public class Measurer
 			
 			if(getIsMeasuring()){
 				if(myLatestLocation != null){
-					myDistance += newLocation.distanceTo(myLatestLocation);
+					myDistanceMeters += newLocation.distanceTo(myLatestLocation);
 					reportMeasurement();
 				}
 			
@@ -420,6 +419,18 @@ public class Measurer
     private String getString(int resId) {
     	return myActivity.getString(resId); 
 	}
-   //endregion --- utils -------------------------------------------------------				
+   
+    /**
+     * Readable calculation.
+     * @param distanceKm
+     * @param elapsedTimeMs
+     * @return Km/h
+     */
+    public static float calculateSpeedInKmPerHour(float distanceKm, long elapsedTimeMs ){
+    	float timeSeconds = (float)elapsedTimeMs / 1000;
+    	float timeHours = timeSeconds / 3600F;
+    	return distanceKm / timeHours;
+    }
+    //endregion --- utils -------------------------------------------------------				
 
 }

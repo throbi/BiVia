@@ -1,4 +1,4 @@
-package hu.bivia.bivia.View;
+package hu.bivia.bivia.view;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -12,10 +12,10 @@ import java.util.TimerTask;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.Model.MeasuredDay;
-import hu.bivia.bivia.Model.Measurement;
-import hu.bivia.bivia.Model.Ride;
-import hu.bivia.bivia.ViewModel.BiViaMainPageViewModel;
+import hu.bivia.bivia.model.MeasuredDay;
+import hu.bivia.bivia.model.Measurement;
+import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -171,7 +171,7 @@ public class BiViaMainActivityView
 		myListView.expandGroup(0);
 		
 		// timer should be stopped by now, but might show a later time
-		myEllapsedTimeTextView.setText(formatElapsedMillis(ride.getRideTimeMillis()));
+		myEllapsedTimeTextView.setText(formatElapsedMillis(ride.getRideTimeMs()));
 	}		
 
 	public void hideEnableGPSDialog() {
