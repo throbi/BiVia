@@ -170,8 +170,10 @@ public class BiViaMainActivityView
 		myExpandableListAdapter.notifyDataSetChanged();
 		myListView.expandGroup(0);
 		
-		// timer should be stopped by now, but might show a later time
-		myEllapsedTimeTextView.setText(formatElapsedMillis(ride.getRideTimeMs()));
+		if(myEllapsedTimeTextView.getText().toString() != getString(R.string.elapsed_time)){
+			// timer should be stopped by now, but might show a later time
+			myEllapsedTimeTextView.setText(formatElapsedMillis(ride.getRideTimeMs()));
+		}
 	}		
 
 	public void hideEnableGPSDialog() {

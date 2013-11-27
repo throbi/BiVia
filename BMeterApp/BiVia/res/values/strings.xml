@@ -16,7 +16,7 @@
     <string name="gps_location_update">GPS location update received</string>
     
     <string name="gps_count">000.000 km</string>
-    <string name="ellapsed_time">00:00:00</string>
+    <string name="elapsed_time">00:00:00</string>
     <string name="average_speed">000.000 km/h</string>
     
     <string name="no_gps_service">No GPS service found on this piece of hardware!</string>
