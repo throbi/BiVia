@@ -64,7 +64,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	    	setOnClickListener(new OnClickListener() {				
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(myActivity, "Delete ride", Toast.LENGTH_SHORT).show();					
+					Toast.makeText(myActivity, myActivity.getString(R.string.ride_deleted), Toast.LENGTH_SHORT).show();					
 				}
 			}); 	      
 	    
@@ -102,8 +102,8 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	    }
 	    
 	    String header = "<b>" + BiViaMainActivityView.dateFormatter.format(day.getDate()) + "</b><br/> " + 
-	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance()) + " km <font color=\"#443838\">/</font> " +
-	    BiViaMainActivityView.formatElapsedMillis(day.getTotalTimeMillis()) + " <font color=\"#443838\">=</font> " +
+	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance()) + " km <font color=\"#352b2b\">/</font> " +
+	    BiViaMainActivityView.formatElapsedMillis(day.getTotalTimeMillis()) + " <font color=\"#352b2b\">=</font> " +
 	    BiViaMainActivityView.decimalFormatter.format(day.getAverageSpeed()) + " km/h "; 
 	    
 	    ((CheckedTextView)convertView.findViewById(R.id.measuredDayRow)).setText(Html.fromHtml(header));

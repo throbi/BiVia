@@ -135,6 +135,8 @@
         
         android:layout_marginLeft="4sp"
         android:layout_marginRight="4sp"
+        
+        android:childDivider="#352b2b"
         />
         
 </LinearLayout>

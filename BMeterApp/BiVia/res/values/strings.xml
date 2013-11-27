@@ -35,4 +35,5 @@
     <string name="problem_not_resolved_by_play_services">Problem could not be resolved by Google Play Service</string>
     <string name="unknown_activity_request_code">Unknown activity request code!</string>
     <string name="delete">Delete</string>
+    <string name="ride_deleted">Not implemented yet...</string>
 </resources>
