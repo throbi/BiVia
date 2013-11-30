@@ -2,11 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="744.09448819"
@@ -20,6 +22,46 @@
    inkscape:export-ydpi="90">
   <defs
      id="defs4124">
+    <linearGradient
+       osb:paint="gradient"
+       id="linearGradient6201">
+      <stop
+         id="stop6203"
+         offset="0"
+         style="stop-color:#21addb;stop-opacity:1;" />
+      <stop
+         id="stop6205"
+         offset="1"
+         style="stop-color:#21addb;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6187"
+       osb:paint="gradient">
+      <stop
+         style="stop-color:#21addb;stop-opacity:0.2;"
+         offset="0"
+         id="stop6189" />
+      <stop
+         id="stop6207"
+         offset="0.5"
+         style="stop-color:#21addb;stop-opacity:0.49803922;" />
+      <stop
+         style="stop-color:#21addb;stop-opacity:0.032;"
+         offset="1"
+         id="stop6191" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4735">
+      <stop
+         style="stop-color:#21addb;stop-opacity:1;"
+         offset="0"
+         id="stop4737" />
+      <stop
+         style="stop-color:#21addb;stop-opacity:0;"
+         offset="1"
+         id="stop4739" />
+    </linearGradient>
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
        inkscape:vp_x="0 : 526.18109 : 1"
@@ -69,6 +111,85 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 526.18109 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4735"
+       id="radialGradient4741"
+       cx="1475.4451"
+       cy="2019.237"
+       fx="1475.4451"
+       fy="2019.237"
+       r="784.07198"
+       gradientTransform="matrix(0.58607734,0,0,0.41267828,455.66167,1140.5543)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4735-7"
+       id="radialGradient4741-0"
+       cx="1475.4451"
+       cy="2019.2371"
+       fx="1475.4451"
+       fy="2019.2371"
+       r="784.07196"
+       gradientTransform="matrix(0.58607734,0,0,0.41267828,455.66167,1140.5543)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4735-7">
+      <stop
+         style="stop-color:#21addb;stop-opacity:1;"
+         offset="0"
+         id="stop4737-3" />
+      <stop
+         style="stop-color:#21addb;stop-opacity:0;"
+         offset="1"
+         id="stop4739-4" />
+    </linearGradient>
+    <radialGradient
+       r="784.07196"
+       fy="2019.2371"
+       fx="1475.4451"
+       cy="2019.2371"
+       cx="1475.4451"
+       gradientTransform="matrix(0.43246182,0,0,0.22627439,560.86465,1370.3802)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient6316"
+       xlink:href="#linearGradient4735-7"
+       inkscape:collect="always" />
+    <radialGradient
+       r="784.07196"
+       fy="2019.2371"
+       fx="1475.4451"
+       cy="2019.2371"
+       cx="1475.4451"
+       gradientTransform="matrix(0.43246182,0,0,0.22627439,560.86465,1370.3802)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient6316-4"
+       xlink:href="#linearGradient4735-7-5"
+       inkscape:collect="always" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4735-7-5">
+      <stop
+         style="stop-color:#21addb;stop-opacity:1;"
+         offset="0"
+         id="stop4737-3-6" />
+      <stop
+         style="stop-color:#21addb;stop-opacity:0;"
+         offset="1"
+         id="stop4739-4-8" />
+    </linearGradient>
+    <radialGradient
+       r="784.07196"
+       fy="2019.2371"
+       fx="1475.4451"
+       cy="2019.2371"
+       cx="1475.4451"
+       gradientTransform="matrix(0.43285677,0,0,0.18483763,802.39165,1775.1885)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient6350"
+       xlink:href="#linearGradient4735-7-5"
+       inkscape:collect="always" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -77,9 +198,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.71743698"
-     inkscape:cx="-99.598656"
-     inkscape:cy="533.98609"
+     inkscape:zoom="0.063413069"
+     inkscape:cx="261.93338"
+     inkscape:cy="5246.3501"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -98,7 +219,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -107,12 +228,37 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:#000000;stroke-width:20.57818413;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect4846"
-       width="576.02759"
-       height="519.45892"
-       x="10.73884"
-       y="198.30945"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:url(#radialGradient4741);stroke-width:10.15949821;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4733"
+       width="918.44531"
+       height="646.41931"
+       x="861.16394"
+       y="1650.64" />
+    <rect
+       style="fill:#080808;fill-opacity:1;fill-rule:nonzero;stroke:url(#radialGradient6350);stroke-width:5.84327412;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4733-9-9"
+       width="678.33246"
+       height="289.52969"
+       x="1101.882"
+       y="2003.6547" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-8"
+       width="748.4978"
+       height="719.22693"
+       x="-815.79828"
+       y="-133.18513"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-6"
+       width="748.4978"
+       height="719.22693"
+       x="828.18463"
+       y="71.819939"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -121,50 +267,30 @@
        width="107.58125"
        height="118.18785"
        x="97.984795"
-       y="448.29095" />
+       y="448.29095"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
     <rect
        style="fill:none"
        id="rect4132"
        width="96.974648"
        height="132.32999"
        x="74.246216"
-       y="462.93817" />
+       y="462.93817"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
     <rect
        style="fill:none"
        id="rect4134"
        width="147.98735"
        height="115.66247"
        x="35.860416"
-       y="431.11838" />
-    <rect
-       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
-       id="rect4850"
-       width="85.559921"
-       height="66.46804"
-       x="331.30096"
-       y="420.08371" />
-    <rect
-       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
-       id="rect4850-5"
-       width="85.559921"
-       height="66.46804"
-       x="328.9082"
-       y="645.11157" />
-    <path
-       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
-       d="m 156.75475,452.38845 c -16.49666,-4.32212 -30.06935,-18.38761 -33.76272,-34.9886 -1.51649,-6.81631 -1.15443,-19.41369 0.7113,-24.74874 3.26936,-9.34875 8.43155,-16.97501 15.46272,-22.84355 4.31816,-3.60414 13.39567,-8.11769 18.85051,-9.37291 5.36626,-1.23484 15.02609,-1.0987 20.3582,0.28691 3.96414,1.03013 11.46161,3.87908 11.46161,4.35528 0,1.07427 -4.20392,10.91773 -6.17553,14.45996 -3.20357,5.75562 -13.18221,16.18592 -17.66622,18.46585 -4.50924,2.29275 -6.41665,5.90116 -5.22384,9.88239 1.11213,3.71198 3.71401,5.62572 7.64859,5.62572 2.52883,0 3.54385,-0.40284 5.20794,-2.06693 1.13681,-1.13681 2.06692,-2.59841 2.06692,-3.248 0,-0.64959 3.20088,-4.22457 7.11305,-7.94441 7.32562,-6.96544 14.31055,-16.42169 16.64479,-22.53381 0.65067,-1.70374 1.4367,-3.09772 1.74673,-3.09772 1.04805,0 5.51617,6.03333 7.61138,10.27771 3.03164,6.14132 4.27976,10.27805 4.9583,16.43367 1.63174,14.80286 -3.25285,28.46364 -13.96538,39.05709 -11.62463,11.49542 -27.78281,15.99965 -43.04835,12.00009 l 0,0 z"
-       id="path4891"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
-       d="m 237.56608,367.68997 c -13.2229,-15.19296 -24.14451,-28.12218 -24.27026,-28.7316 -0.20541,-0.99552 3.79766,-1.10803 39.42121,-1.10803 21.8074,0 39.66307,0.23864 39.67927,0.53033 0.0162,0.29168 -3.72263,12.22303 -8.30851,26.5141 l -8.33795,25.98378 -6.84949,0.002 -6.84949,0.002 -0.22157,2.21511 c -0.20806,2.07991 -1.68883,0.52924 -24.26321,-25.40848 z"
-       id="path4893"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
-       d="m 165.52828,454.15768 c -9.43807,-0.62819 -18.01798,-3.81419 -25.33863,-9.40905 -12.35263,-9.44059 -19.3887,-24.34605 -18.78975,-39.80488 0.14998,-3.87099 0.84083,-8.4859 1.61985,-10.82061 0.28147,-0.84359 0.27624,-0.79724 -0.26336,2.33533 -0.19261,1.11811 -0.43204,2.94775 -0.53208,4.06586 -0.27151,3.03471 -0.22467,10.11559 0.0853,12.89013 1.50044,13.43144 10.05788,26.40835 22.32984,33.86205 20.2416,12.29425 45.45782,7.03692 60.22167,-12.55563 3.91711,-5.19825 6.72955,-11.23433 8.10861,-17.40276 0.91988,-4.11455 1.07348,-5.61163 1.07006,-10.42982 -0.004,-5.65938 -0.46625,-9.27971 -1.7439,-13.65868 -0.50908,-1.74479 -0.5154,-1.78089 -0.28691,-1.63967 0.30834,0.19056 1.39374,4.39637 1.8495,7.16662 0.96471,5.86376 0.80392,12.43989 -0.44303,18.11961 -1.2784,5.82296 -3.65697,11.41106 -6.96015,16.35184 -2.04046,3.05205 -3.51448,4.84528 -6.10295,7.42462 -7.41584,7.38967 -17.03003,12.06837 -27.22265,13.24778 -1.73991,0.20132 -6.18272,0.35169 -7.6014,0.25726 l 0,0 z"
-       id="path4895"
-       inkscape:connector-curvature="0" />
+       y="431.11838"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
     <path
        style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
        d=""
@@ -174,81 +300,1179 @@
        style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
        d="m 166.07614,454.25018 c -1.88581,-0.0795 -3.93448,-0.2899 -5.61147,-0.57636 -0.34432,-0.0588 -0.35474,-0.0622 -0.35474,-0.1143 0,-0.0457 0.008,-0.0517 0.0532,-0.0404 0.26621,0.0668 2.10647,0.33438 2.97409,0.43242 1.98733,0.22456 3.18098,0.2766 5.14862,0.2245 2.47384,-0.0655 4.08673,-0.16571 5.41379,-0.33636 4.91315,-0.63177 9.70842,-2.07858 14.20229,-4.28504 2.00934,-0.98657 3.61769,-1.91609 5.51078,-3.18485 0.60487,-0.40539 0.66166,-0.43849 0.7513,-0.43804 l 0.097,4.9e-4 -0.0552,0.0442 c -0.23908,0.19119 -1.80009,1.20864 -2.56597,1.67248 -6.2686,3.79641 -13.22819,6.0103 -20.51444,6.52578 -1.51197,0.10697 -3.57126,0.13774 -5.04919,0.0754 z"
        id="path4899"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
     <path
        style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
        d=""
        id="path4901"
        inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921"
+       width="748.4978"
+       height="719.22693"
+       x="1.3938508"
+       y="98.36219"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="107.50737"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68593,-0.89025 8.71156,2.09078 2.77939,8.0784 -5.62798,14.8038 -12.89312,15.33235 -12.99564,0.94545 -22.27311,-11.59676 -21.95314,-23.69547 0.46957,-17.75535 17.61921,-29.88828 34.49782,-28.57393 22.49652,1.75183 37.56106,23.65715 35.19471,45.30017 -2.97781,27.23552 -29.70159,45.26272 -56.10251,41.81549 -31.97506,-4.17505 -52.98094,-35.74951 -48.43628,-66.90485 5.35572,-36.7155 41.79958,-60.70952 77.7072,-55.05707 41.45676,6.52598 68.44502,47.85109 61.67785,88.50955 -7.68929,46.19872 -53.90361,76.18536 -99.31189,68.29863 -50.94123,-8.84771 -83.92924,-59.95687 -74.91943,-110.11423 10.0026,-55.68418 66.01072,-91.67575 120.91659,-81.54021"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,-228.2515,60.873281)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="107.50737"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68593,-0.89025 8.71156,2.09078 2.77939,8.0784 -5.62798,14.8038 -12.89312,15.33235 -12.99564,0.94545 -22.27311,-11.59676 -21.95314,-23.69547 0.46957,-17.75535 17.61921,-29.88828 34.49782,-28.57393 22.49652,1.75183 37.56106,23.65715 35.19471,45.30017 -2.97781,27.23552 -29.70159,45.26272 -56.10251,41.81549 -31.97506,-4.17505 -52.98094,-35.74951 -48.43628,-66.90485 5.35572,-36.7155 41.79958,-60.70952 77.7072,-55.05707 41.45676,6.52598 68.44502,47.85109 61.67785,88.50955 -7.68929,46.19872 -53.90361,76.18536 -99.31189,68.29863 -50.94123,-8.84771 -83.92924,-59.95687 -74.91943,-110.11423 10.0026,-55.68418 66.01072,-91.67575 120.91659,-81.54021"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,-818.60264,362.28007)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="107.50737"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68593,-0.89025 8.71156,2.09078 2.77939,8.0784 -5.62798,14.8038 -12.89312,15.33235 -12.99564,0.94545 -22.27311,-11.59676 -21.95314,-23.69547 0.46957,-17.75535 17.61921,-29.88828 34.49782,-28.57393 22.49652,1.75183 37.56106,23.65715 35.19471,45.30017 -2.97781,27.23552 -29.70159,45.26272 -56.10251,41.81549 -31.97506,-4.17505 -52.98094,-35.74951 -48.43628,-66.90485 5.35572,-36.7155 41.79958,-60.70952 77.7072,-55.05707 41.45676,6.52598 68.44502,47.85109 61.67785,88.50955 -7.68929,46.19872 -53.90361,76.18536 -99.31189,68.29863 -50.94123,-8.84771 -83.92924,-59.95687 -74.91943,-110.11423 10.0026,-55.68418 66.01072,-91.67575 120.91659,-81.54021"
+       transform="matrix(-0.94132371,0.33750505,-0.33750505,-0.94132371,-593.85064,527.69082)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -554.42431,285.05341 c 50.79959,12.53183 91.56744,67.92619 134.96436,128.48792"
+       id="path4035"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -399.16851,177.61228 c -81.36085,17.88234 -269.3262,-4.62087 -128.62096,117.28655"
+       id="path4037"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="107.50737"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.35055396"
+       d="m -300.5621,337.44768 c 21.60932,9.3908 29.16301,36.09158 19.49394,56.71123 -12.05711,25.71224 -44.27882,34.53836 -69.06103,22.32377 -29.82392,-14.69953 -39.92688,-52.47379 -25.1536,-81.41083 17.32807,-33.94122 60.67365,-45.32376 93.76062,-27.98343 38.06234,19.94783 50.72629,68.87681 30.81327,106.11042 -22.56169,42.18614 -77.08232,56.13281 -118.46022,33.64311 -46.31188,-25.17141 -61.54223,-85.28955 -36.47294,-130.81002 21.39128,-38.84198 66.80892,-59.19527 110.14576,-51.19535"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,570.45763,267.5005)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.9474683"
+       sodipodi:radius="105.62485"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34249175"
+       d="m -310.06338,334.76383 c 22.52891,3.14633 36.36314,26.09815 32.66085,47.73968 -4.65091,27.18658 -32.59073,43.69196 -58.91713,38.62658 -31.84648,-6.12748 -51.03679,-39.08768 -44.59232,-70.09458 7.58787,-36.50826 45.58734,-58.39167 81.27203,-50.55806 41.17147,9.03809 65.75328,52.08883 56.5238,92.44949 -10.48151,45.83577 -58.59161,73.1196 -103.62694,62.48953 -50.5009,-11.92015 -80.48936,-65.09532 -68.45527,-114.80439 9.69563,-40.04965 44.10649,-70.32706 84.64378,-76.39007"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,32.106494,568.90728)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 244.28482,491.68062 c 48.5142,12.53183 132.71026,85.34932 201.86919,145.91105"
+       id="path4035-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 399.54062,386.61894 C 318.17977,404.50128 130.91136,378.92169 271.61659,500.82911"
+       id="path4037-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 321.13322,396.93735 c 139.9697,69.12676 181.23077,36.67429 179.1608,39.45307"
+       id="path4077"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.95477813"
+       sodipodi:radius="34.21524"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.36536,-13.81483 11.31211,-25.04555 24.47278,-27.90251"
+       transform="matrix(-0.94132371,0.33750505,-0.33750505,-0.94132371,312.97118,858.65109)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <rect
+       style="fill:none"
+       id="rect4130-4"
+       width="107.58125"
+       height="118.18785"
+       x="964.3775"
+       y="398.53711"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4132-9"
+       width="96.974648"
+       height="132.32999"
+       x="940.63892"
+       y="413.18433"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4134-8"
+       width="147.98735"
+       height="115.66247"
+       x="902.25311"
+       y="381.36453"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
+       d="m 1032.4688,404.49634 c -1.8858,-0.0795 -3.9344,-0.2899 -5.6114,-0.57636 -0.3444,-0.0588 -0.3548,-0.0622 -0.3548,-0.1143 0,-0.0457 0.01,-0.0517 0.053,-0.0404 0.2662,0.0668 2.1065,0.33438 2.9741,0.43242 1.9873,0.22456 3.181,0.2766 5.1486,0.2245 2.4739,-0.0655 4.0868,-0.16571 5.4138,-0.33636 4.9132,-0.63177 9.7084,-2.07858 14.2023,-4.28504 2.0094,-0.98657 3.6177,-1.91609 5.5108,-3.18485 0.6049,-0.40539 0.6617,-0.43849 0.7513,-0.43804 l 0.097,4.9e-4 -0.055,0.0442 c -0.2391,0.19119 -1.8001,1.20864 -2.566,1.67248 -6.2686,3.79641 -13.2282,6.0103 -20.5144,6.52578 -1.512,0.10697 -3.5713,0.13774 -5.0492,0.0754 z"
+       id="path4899-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9-4"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="107.50737"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.35055396"
+       d="m -300.5621,337.44768 c 21.60932,9.3908 29.16301,36.09158 19.49394,56.71123 -12.05711,25.71224 -44.27882,34.53836 -69.06103,22.32377 -29.82392,-14.69953 -39.92688,-52.47379 -25.1536,-81.41083 17.32807,-33.94122 60.67365,-45.32376 93.76062,-27.98343 38.06234,19.94783 50.72629,68.87681 30.81327,106.11042 -22.56169,42.18614 -77.08232,56.13281 -118.46022,33.64311 -46.31188,-25.17141 -61.54223,-85.28955 -36.47294,-130.81002 21.39128,-38.84198 66.80892,-59.19527 110.14576,-51.19535"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,1436.8503,217.74667)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4-5"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.9474683"
+       sodipodi:radius="105.62485"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34249175"
+       d="m -310.06338,334.76383 c 22.52891,3.14633 36.36314,26.09815 32.66085,47.73968 -4.65091,27.18658 -32.59073,43.69196 -58.91713,38.62658 -31.84648,-6.12748 -51.03679,-39.08768 -44.59232,-70.09458 7.58787,-36.50826 45.58734,-58.39167 81.27203,-50.55806 41.17147,9.03809 65.75328,52.08883 56.5238,92.44949 -10.48151,45.83577 -58.59161,73.1196 -103.62694,62.48953 -50.5009,-11.92015 -80.48936,-65.09532 -68.45527,-114.80439 9.69563,-40.04965 44.10649,-70.32706 84.64378,-76.39007"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,898.49918,519.15345)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:23.89642715;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-6-2"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="107.50737"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68593,-0.89025 8.71156,2.09078 2.77939,8.0784 -5.62798,14.8038 -12.89312,15.33235 -12.99564,0.94545 -22.27311,-11.59676 -21.95314,-23.69547 0.46957,-17.75535 17.61921,-29.88828 34.49782,-28.57393 22.49652,1.75183 37.56106,23.65715 35.19471,45.30017 -2.97781,27.23552 -29.70159,45.26272 -56.10251,41.81549 -31.97506,-4.17505 -52.98094,-35.74951 -48.43628,-66.90485 5.35572,-36.7155 41.79958,-60.70952 77.7072,-55.05707 41.45676,6.52598 68.44502,47.85109 61.67785,88.50955 -7.68929,46.19872 -53.90361,76.18536 -99.31189,68.29863 -50.94123,-8.84771 -83.92924,-59.95687 -74.91943,-110.11423 10.0026,-55.68418 66.01072,-91.67575 120.91659,-81.54021"
+       transform="matrix(-0.95145049,0.27674852,-0.34113594,-0.77186977,1069.2497,622.70557)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1110.6775,441.92679 c 48.5142,12.53183 132.7103,85.34932 201.8692,145.91105"
+       id="path4035-0-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1265.9333,335.8795 c -81.3608,17.88234 -268.62925,-6.71165 -127.924,115.19578"
+       id="path4037-3-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1187.5259,347.18351 c 139.9697,69.12676 181.2308,36.67429 179.1608,39.45307"
+       id="path4077-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-3"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.95477813"
+       sodipodi:radius="34.21524"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.36536,-13.81483 11.31211,-25.04555 24.47278,-27.90251"
+       transform="matrix(-0.94132371,0.33750505,-0.33750505,-0.94132371,1179.3639,808.89726)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-8"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.4184821"
+       sodipodi:radius="86.668243"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.46958,-17.75535 17.61922,-29.88828 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97506,-4.17506 -52.98095,-35.74952 -48.43629,-66.90488 5.35572,-36.71551 41.79959,-60.70954 77.70722,-55.05708 41.45678,6.52598 68.44505,47.8511 61.67788,88.50957 -4.93805,29.66872 -26.53171,54.50528 -54.73229,64.55581"
+       transform="matrix(0.98963321,0.14361792,-0.14361792,0.98963321,757.65692,-18.769103)"
+       inkscape:transform-center-y="-0.22637302"
+       inkscape:transform-center-x="-13.357145"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\2.png"
+       inkscape:export-xdpi="120.24084"
+       inkscape:export-ydpi="120.24084" />
+    <rect
+       style="fill:none"
+       id="rect4130-6"
+       width="107.58125"
+       height="118.18785"
+       x="83.072083"
+       y="1190.5177"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4132-6"
+       width="96.974648"
+       height="132.32999"
+       x="59.333496"
+       y="1205.1649"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4134-2"
+       width="147.98735"
+       height="115.66247"
+       x="20.947693"
+       y="1173.3451"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
+       d="m 151.16344,1196.4769 c -1.88581,-0.079 -3.93448,-0.2899 -5.61147,-0.5764 -0.34432,-0.059 -0.35474,-0.062 -0.35474,-0.1143 0,-0.046 0.008,-0.052 0.0532,-0.04 0.26621,0.067 2.10647,0.3344 2.97409,0.4325 1.98733,0.2245 3.18098,0.2766 5.14862,0.2245 2.47384,-0.066 4.08673,-0.1658 5.41379,-0.3364 4.91315,-0.6318 9.70842,-2.0786 14.20229,-4.285 2.00934,-0.9866 3.61769,-1.9161 5.51078,-3.1849 0.60487,-0.4054 0.66166,-0.4385 0.7513,-0.438 l 0.097,5e-4 -0.0552,0.044 c -0.23908,0.1911 -1.80009,1.2086 -2.56597,1.6724 -6.2686,3.7964 -13.22819,6.0103 -20.51444,6.5258 -1.51197,0.107 -3.57126,0.1378 -5.04919,0.075 z"
+       id="path4899-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-82"
+       width="748.4978"
+       height="719.22693"
+       x="-13.518859"
+       y="840.58893"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9-6"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.0554376"
+       sodipodi:radius="109.49404"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34419355"
+       d="m -300.56209,337.44768 c 21.60932,9.39079 29.16301,36.09158 19.49393,56.71124 -12.05711,25.71224 -44.27883,34.53837 -69.06104,22.32377 -29.82392,-14.69954 -39.92688,-52.47381 -25.1536,-81.41085 17.32808,-33.94123 60.67367,-45.32376 93.76065,-27.98343 38.06234,19.94784 50.72629,68.87683 30.81326,106.11045 -22.5617,42.18614 -77.08234,56.13281 -118.46025,33.6431 -46.31188,-25.17142 -61.54224,-85.28958 -36.47293,-130.81005 27.77811,-50.43909 93.49811,-66.95387 143.15985,-39.30277 0.75705,0.42152 1.50909,0.85205 2.2559,1.29145"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,555.54493,1009.7272)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4-2"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.9057944"
+       sodipodi:radius="104.13144"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34740359"
+       d="m -310.06342,334.76382 c 22.52892,3.1463 36.36317,26.09811 32.6609,47.73964 -4.65088,27.18659 -32.59068,43.692 -58.91708,38.62665 -31.84649,-6.12745 -51.03684,-39.08763 -44.5924,-70.09453 7.58783,-36.50827 45.58728,-58.39173 81.27198,-50.55815 41.17148,9.03805 65.75333,52.08876 56.52389,92.44942 -10.48146,45.83579 -58.59152,73.11967 -103.62687,62.48965 -50.50091,-11.9201 -80.48943,-65.09524 -68.45539,-114.80432 7.40974,-30.60748 29.48684,-56.27239 58.28431,-68.82576"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,47.193794,1312.434)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 397.17257,1123.9672 c -20.02026,7.8445 -65.21339,5.7575 -84.90341,7.6048 -25.65762,2.4071 -48.21024,7.2528 -60.467,17.6314 -21.67019,18.3496 109.12615,181.8287 234.88708,249.2668"
+       id="path4037-3-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(-0.28770387,0.95771941,0.95771941,0.28770387,67.066565,1372.6425)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 310.6207,1136.8342 c 101.53125,57.2995 154.2028,26.1212 182.19367,11.1591"
+       id="path4077-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-8-2"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.3876448"
+       sodipodi:radius="85.563171"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33236 -12.99565,0.94545 -22.27313,-11.59677 -21.95315,-23.69549 0.46957,-17.75535 17.61922,-29.88829 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97507,-4.17505 -52.98096,-35.74952 -48.4363,-66.90488 5.35572,-36.71551 41.7996,-60.70955 77.70723,-55.05709 41.45679,6.52599 68.44505,47.85111 61.67788,88.50958 -3.97878,23.90528 -18.85114,45.08711 -39.62297,57.45275"
+       transform="matrix(0.98963321,0.14361792,-0.14361792,0.98963321,740.74422,723.45761)"
+       inkscape:transform-center-y="-0.22637302"
+       inkscape:transform-center-x="-13.357145"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4130-6-7"
+       width="107.58125"
+       height="118.18785"
+       x="920.83319"
+       y="1184.6041"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4132-6-8"
+       width="96.974648"
+       height="132.32999"
+       x="897.0946"
+       y="1199.2513"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4134-2-0"
+       width="147.98735"
+       height="115.66247"
+       x="858.7088"
+       y="1167.4315"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
+       d="m 988.92451,1190.5633 c -1.88581,-0.079 -3.93448,-0.2899 -5.61147,-0.5764 -0.34432,-0.059 -0.35474,-0.062 -0.35474,-0.1143 0,-0.046 0.008,-0.052 0.0532,-0.04 0.26621,0.067 2.10647,0.3344 2.97409,0.4325 1.98733,0.2245 3.18098,0.2766 5.14862,0.2245 2.47384,-0.066 4.08673,-0.1658 5.41379,-0.3364 4.9131,-0.6318 9.7084,-2.0786 14.2023,-4.285 2.0093,-0.9866 3.6177,-1.9161 5.5108,-3.1849 0.6048,-0.4054 0.6616,-0.4385 0.7513,-0.438 l 0.097,5e-4 -0.055,0.044 c -0.2391,0.1911 -1.8001,1.2086 -2.566,1.6724 -6.2686,3.7964 -13.2282,6.0103 -20.51444,6.5258 -1.51197,0.107 -3.57126,0.1378 -5.04919,0.075 z"
+       id="path4899-3-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-82-0"
+       width="748.4978"
+       height="719.22693"
+       x="824.24219"
+       y="834.67529"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9-6-8"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.0951877"
+       sodipodi:radius="110.91853"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.33977312"
+       d="m -300.56216,337.44764 c 21.60934,9.39075 29.16308,36.09152 19.49405,56.7112 -12.05706,25.71226 -44.27876,34.53845 -69.06099,22.32391 -29.82395,-14.69948 -39.92699,-52.47372 -25.15377,-81.41079 17.32801,-33.94127 60.67357,-45.32389 93.76058,-27.98363 38.0624,19.94776 50.72644,68.87673 30.81349,106.11038 -22.56161,42.18619 -77.08222,56.13297 -118.46018,33.64335 -46.31193,-25.17132 -61.54241,-85.28945 -36.47321,-130.80998 27.77801,-50.43914 93.49798,-66.95406 143.15978,-39.30306 8.78561,4.8917 16.88566,10.9999 24.01799,18.08749"
+       transform="matrix(0.99870403,-0.05089445,0.05089445,0.99870403,1333.8011,941.9153)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4-2-9"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.9517264"
+       sodipodi:radius="105.77745"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34199759"
+       d="m -310.06343,334.76382 c 22.52892,3.14629 36.36317,26.0981 32.66091,47.73962 -4.65087,27.18659 -32.59066,43.69201 -58.91707,38.62667 -31.84649,-6.12743 -51.03684,-39.08761 -44.59242,-70.09451 7.58782,-36.50827 45.58727,-58.39174 81.27196,-50.55818 41.17149,9.03804 65.75336,52.08874 56.52393,92.44941 -10.48145,45.83578 -58.5915,73.11968 -103.62685,62.48968 -50.50092,-11.92009 -80.48945,-65.09521 -68.45543,-114.8043 9.93606,-41.04301 45.7717,-71.67687 87.45007,-76.77151"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,872.95487,1306.5204)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1234.9336,1118.0536 c -20.0202,7.8445 -65.1458,6.7421 -84.9034,7.6048 -32.5568,1.4215 -66.6825,6.7078 -90.035,18.617 -86.87071,44.302 74.8334,33.7225 136.5466,104.3264 14.9289,17.0795 16.1215,49.7616 -3.2995,69.0371"
+       id="path4037-3-5-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-8"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(-0.28770387,0.95771941,0.95771941,0.28770387,886.82764,1366.1289)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1148.3818,1130.9206 c 101.5312,57.2995 135.3858,26.1212 163.3766,11.1591"
+       id="path4077-7-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-8-2-0"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.3876448"
+       sodipodi:radius="85.563171"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33236 -12.99565,0.94545 -22.27313,-11.59677 -21.95315,-23.69549 0.46957,-17.75535 17.61922,-29.88829 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97507,-4.17505 -52.98096,-35.74952 -48.4363,-66.90488 5.35572,-36.71551 41.7996,-60.70955 77.70723,-55.05709 41.45679,6.52599 68.44505,47.85111 61.67788,88.50958 -3.97878,23.90528 -18.85114,45.08711 -39.62297,57.45275"
+       transform="matrix(0.98963321,0.14361792,-0.14361792,0.98963321,1578.5053,717.54397)"
+       inkscape:transform-center-y="-0.22637302"
+       inkscape:transform-center-x="-13.357145"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-8-5"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(0.99637533,-0.0850659,0.0850659,0.99637533,1496.8221,951.27593)"
+       inkscape:transform-center-x="-6.2826115"
+       inkscape:transform-center-y="8.6653647"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png" />
+    <rect
+       style="fill:none"
+       id="rect4130-6-5"
+       width="107.58125"
+       height="118.18785"
+       x="-690.23773"
+       y="1156.9731"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4132-6-2"
+       width="96.974648"
+       height="132.32999"
+       x="-713.97632"
+       y="1171.6204"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4134-2-7"
+       width="147.98735"
+       height="115.66247"
+       x="-752.36212"
+       y="1139.8005"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
+       d="m -622.14639,1162.9325 c -1.88581,-0.079 -3.93448,-0.2899 -5.61147,-0.5764 -0.34432,-0.059 -0.35474,-0.062 -0.35474,-0.1143 0,-0.046 0.008,-0.052 0.0532,-0.04 0.26621,0.067 2.10647,0.3344 2.97409,0.4325 1.98733,0.2245 3.18098,0.2766 5.14862,0.2245 2.47384,-0.066 4.08673,-0.1658 5.41379,-0.3364 4.91315,-0.6318 9.70842,-2.0786 14.20229,-4.285 2.00934,-0.9866 3.61769,-1.9161 5.51078,-3.1849 0.60487,-0.4054 0.66166,-0.4385 0.7513,-0.438 l 0.097,5e-4 -0.0552,0.044 c -0.23908,0.1911 -1.80009,1.2086 -2.56597,1.6724 -6.2686,3.7964 -13.22819,6.0103 -20.51444,6.5258 -1.51197,0.107 -3.57126,0.1378 -5.04919,0.075 z"
+       id="path4899-3-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-82-7"
+       width="748.4978"
+       height="719.22693"
+       x="-786.82867"
+       y="807.04449"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9-6-87"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.006207"
+       sodipodi:radius="107.72981"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34983024"
+       d="m -300.56204,337.4477 c 21.60931,9.39083 29.16295,36.09163 19.49385,56.71128 -12.05715,25.71222 -44.27888,34.5383 -69.06108,22.32367 -29.8239,-14.69958 -39.92681,-52.47386 -25.15349,-81.41088 17.32813,-33.94121 60.67374,-45.32368 93.76069,-27.98331 38.06232,19.94789 50.7262,68.87691 30.81312,106.11049 -22.56176,42.18611 -77.08242,56.1327 -118.46029,33.64294 -46.31185,-25.17148 -61.54212,-85.28966 -36.47276,-130.8101 22.1318,-40.18647 69.81191,-60.36886 114.26287,-50.35161"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,-217.7649,976.18277)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4-2-8"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.9057944"
+       sodipodi:radius="104.13144"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34740359"
+       d="m -310.06342,334.76382 c 22.52892,3.1463 36.36317,26.09811 32.6609,47.73964 -4.65088,27.18659 -32.59068,43.692 -58.91708,38.62665 -31.84649,-6.12745 -51.03684,-39.08763 -44.5924,-70.09453 7.58783,-36.50827 45.58728,-58.39173 81.27198,-50.55815 41.17148,9.03805 65.75333,52.08876 56.52389,92.44942 -10.48146,45.83579 -58.59152,73.11967 -103.62687,62.48965 -50.50091,-11.9201 -80.48943,-65.09524 -68.45539,-114.80432 7.40974,-30.60748 29.48684,-56.27239 58.28431,-68.82576"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,-726.11604,1278.8896)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -376.13726,1090.4228 c -44.53875,15.9411 -146.10865,0.8894 -157.19762,61.7034 -6.78059,37.0375 75.20872,51.5734 150.66621,56.7173 8.85468,0.6036 -10.28313,66.1976 -25.21693,96.1467"
+       id="path4037-3-5-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-6"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(-0.28770387,0.95771941,0.95771941,0.28770387,-706.24327,1339.0981)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -418.08591,1100.5021 c 46.65654,48.754 109.59958,28.9089 137.59045,13.9468"
+       id="path4077-7-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-8-2-9"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.3876448"
+       sodipodi:radius="85.563171"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33236 -12.99565,0.94545 -22.27313,-11.59677 -21.95315,-23.69549 0.46957,-17.75535 17.61922,-29.88829 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97507,-4.17505 -52.98096,-35.74952 -48.4363,-66.90488 5.35572,-36.71551 41.7996,-60.70955 77.70723,-55.05709 41.45679,6.52599 68.44505,47.85111 61.67788,88.50958 -3.97878,23.90528 -18.85114,45.08711 -39.62297,57.45275"
+       transform="matrix(0.98963321,0.14361792,-0.14361792,0.98963321,-32.565651,689.61317)"
+       inkscape:transform-center-y="-0.22637302"
+       inkscape:transform-center-x="-13.357145"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-8-5-8"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(0.93594494,-0.35214637,0.35214637,0.93594494,-211.75231,862.9783)"
+       inkscape:transform-center-x="-9.102591"
+       inkscape:transform-center-y="7.8760426"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\4.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4130-6-5-5"
+       width="107.58125"
+       height="118.18785"
+       x="-706.96399"
+       y="1912.4402"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4132-6-2-3"
+       width="96.974648"
+       height="132.32999"
+       x="-730.70258"
+       y="1927.0874"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4134-2-7-0"
+       width="147.98735"
+       height="115.66247"
+       x="-769.08838"
+       y="1895.2676"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
+       d="m -638.87262,1918.3996 c -1.88581,-0.079 -3.93448,-0.2899 -5.61147,-0.5764 -0.34432,-0.059 -0.35474,-0.062 -0.35474,-0.1143 0,-0.046 0.008,-0.052 0.0532,-0.04 0.26621,0.067 2.10647,0.3344 2.97409,0.4325 1.98733,0.2245 3.18098,0.2766 5.14862,0.2245 2.47384,-0.066 4.08673,-0.1658 5.41379,-0.3364 4.91315,-0.6318 9.70842,-2.0786 14.20229,-4.285 2.00934,-0.9866 3.61769,-1.9161 5.51078,-3.1849 0.60487,-0.4054 0.66166,-0.4385 0.7513,-0.438 l 0.097,5e-4 -0.0552,0.044 c -0.23908,0.1911 -1.80009,1.2086 -2.56597,1.6724 -6.2686,3.7964 -13.22819,6.0103 -20.51444,6.5258 -1.51197,0.107 -3.57126,0.1378 -5.04919,0.075 z"
+       id="path4899-3-6-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-82-7-9"
+       width="748.4978"
+       height="719.22693"
+       x="-803.55493"
+       y="1562.5115"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9-6-87-5"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.006207"
+       sodipodi:radius="107.72981"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34983024"
+       d="m -300.56204,337.4477 c 21.60931,9.39083 29.16295,36.09163 19.49385,56.71128 -12.05715,25.71222 -44.27888,34.5383 -69.06108,22.32367 -29.8239,-14.69958 -39.92681,-52.47386 -25.15349,-81.41088 17.32813,-33.94121 60.67374,-45.32368 93.76069,-27.98331 38.06232,19.94789 50.7262,68.87691 30.81312,106.11049 -22.56176,42.18611 -77.08242,56.1327 -118.46029,33.64294 -46.31185,-25.17148 -61.54212,-85.28966 -36.47276,-130.8101 22.1318,-40.18647 69.81191,-60.36886 114.26287,-50.35161"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,-234.49113,1731.6498)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4-2-8-1"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.9057944"
+       sodipodi:radius="104.13144"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.34740359"
+       d="m -310.06342,334.76382 c 22.52892,3.1463 36.36317,26.09811 32.6609,47.73964 -4.65088,27.18659 -32.59068,43.692 -58.91708,38.62665 -31.84649,-6.12745 -51.03684,-39.08763 -44.5924,-70.09453 7.58783,-36.50827 45.58728,-58.39173 81.27198,-50.55815 41.17148,9.03805 65.75333,52.08876 56.52389,92.44942 -10.48146,45.83579 -58.59152,73.11967 -103.62687,62.48965 -50.50091,-11.9201 -80.48943,-65.09524 -68.45539,-114.80432 7.40974,-30.60748 29.48684,-56.27239 58.28431,-68.82576"
+       transform="matrix(-0.66425745,-0.74750386,0.74750386,-0.66425745,-742.84227,2034.3567)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076000000200;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -392.86349,1845.8899 c -44.53875,15.9411 -146.10865,0.8894 -157.19762,61.7034 -6.78059,37.0375 107.73356,68.3286 180.23425,48.8325 8.57075,-2.3048 -96.03044,57.3272 -110.96424,87.2763"
+       id="path4037-3-5-1-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-6-1"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(-0.28770387,0.95771941,0.95771941,0.28770387,-722.9695,2094.5652)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -434.81214,1855.9692 c 46.65654,48.754 109.59958,28.9089 137.59045,13.9468"
+       id="path4077-7-0-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-8-2-9-3"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.3876448"
+       sodipodi:radius="85.563171"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33236 -12.99565,0.94545 -22.27313,-11.59677 -21.95315,-23.69549 0.46957,-17.75535 17.61922,-29.88829 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97507,-4.17505 -52.98096,-35.74952 -48.4363,-66.90488 5.35572,-36.71551 41.7996,-60.70955 77.70723,-55.05709 41.45679,6.52599 68.44505,47.85111 61.67788,88.50958 -3.97878,23.90528 -18.85114,45.08711 -39.62297,57.45275"
+       transform="matrix(0.98963321,0.14361792,-0.14361792,0.98963321,-49.291878,1445.0802)"
+       inkscape:transform-center-y="-0.22637302"
+       inkscape:transform-center-x="-13.357145"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-8-5-8-3"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(0.93594494,-0.35214637,0.35214637,0.93594494,-284.65781,1601.6902)"
+       inkscape:transform-center-x="-9.102591"
+       inkscape:transform-center-y="7.8760426"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\7.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4130-6-1"
+       width="107.58125"
+       height="118.18785"
+       x="90.318604"
+       y="1951.4681"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4132-6-7"
+       width="96.974648"
+       height="132.32999"
+       x="66.580017"
+       y="1966.1154"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none"
+       id="rect4134-2-72"
+       width="147.98735"
+       height="115.66247"
+       x="28.194216"
+       y="1934.2955"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#000000;fill-opacity:0.99159666;fill-rule:nonzero;stroke:none"
+       d="m 158.40997,1957.4273 c -1.88581,-0.079 -3.93448,-0.2899 -5.61147,-0.5764 -0.34432,-0.059 -0.35474,-0.062 -0.35474,-0.1143 0,-0.046 0.008,-0.052 0.0532,-0.04 0.26621,0.067 2.10647,0.3344 2.97409,0.4325 1.98733,0.2245 3.18098,0.2766 5.14862,0.2245 2.47384,-0.066 4.08673,-0.1658 5.41379,-0.3364 4.91315,-0.6318 9.70842,-2.0786 14.20229,-4.285 2.00934,-0.9866 3.61769,-1.9161 5.51078,-3.1849 0.60487,-0.4054 0.66166,-0.4385 0.7513,-0.438 l 0.097,5e-4 -0.0552,0.044 c -0.23908,0.1911 -1.80009,1.2086 -2.56597,1.6724 -6.2686,3.7964 -13.22819,6.0103 -20.51444,6.5258 -1.51197,0.107 -3.57126,0.1378 -5.04919,0.075 z"
+       id="path4899-3-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3921-82-3"
+       width="748.4978"
+       height="719.22693"
+       x="-6.272337"
+       y="1601.5393"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-9-6-1"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.0166035"
+       sodipodi:radius="108.10242"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.40441287"
+       d="m -276.91543,371.41871 c 2.22239,26.72371 -20.13955,48.98602 -46.13231,50.57605 -31.60411,1.93328 -57.7005,-24.63152 -59.10647,-55.5002 -1.66165,-36.48209 29.12365,-66.42614 64.86809,-67.63691 41.35885,-1.40094 75.15916,33.61592 76.16733,74.23599 1.14752,46.23493 -38.10826,83.89735 -83.60388,84.69776 -51.11061,0.89919 -92.63927,-42.60068 -93.22819,-92.97178 -0.65456,-55.98604 47.09316,-101.38398 102.33967,-101.75861 10.49743,-0.0712 20.99576,1.42254 31.06285,4.39554"
+       transform="matrix(0.99128315,0.13174865,-0.13174865,0.99128315,546.79146,1770.6776)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-7-4-2-3"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.8742685"
+       sodipodi:radius="103.00164"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0.36992157"
+       d="m -298.04606,338.65454 c 21.04907,11.07631 26.67984,38.51457 15.40453,58.5601 -14.03271,24.94769 -47.07178,31.44589 -71.08308,17.32816 -28.85655,-16.96655 -36.22422,-55.63746 -19.25179,-83.60606 19.88726,-32.7719 64.20851,-41.01038 96.12903,-21.17542 36.69163,22.79966 45.80185,72.78321 23.09905,108.65202 -25.70646,40.61439 -81.36049,50.59705 -121.17499,25.02268 -44.53937,-28.60933 -55.395,-89.93969 -26.94631,-133.69797 7.11384,-10.94214 16.35879,-20.46086 27.0562,-27.93373"
+       transform="matrix(-0.14332608,-0.98967551,0.98967551,-0.14332608,102.38514,1799.8864)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 404.4191,1884.9176 c -20.02026,7.8445 -65.21339,5.7575 -84.90341,7.6048 -25.65762,2.4071 -57.08066,21.0512 -75.25102,30.4442 -3.48074,44.8381 105.33604,133.0292 193.95811,210.7583"
+       id="path4037-3-5-15"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cscc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-2-8-1"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="0.87972462"
+       sodipodi:radius="31.525639"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+       transform="matrix(-0.28770387,0.95771941,0.95771941,0.28770387,34.313093,2133.5929)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 317.86723,1897.7846 c 101.53125,57.2995 113.79315,26.614 141.78402,11.6519"
+       id="path4077-7-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4006-1-8-2-05"
+       sodipodi:cx="-320.58566"
+       sodipodi:cy="369.37537"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.3876448"
+       sodipodi:radius="85.563171"
+       sodipodi:argument="-20.184807"
+       sodipodi:t0="0"
+       d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33236 -12.99565,0.94545 -22.27313,-11.59677 -21.95315,-23.69549 0.46957,-17.75535 17.61922,-29.88829 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97507,-4.17505 -52.98096,-35.74952 -48.4363,-66.90488 5.35572,-36.71551 41.7996,-60.70955 77.70723,-55.05709 41.45679,6.52599 68.44505,47.85111 61.67788,88.50958 -3.97878,23.90528 -18.85114,45.08711 -39.62297,57.45275"
+       transform="matrix(0.98963321,0.14361792,-0.14361792,0.98963321,747.99075,1484.408)"
+       inkscape:transform-center-y="-0.22637302"
+       inkscape:transform-center-x="-13.357145"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 227.67389,1996.5682 c 57.47638,23.003 102.55784,51.7804 144.88338,79.8337"
+       id="path4548"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\8.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#1a1a1a;fill-opacity:1;fill-rule:nonzero;stroke:url(#radialGradient6316);stroke-width:6.46220255;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4733-9"
+       width="677.7135"
+       height="354.43625"
+       x="860.0816"
+       y="1650.0638" />
     <g
-       id="layer1-9"
-       inkscape:label="Layer 1"
-       transform="matrix(1.3936169,0,0,1.3936169,202.76244,404.19012)">
-      <text
-         id="text3301"
-         y="68.785713"
-         x="-35.535713"
-         style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:RoadSign;-inkscape-font-specification:RoadSign"
-         xml:space="preserve"><tspan
-           y="68.785713"
-           x="-35.535713"
-           id="tspan3303"
-           sodipodi:role="line" /></text>
-      <text
-         id="text3305"
-         y="63.25"
-         x="-14.285714"
-         style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:RoadSign;-inkscape-font-specification:RoadSign"
-         xml:space="preserve"><tspan
-           y="63.25"
-           x="-14.285714"
-           id="tspan3307"
-           sodipodi:role="line" /></text>
-      <text
-         id="text3309"
-         y="52.535713"
-         x="-10.535714"
-         style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:RoadSign;-inkscape-font-specification:RoadSign"
-         xml:space="preserve"><tspan
-           y="52.535713"
-           x="-10.535714"
-           id="tspan3311"
-           sodipodi:role="line" /></text>
+       id="g6369"
+       transform="translate(32.726208,32.058565)">
       <path
-         id="path3553"
-         d="m 73.608282,55.32714 c -5.4e-5,-3.02398 -1.080053,-5.591978 -3.24,-7.704 -2.112049,-2.159973 -4.680046,-3.239972 -7.704,-3.24 -3.02404,2.8e-5 -5.616037,1.080027 -7.776,3.24 -2.112033,2.112022 -3.168032,4.68002 -3.168,7.704 -3.2e-5,3.024014 1.055967,5.616011 3.168,7.776 2.159963,2.112007 4.75196,3.168006 7.776,3.168 3.023954,6e-6 5.591951,-1.055993 7.704,-3.168 2.159947,-2.159989 3.239946,-4.751986 3.24,-7.776"
-         style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:DNR Recreation Symbols;-inkscape-font-specification:DNR Recreation Symbols"
-         inkscape:connector-curvature="0" />
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         transform="matrix(1.1963146,-0.05089445,-0.33483257,0.99870403,1569.6688,1671.2602)"
+         d="m -300.56216,337.44764 c 21.60934,9.39075 29.16308,36.09152 19.49405,56.7112 -12.05706,25.71226 -44.27876,34.53845 -69.06099,22.32391 -29.82395,-14.69948 -39.92699,-52.47372 -25.15377,-81.41079 17.32801,-33.94127 60.67357,-45.32389 93.76058,-27.98363 38.0624,19.94776 50.72644,68.87673 30.81349,106.11038 -22.56161,42.18619 -77.08222,56.13297 -118.46018,33.64335 -46.31193,-25.17132 -61.54241,-85.28945 -36.47321,-130.80998 27.77801,-50.43914 93.49798,-66.95406 143.15978,-39.30306 8.78561,4.8917 16.88566,10.9999 24.01799,18.08749"
+         sodipodi:t0="0.33977312"
+         sodipodi:argument="-20.184807"
+         sodipodi:radius="110.91853"
+         sodipodi:revolution="3.0951877"
+         sodipodi:expansion="1"
+         sodipodi:cy="369.37537"
+         sodipodi:cx="-320.58566"
+         id="path4006-9-6-8-0"
+         style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="spiral" />
       <path
-         id="path3549"
-         d="m 45.168282,55.32714 c -2.6e-5,-3.02398 -1.080024,-5.591978 -3.24,-7.704 -2.11202,-2.159973 -4.680018,-3.239972 -7.704,-3.24 -3.024012,2.8e-5 -5.616009,1.080027 -7.776,3.24 -2.112005,2.112022 -3.168004,4.68002 -3.168,7.704 -4e-6,3.024014 1.055995,5.616011 3.168,7.776 2.159991,2.112007 4.751988,3.168006 7.776,3.168 3.023982,6e-6 5.59198,-1.055993 7.704,-3.168 2.159976,-2.159989 3.239974,-4.751986 3.24,-7.776"
-         style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:DNR Recreation Symbols;-inkscape-font-specification:DNR Recreation Symbols"
-         inkscape:connector-curvature="0" />
-      <g
-         id="g4989"
-         transform="matrix(8.2381757,0,-2.8751123,4.1925732,-171.14209,-141.70453)"
-         style="opacity:0.47755103;fill:#ffffff;fill-opacity:1">
-        <path
-           inkscape:connector-curvature="0"
-           style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DNR Recreation Symbols;-inkscape-font-specification:DNR Recreation Symbols"
-           d="m 57.120282,25.87914 c -3.8e-5,-1.151953 -0.408037,-2.111952 -1.224,-2.88 -0.768036,-0.76795 -1.728035,-1.15195 -2.88,-1.152 -1.104032,5e-5 -2.064031,0.40805 -2.88,1.224 -0.76803,0.768048 -1.152029,1.704047 -1.152,2.808 -2.9e-5,1.104045 0.38397,2.064044 1.152,2.88 0.815969,0.768043 1.775968,1.152042 2.88,1.152 1.151965,4.2e-5 2.111964,-0.383957 2.88,-1.152 0.815963,-0.767956 1.223962,-1.727955 1.224,-2.88"
-           id="path3555" />
-        <path
-           inkscape:connector-curvature="0"
-           style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DNR Recreation Symbols;-inkscape-font-specification:DNR Recreation Symbols"
-           d="m 59.640282,37.75914 c -4e-5,-1.199964 -0.576039,-1.799964 -1.728,-1.8 l -4.824,0 -3.6,-6.768 c -0.576029,-0.815956 -1.368029,-1.223956 -2.376,-1.224 -1.056026,4.4e-5 -1.848026,0.384044 -2.376,1.152 l -7.776,7.632 c -0.624017,0.624035 -0.936016,1.488034 -0.936,2.592 -1.6e-5,1.440031 0.455983,2.40003 1.368,2.88 l 8.784,4.824 -0.072,8.784 c -2.6e-5,1.440015 0.719973,2.160014 2.16,2.16 1.48797,1.4e-5 2.231969,-0.719985 2.232,-2.16 l 0,-10.8 c -3.1e-5,-0.575972 -0.264031,-1.319972 -0.792,-2.232 l -5.904,-3.168 4.752,-4.824 2.016,3.888 c 0.287969,0.528033 0.791968,0.792033 1.512,0.792 l 5.76,0 c 1.199961,3.3e-5 1.79996,-0.575967 1.8,-1.728"
-           id="path3551" />
-        <path
-           inkscape:connector-curvature="0"
-           style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DNR Recreation Symbols;-inkscape-font-specification:DNR Recreation Symbols"
-           d="m 71.520282,55.32714 c -5.2e-5,2.448014 -0.864051,4.536012 -2.592,6.264 -1.728048,1.728009 -3.816045,2.592008 -6.264,2.592 -2.448041,8e-6 -4.536039,-0.863991 -6.264,-2.592 -1.728035,-1.727988 -2.592034,-3.815986 -2.592,-6.264 -3.4e-5,-2.447981 0.863965,-4.535979 2.592,-6.264 1.727961,-1.727975 3.815959,-2.591974 6.264,-2.592 2.447955,2.6e-5 4.535952,0.864025 6.264,2.592 1.727949,1.728021 2.591948,3.816019 2.592,6.264"
-           id="path3547" />
-        <path
-           inkscape:connector-curvature="0"
-           style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DNR Recreation Symbols;-inkscape-font-specification:DNR Recreation Symbols"
-           d="m 43.080282,55.32714 c -2.3e-5,2.448014 -0.864023,4.536012 -2.592,6.264 -1.728019,1.728009 -3.816017,2.592008 -6.264,2.592 -2.448012,8e-6 -4.53601,-0.863991 -6.264,-2.592 -1.728007,-1.727988 -2.592006,-3.815986 -2.592,-6.264 -6e-6,-2.447981 0.863993,-4.535979 2.592,-6.264 1.72799,-1.727975 3.815988,-2.591974 6.264,-2.592 2.447983,2.6e-5 4.535981,0.864025 6.264,2.592 1.727977,1.728021 2.591977,3.816019 2.592,6.264"
-           id="text3540" />
-      </g>
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         transform="matrix(-0.48683471,-0.74750386,1.1429232,-0.66425745,882.79688,2035.8653)"
+         d="m -310.06343,334.76382 c 22.52892,3.14629 36.36317,26.0981 32.66091,47.73962 -4.65087,27.18659 -32.59066,43.69201 -58.91707,38.62667 -31.84649,-6.12743 -51.03684,-39.08761 -44.59242,-70.09451 7.58782,-36.50827 45.58727,-58.39174 81.27196,-50.55818 41.17149,9.03804 65.75336,52.08874 56.52393,92.44941 -10.48145,45.83578 -58.5915,73.11968 -103.62685,62.48968 -50.50092,-11.92009 -80.48945,-65.09521 -68.45543,-114.8043 9.93606,-41.04301 45.7717,-71.67687 87.45007,-76.77151"
+         sodipodi:t0="0.34199759"
+         sodipodi:argument="-20.184807"
+         sodipodi:radius="105.77745"
+         sodipodi:revolution="2.9517264"
+         sodipodi:expansion="1"
+         sodipodi:cy="369.37537"
+         sodipodi:cx="-320.58566"
+         id="path4006-7-4-2-9-7"
+         style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="spiral" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         sodipodi:nodetypes="csssc"
+         inkscape:connector-curvature="0"
+         id="path4037-3-5-2-6"
+         d="m 1383.6056,1847.3985 c -26.6791,7.8445 -79.3888,6.7421 -102.9988,7.6048 -38.9048,1.4215 -81.185,6.7078 -113.3953,18.617 -119.8215,44.302 74.8031,33.7225 119.5755,104.3264 10.8308,17.0795 -0.6833,49.7616 -31.1752,69.0371"
+         style="fill:none;stroke:#21addb;stroke-width:23.54948044;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         transform="matrix(-0.71740706,0.95771941,1.0142034,0.28770387,875.57285,2095.4738)"
+         d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+         sodipodi:t0="0"
+         sodipodi:argument="-20.184807"
+         sodipodi:radius="31.525639"
+         sodipodi:revolution="0.87972462"
+         sodipodi:expansion="1"
+         sodipodi:cy="369.37537"
+         sodipodi:cx="-320.58566"
+         id="path4006-1-2-8-8-6"
+         style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="spiral" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4077-7-2-8"
+         d="m 1276.5854,1860.2655 c 96.926,57.2995 149.1217,26.1212 188.0014,11.1591"
+         style="fill:none;stroke:#21addb;stroke-width:23.54948044;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         inkscape:transform-center-x="-13.357145"
+         inkscape:transform-center-y="-0.22637302"
+         transform="matrix(1.108744,0.14361792,-0.56032873,0.98963321,1946.5531,1446.8889)"
+         d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33236 -12.99565,0.94545 -22.27313,-11.59677 -21.95315,-23.69549 0.46957,-17.75535 17.61922,-29.88829 34.49783,-28.57393 22.49653,1.75183 37.56107,23.65715 35.19472,45.30018 -2.97781,27.23554 -29.70159,45.26274 -56.10253,41.81551 -31.97507,-4.17505 -52.98096,-35.74952 -48.4363,-66.90488 5.35572,-36.71551 41.7996,-60.70955 77.70723,-55.05709 41.45679,6.52599 68.44505,47.85111 61.67788,88.50958 -3.97878,23.90528 -18.85114,45.08711 -39.62297,57.45275"
+         sodipodi:t0="0"
+         sodipodi:argument="-20.184807"
+         sodipodi:radius="85.563171"
+         sodipodi:revolution="2.3876448"
+         sodipodi:expansion="1"
+         sodipodi:cy="369.37537"
+         sodipodi:cx="-320.58566"
+         id="path4006-1-8-2-0-0"
+         style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="spiral" />
+      <path
+         inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\6.png"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:transform-center-y="8.6653647"
+         inkscape:transform-center-x="-6.2826115"
+         transform="matrix(1.2070795,-0.0850659,-0.29366757,0.99637533,1757.9623,1680.6209)"
+         d="m -320.58566,369.37537 c 1.25794,-5.24141 7.68594,-0.89025 8.71157,2.09078 2.77939,8.0784 -5.62799,14.8038 -12.89313,15.33235 -12.99565,0.94546 -22.27312,-11.59676 -21.95315,-23.69548 0.21585,-8.1616 4.25719,-15.86332 10.46567,-21.08359"
+         sodipodi:t0="0"
+         sodipodi:argument="-20.184807"
+         sodipodi:radius="31.525639"
+         sodipodi:revolution="0.87972462"
+         sodipodi:expansion="1"
+         sodipodi:cy="369.37537"
+         sodipodi:cx="-320.58566"
+         id="path4006-1-2-8-8-5-5"
+         style="fill:none;stroke:#21addb;stroke-width:21.70000076;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="spiral" />
     </g>
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:244.80000305;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path6378"
+       sodipodi:cx="-2460.0608"
+       sodipodi:cy="-2117.3313"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.2761621"
+       sodipodi:radius="1362.5056"
+       sodipodi:argument="-15.177607"
+       sodipodi:t0="0"
+       d="m -2460.0608,-2117.3313 c -51.4784,-30.1867 9.9953,-88.1305 52.5929,-89.6883 99.0796,-3.6235 145.4126,112.4153 126.7837,194.8741 -33.3227,147.4994 -203.8828,208.2295 -337.1552,163.8791 -195.5827,-65.0859 -272.4851,-296.4383 -200.9746,-479.4364 95.3122,-243.9078 389.3599,-337.3282 621.7176,-238.07 292.3985,124.9062 402.4701,482.4512 275.1654,763.9988 -154.1829,340.9919 -575.637,467.784 -906.28,312.2608 -392.9586,-184.8343 -534.805,-665.579 -349.3562,-1048.5612 214.0742,-442.0983 758.4264,-600.551 1190.8424,-386.4516 491.2672,243.2379 666.3471,851.3031 423.5471,1333.1236 -272.3485,540.4573 -944.2015,732.17971 -1475.4048,460.6425 -589.6635,-301.4206 -798.0397,-1037.1159 -497.738,-1617.686 330.4637,-638.8818 1130.0427,-863.9207 1759.9672,-534.8334 65.9871,34.4732 129.1093,74.4128 188.5474,119.2422" />
+    <path
+       style="fill:none;stroke:#21addb;stroke-width:241.80000305;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -1557.5969,-3155.359 c -5.43,-754.7537 2582.6222,-523.1648 2582.6222,-523.1648 2862.3422,3276.99085 152.154,-908.4243 662.324,-820.0202"
+       id="path6388"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       transform="translate(4708.4152,-227.44624)"
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#21addb;stroke-width:244.80000305;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path6378-0"
+       sodipodi:cx="-2460.0608"
+       sodipodi:cy="-2117.3313"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3.2761621"
+       sodipodi:radius="1362.5056"
+       sodipodi:argument="-15.177607"
+       sodipodi:t0="0"
+       d="m -2460.0608,-2117.3313 c -51.4784,-30.1867 9.9953,-88.1305 52.5929,-89.6883 99.0796,-3.6235 145.4126,112.4153 126.7837,194.8741 -33.3227,147.4994 -203.8828,208.2295 -337.1552,163.8791 -195.5827,-65.0859 -272.4851,-296.4383 -200.9746,-479.4364 95.3122,-243.9078 389.3599,-337.3282 621.7176,-238.07 292.3985,124.9062 402.4701,482.4512 275.1654,763.9988 -154.1829,340.9919 -575.637,467.784 -906.28,312.2608 -392.9586,-184.8343 -534.805,-665.579 -349.3562,-1048.5612 214.0742,-442.0983 758.4264,-600.551 1190.8424,-386.4516 491.2672,243.2379 666.3471,851.3031 423.5471,1333.1236 -272.3485,540.4573 -944.2015,732.17971 -1475.4048,460.6425 -589.6635,-301.4206 -798.0397,-1037.1159 -497.738,-1617.686 330.4637,-638.8818 1130.0427,-863.9207 1759.9672,-534.8334 65.9871,34.4732 129.1093,74.4128 188.5474,119.2422" />
   </g>
 </svg>
