@@ -28,8 +28,8 @@
     <string name="ok">OK</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="delete_ride_title">Really delete?</string>
-    <string name="delete_ride_message">Deleting the ride can not be undone!</string>
+    <string name="delete_ride_title">No undo!</string>
+    <string name="delete_ride_message">Do you really want to delete the ride?</string>
     
     <string name="googleError_title">Error</string>
     <string name="googleError_text">Google Play Location Services have just messed up something&#8230;</string>

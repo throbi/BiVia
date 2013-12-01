@@ -193,7 +193,14 @@ public class BiViaMainActivityView
 				for(int rideIndex = 0; rideIndex<ridingDay.getRideCount(); rideIndex++){
 					Ride currentRide = ridingDay.getRide(rideIndex);
 					if(currentRide == rideToBeDeleted){
-						ridingDay.deleteRideFromPosition(rideIndex);
+						if(ridingDay.getRideCount() == 1){
+							// only this one ride for the whole day ==> delete day
+							myRidingDays.remove(dayIndex);
+						} else {
+							// multiple rides for the day, delete ride only
+							ridingDay.deleteRideFromPosition(rideIndex);
+						}
+						
 						myExpandableListAdapter.notifyDataSetChanged();
 						return;
 					}
