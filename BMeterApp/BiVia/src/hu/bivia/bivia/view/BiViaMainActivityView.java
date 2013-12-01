@@ -146,29 +146,33 @@ public class BiViaMainActivityView
 	}
 	
 	/**
-	 * Adds the new ride to the expandable list
+	 * Adds the new ride to the expandable list and refreshes the UI.
 	 * @param ride
 	 */
 	public void displayRide(Ride ride) {
 		if(myRidingDays == null){
 			myRidingDays = new ArrayList<MeasuredDay>();
-			myExpandableListAdapter = new MeasuredDayExpandalbleAdapter(this, myRidingDays);
+			myExpandableListAdapter = new MeasuredDayExpandalbleAdapter(this, myRidingDays, myViewModel);
 	        myListView.setAdapter(myExpandableListAdapter);
 		}
 
-		MeasuredDay today = null;
+		MeasuredDay measuredDay = null;
 		if(myRidingDays.size() > 0 && 
 				sameDay(myRidingDays.get(0).getDate(), ride.getStartTime())){
-			today = myRidingDays.get(0);
+			measuredDay = myRidingDays.get(0);
 		} else {			
 			// first ride for today
-			today = new MeasuredDay(ride.getStartTime());						
-			myRidingDays.add(0, today);			
+			measuredDay = new MeasuredDay(ride.getStartTime());						
+			myRidingDays.add(0, measuredDay);			
 		}
 		
-		today.addRide(ride);		
+		measuredDay.addRide(ride);		
 		myExpandableListAdapter.notifyDataSetChanged();
-		myListView.expandGroup(0);
+		
+		//expand only todays' rides
+		if(sameDay(ride.getStartTime(), new Date())){
+			myListView.expandGroup(0);
+		}
 		
 		if(myEllapsedTimeTextView.getText().toString() != getString(R.string.elapsed_time)){
 			// timer should be stopped by now, but might show a later time
@@ -176,6 +180,48 @@ public class BiViaMainActivityView
 		}
 	}		
 
+	/**
+	 * Deletes a ride from the expander list and refreshes the UI.
+	 * @param rideToBeDeleted
+	 */
+	public void deleteRide(Ride rideToBeDeleted) {
+		// search for the ride group
+		for(int dayIndex = 0; dayIndex < myRidingDays.size(); dayIndex++){
+			MeasuredDay ridingDay = myRidingDays.get(dayIndex);
+			if(sameDay(ridingDay.getDate(), rideToBeDeleted.getStartTime())){
+				// search for the ride inside the ride group
+				for(int rideIndex = 0; rideIndex<ridingDay.getRideCount(); rideIndex++){
+					Ride currentRide = ridingDay.getRide(rideIndex);
+					if(currentRide == rideToBeDeleted){
+						ridingDay.deleteRideFromPosition(rideIndex);
+						myExpandableListAdapter.notifyDataSetChanged();
+						return;
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Displays a Yes/No dialog.
+	 * @param title
+	 * @param message
+	 * @param clickListener
+	 */
+	public void showYesNoDialog(
+			int titleId,
+			int messageId,
+			DialogInterface.OnClickListener clickListener){
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.
+			setTitle(titleId).
+			setMessage(messageId).
+			setPositiveButton(R.string.yes, clickListener).
+			setNegativeButton(R.string.no, clickListener).
+			show();
+	}
+	
 	public void hideEnableGPSDialog() {
 		myEnableGPSDialog.hide();
 	}
@@ -393,6 +439,12 @@ public class BiViaMainActivityView
 	
 	//region --- utils ---------------------------------------------------------
 		
+	/**
+	 * Utility to determine that two dates are the same day or not.
+	 * @param date1
+	 * @param date2
+	 * @return true if date1 and date2 are the same day
+	 */
 	private boolean sameDay(Date date1, Date date2) {
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();

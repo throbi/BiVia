@@ -24,6 +24,10 @@
     <string name="enable_gps_button">Rendben, bekapcsolom</string>
     
     <string name="ok">Rendben</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="delete_ride_title">Tényleg törlöd?</string>
+    <string name="delete_ride_message">Törlés után nincs visszaút!</string>
     
     <string name="googleError_title">Hiba</string>
     <string name="googleError_text">A Google Play Location Services épp elkúrt valamit&#8230;</string>    

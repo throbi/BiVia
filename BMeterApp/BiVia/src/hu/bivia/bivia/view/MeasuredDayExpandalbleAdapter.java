@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import hu.bivia.bivia.R;
 import hu.bivia.bivia.model.MeasuredDay;
 import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,21 +13,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 
 	private ArrayList<MeasuredDay> myMeasuredDays;
 	private LayoutInflater myInflater;
-	private Activity myActivity;
+	private BiViaMainPageViewModel myViewModel;
 	
-	public MeasuredDayExpandalbleAdapter(Activity activity, ArrayList<MeasuredDay> measuredDays) {
-		myActivity = activity;
+	public MeasuredDayExpandalbleAdapter(
+			Activity activity, 
+			ArrayList<MeasuredDay> measuredDays,
+			BiViaMainPageViewModel viewModel) {
 		myInflater = activity.getLayoutInflater();
 		myMeasuredDays = measuredDays;
+		myViewModel = viewModel;
 	}
 	
 	//region --- overrides -----------------------------------------------------		
@@ -60,11 +62,12 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	    ((TextView)convertView.findViewById(R.id.ride_averageSpeed)).
 	    		setText((BiViaMainActivityView.decimalFormatter.format(ride.getAverageSpeed()) + " km/h"));
 	    
-	    ((Button)convertView.findViewById(R.id.ride_delete)).
-	    	setOnClickListener(new OnClickListener() {				
+	    RideButton deleteButton = ((RideButton)convertView.findViewById(R.id.ride_delete));
+	    deleteButton.Ride = ride;
+	    deleteButton.setOnClickListener(new OnClickListener() {				
 				@Override
-				public void onClick(View v) {
-					Toast.makeText(myActivity, myActivity.getString(R.string.ride_deleted), Toast.LENGTH_SHORT).show();					
+				public void onClick(View view) {
+					myViewModel.deletRide(((RideButton)(view)).Ride);	
 				}
 			}); 	      
 	    

@@ -7,6 +7,7 @@ import hu.bivia.bivia.logic.dataAccess.BiViaDataAccessHelper;
 import hu.bivia.bivia.model.Measurement;
 import hu.bivia.bivia.model.Ride;
 import hu.bivia.bivia.view.BiViaMainActivityView;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -96,6 +97,29 @@ public class BiViaMainPageViewModel {
 	 */
 	public void stopDistanceMeasurement() {
 		myMeasurer.stopMeasuring();
+	}
+	
+	public void deletRide(final Ride ride) {
+		
+		// ask confirmation
+		myView.showYesNoDialog(
+				hu.bivia.bivia.R.string.delete_ride_title, 
+				hu.bivia.bivia.R.string.delete_ride_message, 
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int button) {
+						if(button == DialogInterface.BUTTON_POSITIVE){
+							// delete from db
+							myDataHelper.deleteRide(ride);
+							// delete from view & refresh
+							myView.deleteRide(ride);
+						}
+						
+					}
+				});
+		
+		// refresh UI
+		
 	}
 	
 	//endregion --- handle user input ------------------------------------------
@@ -224,4 +248,5 @@ public class BiViaMainPageViewModel {
 		myView.displayRide(ride);
 	}
 	//endregion --- notify UI --------------------------------------------------
+
 }

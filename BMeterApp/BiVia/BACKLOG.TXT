@@ -28,7 +28,7 @@
   113 |  DONE  | Fix bugs: ride distance is multiplied by 1000, 0 rides are
       |        |           recorded, ride start time should be in 24H form                                       
 ------+--------+----------------------------------------------------------------
-      |        |                                                              
+  114 |  DONE  | Implement ride deletion with confirmation                                                             
 ------+--------+----------------------------------------------------------------
       |        |                                                              
 ------+--------+----------------------------------------------------------------

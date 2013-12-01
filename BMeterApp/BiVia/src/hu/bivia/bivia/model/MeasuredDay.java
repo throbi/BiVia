@@ -19,19 +19,19 @@ public class MeasuredDay {
 	 * Distance in meters.
 	 */
 	private float myTotalDistance;
-	private long myTotalTimeMillis;
+	private long myTotalRideTimeMillis;
 	private float myAverageSpeed;
 	
 	public MeasuredDay(Date date) {		
 		myDate = date;
 		myTotalDistance = 0;
-		myTotalTimeMillis = 0;
+		myTotalRideTimeMillis = 0;
 	}
 	
 	public void addRide(Ride newRide){
 		myRides.add(newRide);
 		myTotalDistance += newRide.getDistance();
-		myTotalTimeMillis += newRide.getRideTimeMs();
+		myTotalRideTimeMillis += newRide.getRideTimeMs();
 		
 		refreshAverageSpeed();
 	}
@@ -67,11 +67,25 @@ public class MeasuredDay {
 	}
 
 	public long getTotalTimeMillis() {
-		return myTotalTimeMillis;
+		return myTotalRideTimeMillis;
 	}
 
 	public Object getAverageSpeed() {		
 		return myAverageSpeed;
+	}
+
+	/**
+	 * Deletes ride from the given index and updates the total distance, total 
+	 * ride time and re-calculates the average speed.
+	 * @param rideIndex
+	 */
+	public void deleteRideFromPosition(int rideIndex) {
+		Ride ride = myRides.get(rideIndex);
+		myTotalDistance -= ride.getDistance();
+		myTotalRideTimeMillis -= ride.getRideTimeMs();
+		
+		myRides.remove(rideIndex);
+		refreshAverageSpeed();
 	}
 	
 }

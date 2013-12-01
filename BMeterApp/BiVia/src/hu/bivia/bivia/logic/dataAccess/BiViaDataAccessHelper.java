@@ -50,10 +50,6 @@ public class BiViaDataAccessHelper extends SQLiteOpenHelper{
 	 */
 	public List<Ride> getAllRides(){
 		
-		if(myReadableDB == null){
-			myReadableDB = getReadableDatabase();	    	
-		}
-		
 		String[] columns = {
 				BiViaRideEntry.COLUMN_NAME_RIDE_START_TIME,
 				BiViaRideEntry.COLUMN_NAME_RIDE_DISTANCE,
@@ -63,7 +59,7 @@ public class BiViaDataAccessHelper extends SQLiteOpenHelper{
 		String sortOrder =
 				BiViaRideEntry.COLUMN_NAME_RIDE_START_TIME + " ASC";
 
-		Cursor cursor = myReadableDB.query(
+		Cursor cursor = getReadableDB().query(
 			    BiViaRideEntry.TABLE_NAME, 
 			    columns,
 			    null,   // The columns for the WHERE clause
@@ -97,22 +93,60 @@ public class BiViaDataAccessHelper extends SQLiteOpenHelper{
 	 * Puts a new ride into the DB
 	 * @param ride
 	 */
-	public void saveRide(Ride ride){
-		
-		if(myWritableDB == null){
-			myWritableDB = getWritableDatabase();
-		}
-		
+	public void saveRide(Ride ride){	
 		ContentValues values = new ContentValues();
 		values.put(BiViaRideEntry.COLUMN_NAME_RIDE_START_TIME, ride.getStartTime().getTime());
 		values.put(BiViaRideEntry.COLUMN_NAME_RIDE_DISTANCE, ride.getDistance());
 		values.put(BiViaRideEntry.COLUMN_NAME_RIDE_ELAPSED_TIME_MS, ride.getRideTimeMs());
 	
-		myWritableDB.insert(
+		getWritableDB().insert(
 				BiViaRideEntry.TABLE_NAME,
 				null, // do not save null values
 				values);
 	}
 	
-	//endregion--- BiVia specific API ------------------------------------------
+	/**
+	 * Deletes the specified ride from the DB.
+	 * @param ride
+	 */
+	public void deleteRide(Ride ride){
+		String whereClause = 
+				BiViaRideEntry.COLUMN_NAME_RIDE_START_TIME + " = ? AND " +
+				BiViaRideEntry.COLUMN_NAME_RIDE_ELAPSED_TIME_MS  + " = ?";
+		String[] whereArgs = {
+				Long.toString(ride.getStartTime().getTime()),
+				Long.toString(ride.getRideTimeMs())};
+
+		getWritableDB().delete(BiViaRideEntry.TABLE_NAME, whereClause, whereArgs);
+	}
+	
+	//endregion --- BiVia specific API -----------------------------------------
+
+	//region --- utils ---------------------------------------------------------
+	
+	/**
+	 * Getter for the writable DB.
+	 * @return
+	 */
+	private SQLiteDatabase getWritableDB() {
+		if(myWritableDB == null){
+			myWritableDB = getWritableDatabase();
+		}
+		
+		return myWritableDB;
+	}
+
+	/**
+	 * Getter for the readable DB.
+	 * @return
+	 */
+	private SQLiteDatabase getReadableDB() {
+		if(myReadableDB == null){
+			myReadableDB = getReadableDatabase();
+		}
+		
+		return myReadableDB;
+	}
+	
+	//endregion --- utils ------------------------------------------------------
 }

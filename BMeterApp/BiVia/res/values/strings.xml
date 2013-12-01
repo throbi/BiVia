@@ -26,6 +26,10 @@
     <string name="enable_gps_button">OK, let me do enable GPS</string>
     
     <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_ride_title">Really delete?</string>
+    <string name="delete_ride_message">Deleting the ride can not be undone!</string>
     
     <string name="googleError_title">Error</string>
     <string name="googleError_text">Google Play Location Services have just messed up something&#8230;</string>
@@ -35,5 +39,5 @@
     <string name="problem_not_resolved_by_play_services">Problem could not be resolved by Google Play Service</string>
     <string name="unknown_activity_request_code">Unknown activity request code!</string>
     <string name="delete">Delete</string>
-    <string name="ride_deleted">Not implemented yet...</string>
+    <string name="ride_deleted">Not implemented yet&#8230;</string>
 </resources>
