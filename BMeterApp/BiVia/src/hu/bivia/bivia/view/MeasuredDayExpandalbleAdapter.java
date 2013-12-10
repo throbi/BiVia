@@ -1,6 +1,8 @@
 package hu.bivia.bivia.view;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import hu.bivia.bivia.R;
 import hu.bivia.bivia.model.MeasuredDay;
@@ -104,6 +106,11 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	      convertView = myInflater.inflate(R.layout.measured_day, null);
 	    }
 	    
+		int weekOfYear = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
+		if(weekOfYear % 2 == 0){
+			convertView.setBackgroundColor(0xFF503030);
+		}			
+		
 	    String header = "<b>" + BiViaMainActivityView.dateFormatter.format(day.getDate()) + "</b><br/> " + 
 	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance()) + " km <font color=\"#352b2b\">/</font> " +
 	    BiViaMainActivityView.formatElapsedMillis(day.getTotalTimeMillis()) + " <font color=\"#352b2b\">=</font> " +
