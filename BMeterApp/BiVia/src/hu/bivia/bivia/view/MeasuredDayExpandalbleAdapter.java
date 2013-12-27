@@ -48,13 +48,16 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
 			ViewGroup parent) {
-
+		
 		Ride ride = (Ride) getChild(groupPosition, childPosition);
 	    
 	    if (convertView == null) {
 	      convertView = myInflater.inflate(R.layout.measured_ride, null);
 	    }
 	    
+	    MeasuredDay day = (MeasuredDay)getGroup(groupPosition);
+		convertView.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
+		
 	    ((TextView)convertView.findViewById(R.id.ride_startTime)).
 	    	setText(BiViaMainActivityView.timeFormatter.format(ride.getStartTime()));
 	    ((TextView)convertView.findViewById(R.id.ride_distance)).
@@ -72,9 +75,8 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 					myViewModel.deletRide(((RideButton)(view)).Ride);	
 				}
 			}); 	      
-	    
+	    	    
 	    return convertView;
-	
 	}
 
 	@Override
@@ -100,16 +102,12 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 		
-		MeasuredDay day = (MeasuredDay)getGroup(groupPosition);
-		
 		if (convertView == null) {
 	      convertView = myInflater.inflate(R.layout.measured_day, null);
 	    }
-	    
-		int weekOfYear = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
-		if(weekOfYear % 2 == 0){
-			convertView.setBackgroundColor(0xFF503030);
-		}			
+		
+		MeasuredDay day = (MeasuredDay)getGroup(groupPosition);
+		convertView.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
 		
 	    String header = "<b>" + BiViaMainActivityView.dateFormatter.format(day.getDate()) + "</b><br/> " + 
 	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance()) + " km <font color=\"#352b2b\">/</font> " +
@@ -121,7 +119,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	   		
 		return convertView;
 	}
-	
+
 	@Override
 	public void onGroupCollapsed(int groupPosition) {
 		super.onGroupCollapsed(groupPosition);
@@ -143,4 +141,19 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	}
 	//endregion --- overrides --------------------------------------------------
 	
+	//region --- private stuff -------------------------------------------------
+	
+	private GregorianCalendar myCalendar = new GregorianCalendar();
+	
+	private int calculateAlternateWeekBackgroundColor(MeasuredDay day) {
+		myCalendar.setTime(day.getDate());
+		int weekOfYear = myCalendar.get(Calendar.WEEK_OF_YEAR);
+		if(weekOfYear % 2 == 0){
+			return 0xFF503030;
+		} else {
+			return 0xFF664141;
+		}
+	}
+	
+	//endregion --- private stuff ----------------------------------------------
 }
