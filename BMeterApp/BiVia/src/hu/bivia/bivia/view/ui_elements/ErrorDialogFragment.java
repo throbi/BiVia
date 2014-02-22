@@ -1,4 +1,4 @@
-package hu.bivia.bivia.view;
+package hu.bivia.bivia.view.ui_elements;
 
 import android.app.Dialog;
 import android.os.Bundle;

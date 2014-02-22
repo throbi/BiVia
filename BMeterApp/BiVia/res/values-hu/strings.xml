@@ -21,7 +21,7 @@
    
     <string name="enable_gps_title">A GPS ki van kapcsolva</string>
     <string name="enable_gps_prompt">A BiViának szüksége van a GPS adatokra, hogy lemérhesse a megtett távot.</string>
-    <string name="enable_gps_button">Rendben, bekapcsolom</string>
+    <string name="enable_gps_button">GPS BEKAPCSOLÁSA</string>
     
     <string name="ok">Rendben</string>
     <string name="yes">Igen</string>

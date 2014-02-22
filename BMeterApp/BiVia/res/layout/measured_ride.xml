@@ -71,7 +71,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <hu.bivia.bivia.view.RideButton
+        <hu.bivia.bivia.view.ui_elements.RideButton
             android:id="@+id/ride_delete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -79,11 +79,5 @@
             android:text="@string/delete"
             android:textSize="12sp" />
     </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#443838"
-        android:layout_marginStart="5dp" />
-
+ 
 </LinearLayout>

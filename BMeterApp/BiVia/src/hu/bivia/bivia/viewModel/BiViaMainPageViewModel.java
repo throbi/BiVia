@@ -2,8 +2,10 @@ package hu.bivia.bivia.viewModel;
 
 import java.util.List;
 
+import hu.bivia.bivia.R;
 import hu.bivia.bivia.logic.Measurer;
 import hu.bivia.bivia.logic.dataAccess.BiViaDataAccessHelper;
+import hu.bivia.bivia.model.MeasuredDay;
 import hu.bivia.bivia.model.Measurement;
 import hu.bivia.bivia.model.Ride;
 import hu.bivia.bivia.view.BiViaMainActivityView;
@@ -11,6 +13,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 public class BiViaMainPageViewModel {
 
@@ -22,6 +26,8 @@ public class BiViaMainPageViewModel {
 	
 	
 	private boolean myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = false;
+
+	private ExpandableListView myMeasuredDaysListView;
 
 	public void setUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware(boolean newValue) {
 		myUserWantsToExitWhileThereIsNoPointToUseThisAppWithNoGPSHardware = newValue;
@@ -68,6 +74,7 @@ public class BiViaMainPageViewModel {
 	
 	public void onUICreate(Bundle savedInstanceState) {
 		myMeasurer.initialize();
+		myMeasuredDaysListView = (ExpandableListView) myView.findViewById(R.id.measuredDays);
 		displayRidesFromDB();
 	}    
 
@@ -99,7 +106,8 @@ public class BiViaMainPageViewModel {
 		myMeasurer.stopMeasuring();
 	}
 	
-	public void deletRide(final Ride ride) {
+	/** The user wants to delete a ride */
+	public void deleteRide(final Ride ride) {
 		
 		// ask confirmation
 		myView.showYesNoDialog(
@@ -119,6 +127,12 @@ public class BiViaMainPageViewModel {
 				});
 		
 		// refresh UI
+		
+	}
+	
+	/** The user wants to upload a measured day */
+	public void uploadeMeasuredDay(MeasuredDay measuredDay) {
+		Toast.makeText(myView, "Upload OK", Toast.LENGTH_SHORT).show();
 		
 	}
 	
@@ -165,14 +179,14 @@ public class BiViaMainPageViewModel {
 	 */
 	public void requestEnableGPS() {
 		myView.disableUI();
-		myView.showEnableGPSDialog();				
+		myView.showEnableGPSButton();				
 	}
 	
 	/**
 	 * The measurer is happy that GPS is enabled
 	 */
 	public void reportGPSEnabled() {
-		myView.hideEnableGPSDialog();		
+		myView.hideEnableGPSButton();		
 	}	
 	
 	/**
@@ -248,5 +262,21 @@ public class BiViaMainPageViewModel {
 		myView.displayRide(ride);
 	}
 	//endregion --- notify UI --------------------------------------------------
+
+	public void expandMeasuredDay(int groupNumber) {
+		//long packedPosition = myMeasuredDaysListView.getExpandableListPosition(groupNumber);
+		//int groupPosition = ExpandableListView.getPackedPositionGroup(groupNumber);
+		//Toast.makeText(myView, "Expand "+groupNumber + " / "+groupPosition, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(myView, "Expand "+groupNumber, Toast.LENGTH_SHORT).show();
+		myMeasuredDaysListView.expandGroup(groupNumber);
+	}
+
+	public void collapseMeasuredDay(int groupNumber) {
+		//long packedPosition = myMeasuredDaysListView.getExpandableListPosition(groupNumber);
+		//int groupPosition = ExpandableListView.getPackedPositionGroup(groupNumber);
+		//Toast.makeText(myView, "Collapse "+groupNumber, Toast.LENGTH_SHORT).show();
+		myMeasuredDaysListView.collapseGroup(groupNumber);
+	}
+	
 
 }

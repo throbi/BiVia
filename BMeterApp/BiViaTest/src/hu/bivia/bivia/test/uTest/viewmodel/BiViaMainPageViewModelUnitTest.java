@@ -103,7 +103,7 @@ public class BiViaMainPageViewModelUnitTest
 	
 	public void testReportGPSEnabled(){
 		myTestTarget.reportGPSEnabled();
-		verify(myMockView, times(1)).hideEnableGPSDialog();
+		verify(myMockView, times(1)).hideEnableGPSButton();
 	}
 	
 	public void testReportMeasuredDistance(){
@@ -119,7 +119,7 @@ public class BiViaMainPageViewModelUnitTest
 	
 	public void testRequestEnableGPS(){		
 		myTestTarget.requestEnableGPS();		
-		verify(myMockView, times(1)).showEnableGPSDialog();
+		verify(myMockView, times(1)).showEnableGPSButton();
 	}
 	
 	public void testReportIsGPSFixed(){

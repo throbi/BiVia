@@ -23,7 +23,7 @@
     <string name="forced_exit">Exiting&#8230;</string>
     <string name="enable_gps_title">GPS is disabled</string>
     <string name="enable_gps_prompt">BiVia needs GPS data to measure distances.</string>
-    <string name="enable_gps_button">OK, let me do enable GPS</string>
+    <string name="enable_gps_button">ENABLE GPS</string>
     
     <string name="ok">OK</string>
     <string name="yes">Yes</string>

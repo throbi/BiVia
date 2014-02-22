@@ -22,6 +22,16 @@ public class MeasuredDay {
 	private long myTotalRideTimeMillis;
 	private float myAverageSpeed;
 	
+	private Boolean myIsExpanded = false;
+	
+	public Boolean isExpanded(){
+		return myIsExpanded;
+	}
+	
+	public void setIsExpanded(Boolean expandedState){
+		myIsExpanded = expandedState;
+	}
+	
 	public MeasuredDay(Date date) {		
 		myDate = date;
 		myTotalDistance = 0;

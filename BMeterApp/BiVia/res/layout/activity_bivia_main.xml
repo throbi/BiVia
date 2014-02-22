@@ -6,14 +6,17 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:gravity="center">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
     
         <RelativeLayout
             android:id="@+id/gpsWaitingGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:visibility="invisible" >
+
            <ProgressBar               
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -29,10 +32,11 @@
             
         <RelativeLayout
             android:id="@+id/gpsHitGroup"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:alpha="1"
-            android:visibility="invisible" >
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            android:gravity="center"  >
 
             <TextView
                 android:id="@+id/gps_progress"                
@@ -54,19 +58,25 @@
                 />
         </RelativeLayout>            
         
+        <Button
+            android:id="@+id/enableGPSButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="enableGPSButtonClicked"
+            android:text="@string/enable_gps_button"
+            android:textColor="#eeeeee"
+            android:textColorHint="#dddddd"
+            android:textSize="24sp" />
+        
     </RelativeLayout>
     
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="match_parent"
-        android:layout_height="80dip"
-        android:minHeight="80dip"
-        android:text="@string/start"
-        android:textColor="#eeeeee"
-        android:textColorHint="#dddddd"
-        android:textSize="40sp"
-        android:onClick="startButtonClicked" />
-   
+     <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4sp"
+        android:layout_marginTop="4sp"
+        android:background="#443838" />
+    
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -76,11 +86,11 @@
             android:id="@+id/distanceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp"
             android:text="@string/gps_count"
             android:textColor="#21addb"
-            android:textSize="45sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
             <TextView
@@ -89,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/distanceTextView"
-                android:paddingBottom="5dp"
+                android:paddingBottom="2dp"
                 android:text="@string/elapsed_time"
                 android:textAlignment="center"
                 android:textColor="#222222"
@@ -101,31 +111,49 @@
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@id/distanceTextView"
                 android:layout_below="@id/distanceTextView"
-                android:paddingBottom="5dp"
+                android:paddingBottom="2dp"
                 android:text="@string/average_speed"
                 android:textAlignment="center"
                 android:textColor="#222222"
                 android:textSize="18sp" />
 
     </RelativeLayout>
-   
-    <Button
-        android:id="@+id/stopButton"
-        android:layout_width="match_parent"
-        android:layout_height="80dip"
-        android:linksClickable="true"
-        android:minHeight="80dip"
-        android:onClick="stopButtonClicked"
-        android:text="@string/stop"
-        android:textColor="#eeeeee"
-        android:textColorHint="#dddddd"
-        android:textSize="40sp" />
 
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal" >
+
+       <Button
+           android:id="@+id/startButton"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:onClick="startButtonClicked"
+           android:text="@string/start"
+           android:textColor="#eeeeee"
+           android:textColorHint="#dddddd"
+           android:textSize="24sp" />
+
+       <Button
+           android:id="@+id/stopButton"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:linksClickable="true"
+           android:onClick="stopButtonClicked"
+           android:text="@string/stop"
+           android:textColor="#eeeeee"
+           android:textColorHint="#dddddd"
+           android:textSize="24sp" />
+
+   </LinearLayout>
+    
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="8sp"
-        android:layout_marginBottom="8sp"
+        android:layout_marginTop="4sp"
+        android:layout_marginBottom="4sp"
         android:background="#443838" />
     
     <ExpandableListView
@@ -137,6 +165,8 @@
         android:layout_marginRight="4sp"
         
         android:childDivider="#352b2b"
+        android:choiceMode="none"
+        android:transcriptMode="normal"
         />
         
 </LinearLayout>

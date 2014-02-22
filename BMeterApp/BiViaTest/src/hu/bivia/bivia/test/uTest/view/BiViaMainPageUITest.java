@@ -130,7 +130,7 @@ public class BiViaMainPageUITest
 		myView.runOnUiThread(new Runnable() {			
 			@Override
 			public void run() {
-				myView.showEnableGPSDialog();	
+				myView.showEnableGPSButton();	
 			}
 		});		
 		
@@ -158,7 +158,7 @@ public class BiViaMainPageUITest
 		testPreconditions();
 		_testShowEnableGPSDialog();
 		
-		myView.hideEnableGPSDialog();
+		myView.hideEnableGPSButton();
 		
 		assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
 		assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_prompt), true));
@@ -173,7 +173,7 @@ public class BiViaMainPageUITest
 		myView.runOnUiThread(new Runnable() {			
 			@Override
 			public void run() {			
-				myView.hideEnableGPSDialog();
+				myView.hideEnableGPSButton();
 				myView.enableUI();
 				myView.displayDistance(new Measurement(111, 0));
 			}
@@ -230,7 +230,7 @@ public class BiViaMainPageUITest
 		myView.runOnUiThread(new Runnable() {			
 			@Override
 			public void run() {			
-				myView.hideEnableGPSDialog();	
+				myView.hideEnableGPSButton();	
 			}
 		});	
 		

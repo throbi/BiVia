@@ -3,10 +3,15 @@ package hu.bivia.bivia.view;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import hu.bivia.bivia.R;
 import hu.bivia.bivia.model.MeasuredDay;
 import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.view.ui_elements.CheckableLinearLayout;
+import hu.bivia.bivia.view.ui_elements.MeasuredDayButton;
+import hu.bivia.bivia.view.ui_elements.RideButton;
 import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.text.Html;
@@ -15,26 +20,28 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckedTextView;
 import android.widget.TextView;
 
-public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
+public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 
 	private ArrayList<MeasuredDay> myMeasuredDays;
 	private LayoutInflater myInflater;
 	private BiViaMainPageViewModel myViewModel;
-	
-	public MeasuredDayExpandalbleAdapter(
-			Activity activity, 
+
+	// hack for keeping track what to expand
+	private Map<View, Integer> measuredDayPositions = new HashMap<View, Integer>();
+
+	public MeasuredDayExpandalbleAdapter(Activity activity,
 			ArrayList<MeasuredDay> measuredDays,
 			BiViaMainPageViewModel viewModel) {
 		myInflater = activity.getLayoutInflater();
 		myMeasuredDays = measuredDays;
 		myViewModel = viewModel;
 	}
-	
-	//region --- overrides -----------------------------------------------------		
-	
+
+	// region --- overrides
+	// -----------------------------------------------------
+
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
 		return myMeasuredDays.get(groupPosition).getRide(childPosition);
@@ -46,37 +53,44 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	}
 
 	@Override
-	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
-			ViewGroup parent) {
-		
+	public View getChildView(int groupPosition, int childPosition,
+			boolean isLastChild, View convertView, ViewGroup parent) {
+
 		Ride ride = (Ride) getChild(groupPosition, childPosition);
-	    
-	    if (convertView == null) {
-	      convertView = myInflater.inflate(R.layout.measured_ride, null);
-	    }
-	    
-	    MeasuredDay day = (MeasuredDay)getGroup(groupPosition);
-		convertView.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
-		
-	    ((TextView)convertView.findViewById(R.id.ride_startTime)).
-	    	setText(BiViaMainActivityView.timeFormatter.format(ride.getStartTime()));
-	    ((TextView)convertView.findViewById(R.id.ride_distance)).
-	    	setText(BiViaMainActivityView.decimalFormatter.format(ride.getDistance()) + " km /");
-	    ((TextView)convertView.findViewById(R.id.ride_time)).
-	    		setText(BiViaMainActivityView.formatElapsedMillis(ride.getRideTimeMs()));;
-	    ((TextView)convertView.findViewById(R.id.ride_averageSpeed)).
-	    		setText((BiViaMainActivityView.decimalFormatter.format(ride.getAverageSpeed()) + " km/h"));
-	    
-	    RideButton deleteButton = ((RideButton)convertView.findViewById(R.id.ride_delete));
-	    deleteButton.Ride = ride;
-	    deleteButton.setOnClickListener(new OnClickListener() {				
-				@Override
-				public void onClick(View view) {
-					myViewModel.deletRide(((RideButton)(view)).Ride);	
-				}
-			}); 	      
-	    	    
-	    return convertView;
+
+		if (convertView == null) {
+			convertView = myInflater.inflate(R.layout.measured_ride, null);
+		}
+
+		MeasuredDay day = (MeasuredDay) getGroup(groupPosition);
+		convertView
+				.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
+
+		((TextView) convertView.findViewById(R.id.ride_startTime))
+				.setText(BiViaMainActivityView.timeFormatter.format(ride
+						.getStartTime()));
+		((TextView) convertView.findViewById(R.id.ride_distance))
+				.setText(BiViaMainActivityView.decimalFormatter.format(ride
+						.getDistance()) + " km /");
+		((TextView) convertView.findViewById(R.id.ride_time))
+				.setText(BiViaMainActivityView.formatElapsedMillis(ride
+						.getRideTimeMs()));
+		;
+		((TextView) convertView.findViewById(R.id.ride_averageSpeed))
+				.setText((BiViaMainActivityView.decimalFormatter.format(ride
+						.getAverageSpeed()) + " km/h"));
+
+		RideButton deleteButton = ((RideButton) convertView
+				.findViewById(R.id.ride_delete));
+		deleteButton.Ride = ride;
+		deleteButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				myViewModel.deleteRide(((RideButton) (view)).Ride);
+			}
+		});
+
+		return convertView;
 	}
 
 	@Override
@@ -86,7 +100,8 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public Object getGroup(int groupPosition) {
-		return myMeasuredDays.get(groupPosition);
+		MeasuredDay day = myMeasuredDays.get(groupPosition);
+		return day;
 	}
 
 	@Override
@@ -100,23 +115,70 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	}
 
 	@Override
-	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-		
+	public View getGroupView(final int groupPosition, boolean isExpanded,
+			View convertView, ViewGroup parent) {
+
+		final MeasuredDay day = (MeasuredDay) getGroup(groupPosition);
+
 		if (convertView == null) {
-	      convertView = myInflater.inflate(R.layout.measured_day, null);
-	    }
-		
-		MeasuredDay day = (MeasuredDay)getGroup(groupPosition);
-		convertView.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
-		
-	    String header = "<b>" + BiViaMainActivityView.dateFormatter.format(day.getDate()) + "</b><br/> " + 
-	    BiViaMainActivityView.decimalFormatter.format(day.getTotalDistance()) + " km <font color=\"#352b2b\">/</font> " +
-	    BiViaMainActivityView.formatElapsedMillis(day.getTotalTimeMillis()) + " <font color=\"#352b2b\">=</font> " +
-	    BiViaMainActivityView.decimalFormatter.format(day.getAverageSpeed()) + " km/h "; 
-	    
-	    ((CheckedTextView)convertView.findViewById(R.id.measuredDayRow)).setText(Html.fromHtml(header));
-	    ((CheckedTextView)convertView.findViewById(R.id.measuredDayRow)).setChecked(isExpanded);
-	   		
+
+			convertView = myInflater.inflate(R.layout.measured_day, null);
+
+			convertView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View view) {
+					CheckableLinearLayout measuredDayView = (CheckableLinearLayout) view;
+
+					if (!measuredDayView.isChecked()) {
+						myViewModel.expandMeasuredDay(measuredDayPositions
+								.get(view));
+						measuredDayView.setChecked(true);
+
+					} else {
+						myViewModel.collapseMeasuredDay(measuredDayPositions
+								.get(view));
+						measuredDayView.setChecked(false);
+					}
+
+				}
+			});
+		}
+
+		convertView
+				.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
+
+		String header = "<b>"
+				+ BiViaMainActivityView.dateFormatter.format(day.getDate())
+				+ "</b><br/> "
+				+ BiViaMainActivityView.decimalFormatter.format(day
+						.getTotalDistance())
+				+ " km <font color=\"#352b2b\">/</font> "
+				+ BiViaMainActivityView.formatElapsedMillis(day
+						.getTotalTimeMillis())
+				+ " <font color=\"#352b2b\">=</font> "
+				+ BiViaMainActivityView.decimalFormatter.format(day
+						.getAverageSpeed()) + " km/h ";
+
+		((TextView) convertView.findViewById(R.id.measuredDayData))
+				.setText(Html.fromHtml(header));
+		((CheckableLinearLayout) convertView.findViewById(R.id.measuredDay))
+				.setChecked(isExpanded);
+
+		MeasuredDayButton uploadDayButton = ((MeasuredDayButton) convertView
+				.findViewById(R.id.upload_day));
+		uploadDayButton.MeasuredDay = day;
+		uploadDayButton.setFocusable(false);
+		uploadDayButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				myViewModel
+						.uploadeMeasuredDay(((MeasuredDayButton) (view)).MeasuredDay);
+			}
+		});
+
+		measuredDayPositions.put(convertView, groupPosition);
+
 		return convertView;
 	}
 
@@ -139,21 +201,25 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter  {
 	public boolean isChildSelectable(int arg0, int arg1) {
 		return false;
 	}
-	//endregion --- overrides --------------------------------------------------
-	
-	//region --- private stuff -------------------------------------------------
-	
+
+	// endregion --- overrides
+	// --------------------------------------------------
+
+	// region --- private stuff
+	// -------------------------------------------------
+
 	private GregorianCalendar myCalendar = new GregorianCalendar();
-	
+
 	private int calculateAlternateWeekBackgroundColor(MeasuredDay day) {
 		myCalendar.setTime(day.getDate());
 		int weekOfYear = myCalendar.get(Calendar.WEEK_OF_YEAR);
-		if(weekOfYear % 2 == 0){
+		if (weekOfYear % 2 == 0) {
 			return 0xFF503030;
 		} else {
 			return 0xFF664141;
 		}
 	}
-	
-	//endregion --- private stuff ----------------------------------------------
+
+	// endregion --- private stuff
+	// ----------------------------------------------
 }

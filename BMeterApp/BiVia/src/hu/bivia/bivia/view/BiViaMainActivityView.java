@@ -15,6 +15,7 @@ import hu.bivia.bivia.R;
 import hu.bivia.bivia.model.MeasuredDay;
 import hu.bivia.bivia.model.Measurement;
 import hu.bivia.bivia.model.Ride;
+import hu.bivia.bivia.view.ui_elements.ErrorDialogFragment;
 import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 
 import android.app.AlertDialog;
@@ -73,7 +74,6 @@ public class BiViaMainActivityView
         super.onCreate(savedInstanceState);                      
         
         // UI
-        createDialogs();
         setContentView(R.layout.activity_bivia_main);
         getUIElements();
         disableUI();
@@ -130,6 +130,11 @@ public class BiViaMainActivityView
 		stopTimer();
 	}
 	
+	public void enableGPSButtonClicked(View view){
+		Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivity(callGPSSettingIntent);  
+	}
+	
 	/**
 	 * Displays the current measurement, i.e. distance, elapsed time, average
 	 * speed 
@@ -171,6 +176,7 @@ public class BiViaMainActivityView
 		
 		//expand only todays' rides
 		if(sameDay(ride.getStartTime(), new Date())){
+			myListView.smoothScrollToPosition(0);
 			myListView.expandGroup(0);
 		}
 		
@@ -229,12 +235,15 @@ public class BiViaMainActivityView
 			show();
 	}
 	
-	public void hideEnableGPSDialog() {
-		myEnableGPSDialog.hide();
+	public void hideEnableGPSButton() {
+		myEnableGPSButton.setVisibility(View.INVISIBLE);
+		myGPSWaitingGroup.setVisibility(View.VISIBLE);
 	}
 	
-	public void showEnableGPSDialog() {
-		myEnableGPSDialog.show();
+	public void showEnableGPSButton() {
+		myGPSHitGroup.setVisibility(View.INVISIBLE);
+		myGPSWaitingGroup.setVisibility(View.INVISIBLE);
+		myEnableGPSButton.setVisibility(View.VISIBLE);
 	}
 	
 	public void enableUI(){
@@ -356,13 +365,11 @@ public class BiViaMainActivityView
     //region --- UI handling ---------------------------------------------------	
 	
 	private TextView myDistanceTextView, myEllapsedTimeTextView, myAverageSpeedTextView;	
-	private Button myStartButton, myStopButton;
+	private Button myStartButton, myStopButton, myEnableGPSButton;
 	
-	private AlertDialog myEnableGPSDialog;
-
 	private ViewGroup myGPSHitGroup;
 	private Animation myFadeOutAnimation;
-	private ViewGroup myGPSWaitingGroups;
+	private ViewGroup myGPSWaitingGroup;
 	
 	/**
 	 * Gets references to UI elements.
@@ -371,11 +378,13 @@ public class BiViaMainActivityView
 		myDistanceTextView = (TextView)findViewById(R.id.distanceTextView);
 		myEllapsedTimeTextView = (TextView)findViewById(R.id.ellapsedTime);
 		myAverageSpeedTextView = (TextView)findViewById(R.id.averageSpeed);
+		
 		myStartButton = (Button)findViewById(R.id.startButton);
 		myStopButton = (Button)findViewById(R.id.stopButton);
+		myEnableGPSButton = (Button)findViewById(R.id.enableGPSButton);
 		
 		myGPSHitGroup = (ViewGroup)findViewById(R.id.gpsHitGroup);
-		myGPSWaitingGroups = (ViewGroup)findViewById(R.id.gpsWaitingGroup);
+		myGPSWaitingGroup = (ViewGroup)findViewById(R.id.gpsWaitingGroup);
 		
 		myFadeOutAnimation = AnimationUtils.loadAnimation(this, R.animator.gpshit_animator);
 		
@@ -386,37 +395,21 @@ public class BiViaMainActivityView
 	 * Notifies the user about waiting for GPS fix.
 	 */
 	private void hideGPSProgressBar(){
-		myGPSWaitingGroups.setVisibility(View.INVISIBLE);
+		myGPSWaitingGroup.setVisibility(View.INVISIBLE);
 	}
 	
 	/**
 	 * Notifies user about GPS fix
 	 */
 	private void showGPSProgressBar(){
+		hideEnableGPSButton();
 		myGPSHitGroup.setVisibility(View.INVISIBLE);
-		myGPSWaitingGroups.setVisibility(View.VISIBLE);
+		myGPSWaitingGroup.setVisibility(View.VISIBLE);
 	}
-	
-    /**
-     * Creates dialogs to be shown later
-     */
-    private void createDialogs(){
-    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-         alertDialogBuilder.setMessage(R.string.enable_gps_prompt)
-        .setTitle(R.string.enable_gps_title)
-        .setCancelable(false)
-        .setPositiveButton(R.string.enable_gps_button,
-                new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int id){
-                Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(callGPSSettingIntent);                 
-            }
-        });
-        myEnableGPSDialog = alertDialogBuilder.create();
-    }
 
     private void showGPSHit(){
-    	myGPSWaitingGroups.setVisibility(View.INVISIBLE);
+    	hideEnableGPSButton();
+    	myGPSWaitingGroup.setVisibility(View.INVISIBLE);
     	myGPSHitGroup.setVisibility(View.VISIBLE);
     	myGPSHitGroup.startAnimation(myFadeOutAnimation);    	
     }

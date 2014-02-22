@@ -1,4 +1,4 @@
-package hu.bivia.bivia.view;
+package hu.bivia.bivia.view.ui_elements;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,6 +13,7 @@ public class RideButton extends Button {
 	public RideButton(Context context) {
 		super(context);
 	}
+	
 	public RideButton (Context context, AttributeSet attrs) {
 	    super(context, attrs);
 	}
