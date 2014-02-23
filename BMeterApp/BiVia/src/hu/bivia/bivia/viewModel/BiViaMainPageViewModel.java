@@ -272,6 +272,10 @@ public class BiViaMainPageViewModel {
 		Toast.makeText(myView, myView.getText(R.string.enable_internet), Toast.LENGTH_LONG).show();
 	}
 	
+	/** uploader calls this when it is ready */
+	public void uplodFinished(MeasuredDay day) {
+		myView.uploadFinished(day);
+	}
 	//endregion --- call-backs -------------------------------------------------
 	
 	//region --- notify UI -----------------------------------------------------
@@ -279,4 +283,5 @@ public class BiViaMainPageViewModel {
 		myView.displayRide(ride);
 	}
 	//endregion --- notify UI --------------------------------------------------
+
 }

@@ -180,6 +180,7 @@ public class BamUploader {
 		@Override
 		protected void onPostExecute(String result) {
 			Toast.makeText(myActivity, result, Toast.LENGTH_LONG).show();
+			myViewModel.uplodFinished(myDay);
 		}
 
 	}

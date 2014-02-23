@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
@@ -31,6 +32,12 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 	// hack for keeping track what to expand
 	private Map<View, Integer> measuredDayPositions = new HashMap<View, Integer>();
 
+	// hack for keeping track of current uploads
+	private Map<MeasuredDay, View> activeUploads = new HashMap<MeasuredDay, View>();
+
+	// region --- public API
+	// -------------------------------------------------------------------------
+	/** Constructor */
 	public MeasuredDayExpandalbleAdapter(Activity activity,
 			ArrayList<MeasuredDay> measuredDays,
 			BiViaMainPageViewModel viewModel) {
@@ -39,8 +46,27 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 		myViewModel = viewModel;
 	}
 
+	/**
+	 * Called when an upload finished, so the progress bar can be hidden for the
+	 * given day
+	 */
+	public void uploadFinished(MeasuredDay day) {
+		View view = activeUploads.get(day);
+
+		if (view != null) {
+			((View) view.findViewById(R.id.upload_progress))
+					.setVisibility(View.INVISIBLE);
+			((View) view.findViewById(R.id.upload_day_button))
+					.setVisibility(View.VISIBLE);
+			activeUploads.remove(day);
+		}
+	}
+
+	// endregion --- public API
+	// -------------------------------------------------------------------------
+
 	// region --- overrides
-	// -----------------------------------------------------
+	// -------------------------------------------------------------------------
 
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
@@ -166,14 +192,21 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 				.setChecked(isExpanded);
 
 		MeasuredDayButton uploadDayButton = ((MeasuredDayButton) convertView
-				.findViewById(R.id.upload_day));
+				.findViewById(R.id.upload_day_button));
+
 		uploadDayButton.MeasuredDay = day;
 		uploadDayButton.setFocusable(false);
 		uploadDayButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				myViewModel
-						.uploadeMeasuredDay(((MeasuredDayButton) (view)).MeasuredDay);
+				MeasuredDay day = ((MeasuredDayButton) (view)).MeasuredDay;
+				view.setVisibility(View.INVISIBLE);
+				View parentView = (View) view.getParent();
+				parentView.findViewById(R.id.upload_progress).setVisibility(
+						View.VISIBLE);
+				activeUploads.put(day, parentView);
+
+				myViewModel.uploadeMeasuredDay(day);
 			}
 		});
 

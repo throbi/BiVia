@@ -26,19 +26,35 @@
         android:layout_weight="1"
         android:gravity="right" >
 
-        <hu.bivia.bivia.view.ui_elements.MeasuredDayButton
-            android:id="@+id/upload_day"
-            android:layout_width="41dp"
-            android:layout_height="55dp"
-            android:layout_margin="1dp"
-            android:adjustViewBounds="true"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:gravity="right"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/bam" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="right">
 
+            <ProgressBar
+                android:id="@+id/upload_progress"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="right"
+                android:visibility="invisible" />
+
+            <hu.bivia.bivia.view.ui_elements.MeasuredDayButton
+                android:id="@+id/upload_day_button"
+                android:layout_width="41dp"
+                android:layout_height="55dp"
+                android:layout_margin="1dp"
+                android:adjustViewBounds="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="right"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bam"
+                android:visibility="visible" />
+
+        </RelativeLayout>
     </LinearLayout>
 
 </hu.bivia.bivia.view.ui_elements.CheckableLinearLayout>

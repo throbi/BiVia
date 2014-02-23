@@ -414,7 +414,11 @@ public class BiViaMainActivityView
     	myGPSHitGroup.startAnimation(myFadeOutAnimation);    	
     }
  
-	//endregion --- UI handling ------------------------------------------------        
+    public void uploadFinished(MeasuredDay day) {
+		myExpandableListAdapter.uploadFinished(day);
+	}	
+    
+    //endregion --- UI handling ------------------------------------------------        
 
     //region --- formatters ----------------------------------------------------
 	
