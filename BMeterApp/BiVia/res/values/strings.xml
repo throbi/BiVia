@@ -34,6 +34,12 @@
     <string name="googleError_title">Error</string>
     <string name="googleError_text">Google Play Location Services have just messed up something&#8230;</string>
     
+    <string name="enable_internet">No internet connection! Please turn on the Wifi or the mobile net!</string>
+    <string name="bam_login_failed">Could not log in with this user: </string>
+    <string name="bam_upload_failed">Could not upload: </string>
+    <string name="bam_upload_ok">Uploaded: </string>
+    <string name="bam_open_failed">Could not open site: </string>
+    
     <!-- log messages -->
     <string name="problem_resolved_by_play_services">Problem resolved by Google Play Service</string>
     <string name="problem_not_resolved_by_play_services">Problem could not be resolved by Google Play Service</string>

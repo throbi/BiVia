@@ -425,7 +425,7 @@ public class BiViaMainActivityView
 			new SimpleDateFormat("H:mm:ss", Locale.getDefault());
   	
 	public static final SimpleDateFormat dateFormatter = 
-			new SimpleDateFormat("EEEE, yyyy/MM/dd", Locale.getDefault());
+			new SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault());
 	
 	public static String formatElapsedMillis(long elapsedMilllis) {
 		int seconds = (int) (elapsedMilllis / 1000) % 60 ;

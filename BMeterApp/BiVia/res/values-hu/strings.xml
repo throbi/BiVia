@@ -32,6 +32,12 @@
     <string name="googleError_title">Hiba</string>
     <string name="googleError_text">A Google Play Location Services épp elkúrt valamit&#8230;</string>    
     
+    <string name="enable_internet">Nincs internet-kapcsolat! Kapcsold be a Wifit vagy az mobilnetet!</string>
+    <string name="bam_login_failed">Nem sikerült bejelnetkezni ezzel a felhasználónévvel: </string>
+    <string name="bam_upload_failed">Nem sikerült feltölteni: </string>
+    <string name="bam_upload_ok">Feltöltve: </string>
+    <string name="bam_open_failed">Hát ezt nem sikerült megnyitni: </string>
+    
     <!-- log messages -->
     <string name="problem_resolved_by_play_services">A Google Play szolgáltatások megoldottak egy problémát.</string>
     <string name="problem_not_resolved_by_play_services">A Google Play szolgáltatások nem tudtak megoldani egy problémát.</string>

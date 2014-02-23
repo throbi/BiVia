@@ -3,6 +3,7 @@ package hu.bivia.bivia.viewModel;
 import java.util.List;
 
 import hu.bivia.bivia.R;
+import hu.bivia.bivia.logic.BamUploader;
 import hu.bivia.bivia.logic.Measurer;
 import hu.bivia.bivia.logic.dataAccess.BiViaDataAccessHelper;
 import hu.bivia.bivia.model.MeasuredDay;
@@ -132,8 +133,9 @@ public class BiViaMainPageViewModel {
 	
 	/** The user wants to upload a measured day */
 	public void uploadeMeasuredDay(MeasuredDay measuredDay) {
-		Toast.makeText(myView, "Upload OK", Toast.LENGTH_SHORT).show();
 		
+		// allow multiple simultaneous uploads
+		(new BamUploader(myView, this)).uploadMeasuredDay(measuredDay);
 	}
 	
 	//endregion --- handle user input ------------------------------------------
@@ -253,7 +255,22 @@ public class BiViaMainPageViewModel {
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		myMeasurer.onActivityResult(requestCode, resultCode, intent);		
 	}
-		
+	
+	/** TODO: refactor ASAP! the view model should not be called to do this */
+	public void expandMeasuredDay(int groupNumber) {
+		myMeasuredDaysListView.expandGroup(groupNumber);
+	}
+
+	/** TODO: refactor ASAP! the view model should not be called to do this */
+	public void collapseMeasuredDay(int groupNumber) {
+		myMeasuredDaysListView.collapseGroup(groupNumber);
+	}
+
+	/** notifies the user to enable networking */
+	public void requestEnableNetwork() {
+		// TODO: make proper dialog with buttons to enable Wifi or mobile net
+		Toast.makeText(myView, myView.getText(R.string.enable_internet), Toast.LENGTH_LONG).show();
+	}
 	
 	//endregion --- call-backs -------------------------------------------------
 	
@@ -262,21 +279,4 @@ public class BiViaMainPageViewModel {
 		myView.displayRide(ride);
 	}
 	//endregion --- notify UI --------------------------------------------------
-
-	public void expandMeasuredDay(int groupNumber) {
-		//long packedPosition = myMeasuredDaysListView.getExpandableListPosition(groupNumber);
-		//int groupPosition = ExpandableListView.getPackedPositionGroup(groupNumber);
-		//Toast.makeText(myView, "Expand "+groupNumber + " / "+groupPosition, Toast.LENGTH_SHORT).show();
-		//Toast.makeText(myView, "Expand "+groupNumber, Toast.LENGTH_SHORT).show();
-		myMeasuredDaysListView.expandGroup(groupNumber);
-	}
-
-	public void collapseMeasuredDay(int groupNumber) {
-		//long packedPosition = myMeasuredDaysListView.getExpandableListPosition(groupNumber);
-		//int groupPosition = ExpandableListView.getPackedPositionGroup(groupNumber);
-		//Toast.makeText(myView, "Collapse "+groupNumber, Toast.LENGTH_SHORT).show();
-		myMeasuredDaysListView.collapseGroup(groupNumber);
-	}
-	
-
 }
