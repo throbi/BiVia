@@ -2,6 +2,7 @@ package hu.bivia.bivia.logic;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.CookieHandler;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -25,6 +26,10 @@ import android.widget.Toast;
  */
 public class BamUploader {
 
+	// VM-wide cookie manager
+	private static java.net.CookieManager myCookieManager = null;
+ 
+	
 	// BAM specific formatters
 	public static final SimpleDateFormat dateFormatter = new SimpleDateFormat(
 			"yyyy-MM-dd", Locale.getDefault());
@@ -42,6 +47,11 @@ public class BamUploader {
 	private BiViaMainPageViewModel myViewModel;
 
 	public BamUploader(Activity activity, BiViaMainPageViewModel viewModel) {
+		if(myCookieManager == null){
+			myCookieManager = new java.net.CookieManager();
+			CookieHandler.setDefault(myCookieManager);
+		}
+		
 		myActivity = activity;
 		myViewModel = viewModel;
 	}
@@ -127,8 +137,8 @@ public class BamUploader {
 
 		/** Performs login, returns true on success */
 		private boolean login(String loginURL, String loginParams) {
+			
 			String responseHTML = post(loginURL, loginParams);
-
 			return responseHTML.contains(myBamUser);
 		}
 
@@ -158,6 +168,8 @@ public class BamUploader {
 					total.append(line);
 				}
 				result = total.toString();
+				
+				connection.disconnect();
 			} catch (Throwable t) {
 				result = "Hiba";
 			}
