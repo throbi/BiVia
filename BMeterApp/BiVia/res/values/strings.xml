@@ -46,4 +46,13 @@
     <string name="unknown_activity_request_code">Unknown activity request code!</string>
     <string name="delete">Delete</string>
     <string name="ride_deleted">Not implemented yet&#8230;</string>
+    
+    <!-- BAM -->
+    <string name="bam_preferences_title">BAM Hungary User</string>
+    <string name="bam_preferences_username_title">Name</string>
+    <string name="bam_preferences_password_title">Password</string>
+    <string name="bam_preferences_username_summary">User name as registered on the BAM web site www.bam.hu.</string>
+    <string name="bam_preferences_password_summary">Password as registered on the BAM web site www.bam.hu.</string>
+    
+    
 </resources>

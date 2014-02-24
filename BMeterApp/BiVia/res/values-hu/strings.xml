@@ -44,4 +44,11 @@
     <string name="unknown_activity_request_code">Ismeretlen activity kérési kód!</string>
     <string name="delete">Törlés</string>
     <string name="ride_deleted">Még nem működik&#8230;</string>
+    
+    <!-- BAM -->
+    <string name="bam_preferences_title">BAM Felhasználó</string>
+    <string name="bam_preferences_username_title">Azonosító</string>
+    <string name="bam_preferences_password_title">Jelszó</string>
+    <string name="bam_preferences_username_summary">Felhasználónév amivel regisztráltál a www.bam.hu oldalon</string>
+    <string name="bam_preferences_password_summary">Jelszó amit megadtál a www.bam.hu oldalon.</string>
 </resources>
