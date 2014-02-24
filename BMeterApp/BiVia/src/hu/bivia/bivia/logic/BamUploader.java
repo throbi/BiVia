@@ -78,7 +78,8 @@ public class BamUploader {
 			myDay = measuredDay;
 			uploadData(measuredDay);
 		} else {
-			myViewModel.requestEnableNetwork();
+			myViewModel.uplodFinished(measuredDay);
+			myViewModel.requestEnableNetwork();			
 		}
 	}
 

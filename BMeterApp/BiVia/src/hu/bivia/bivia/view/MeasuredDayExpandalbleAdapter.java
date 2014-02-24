@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
@@ -171,6 +170,9 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 			});
 		}
 
+		// views are recycled for performance optimization by Android
+		// must set content each time it is shown
+
 		convertView
 				.setBackgroundColor(calculateAlternateWeekBackgroundColor(day));
 
@@ -193,7 +195,18 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 
 		MeasuredDayButton uploadDayButton = ((MeasuredDayButton) convertView
 				.findViewById(R.id.upload_day_button));
+		View progressBar = convertView.findViewById(R.id.upload_progress);
+		
+		// is this day being uploaded right now?
+		if(activeUploads.containsKey(day)){
+			progressBar.setVisibility(View.VISIBLE);
+			uploadDayButton.setVisibility(View.INVISIBLE);
+		} else {
+			progressBar.setVisibility(View.INVISIBLE);
+			uploadDayButton.setVisibility(View.VISIBLE);
+		}
 
+		// prepare button for action
 		uploadDayButton.MeasuredDay = day;
 		uploadDayButton.setFocusable(false);
 		uploadDayButton.setOnClickListener(new OnClickListener() {
