@@ -1,4 +1,4 @@
-package hu.bivia.bivia.model;
+package hu.bivia.model;
 
 import java.util.Date;
 

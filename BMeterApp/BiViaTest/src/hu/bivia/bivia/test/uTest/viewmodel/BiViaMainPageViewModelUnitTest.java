@@ -1,9 +1,9 @@
 package hu.bivia.bivia.test.uTest.viewmodel;
 
-import hu.bivia.bivia.logic.Measurer;
-import hu.bivia.bivia.model.Measurement;
-import hu.bivia.bivia.view.BiViaMainActivityView;
-import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
+import hu.bivia.logic.Measurer;
+import hu.bivia.model.Measurement;
+import hu.bivia.view.BiViaMainActivityView;
+import hu.bivia.viewModel.BiViaMainPageViewModel;
 import android.test.ActivityInstrumentationTestCase2;
 
 import static org.mockito.Mockito.*;

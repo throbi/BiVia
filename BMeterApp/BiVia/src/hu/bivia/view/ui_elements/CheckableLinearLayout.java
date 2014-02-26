@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hu.bivia.bivia.view.ui_elements;
+package hu.bivia.view.ui_elements;
 
 import android.content.Context;
 import android.util.AttributeSet;

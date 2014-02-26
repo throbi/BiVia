@@ -1,15 +1,15 @@
-package hu.bivia.bivia.viewModel;
+package hu.bivia.viewModel;
 
 import java.util.List;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.logic.BamUploader;
-import hu.bivia.bivia.logic.Measurer;
-import hu.bivia.bivia.logic.dataAccess.BiViaDataAccessHelper;
-import hu.bivia.bivia.model.MeasuredDay;
-import hu.bivia.bivia.model.Measurement;
-import hu.bivia.bivia.model.Ride;
-import hu.bivia.bivia.view.BiViaMainActivityView;
+import hu.bivia.logic.BamUploader;
+import hu.bivia.logic.Measurer;
+import hu.bivia.logic.dataAccess.BiViaDataAccessHelper;
+import hu.bivia.model.MeasuredDay;
+import hu.bivia.model.Measurement;
+import hu.bivia.model.Ride;
+import hu.bivia.view.BiViaMainActivityView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;

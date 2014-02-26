@@ -1,12 +1,12 @@
-package hu.bivia.bivia.logic.dataAccess;
+package hu.bivia.logic.dataAccess;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import hu.bivia.bivia.logic.Measurer;
-import hu.bivia.bivia.logic.dataAccess.BiViaDataAccessContract.BiViaRideEntry;
-import hu.bivia.bivia.model.Ride;
+import hu.bivia.logic.Measurer;
+import hu.bivia.logic.dataAccess.BiViaDataAccessContract.BiViaRideEntry;
+import hu.bivia.model.Ride;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

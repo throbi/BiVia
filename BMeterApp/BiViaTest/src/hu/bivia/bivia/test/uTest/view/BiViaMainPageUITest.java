@@ -2,9 +2,9 @@ package hu.bivia.bivia.test.uTest.view;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import hu.bivia.bivia.model.Measurement;
-import hu.bivia.bivia.view.BiViaMainActivityView;
-import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
+import hu.bivia.model.Measurement;
+import hu.bivia.view.BiViaMainActivityView;
+import hu.bivia.viewModel.BiViaMainPageViewModel;
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;

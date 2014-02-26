@@ -1,6 +1,6 @@
-package hu.bivia.bivia.model;
+package hu.bivia.model;
 
-import hu.bivia.bivia.logic.Measurer;
+import hu.bivia.logic.Measurer;
 
 import java.util.ArrayList;
 import java.util.Date;

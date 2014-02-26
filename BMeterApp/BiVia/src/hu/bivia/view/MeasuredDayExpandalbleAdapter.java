@@ -1,4 +1,4 @@
-package hu.bivia.bivia.view;
+package hu.bivia.view;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.model.MeasuredDay;
-import hu.bivia.bivia.model.Ride;
-import hu.bivia.bivia.view.ui_elements.CheckableLinearLayout;
-import hu.bivia.bivia.view.ui_elements.MeasuredDayButton;
-import hu.bivia.bivia.view.ui_elements.RideButton;
-import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
+import hu.bivia.model.MeasuredDay;
+import hu.bivia.model.Ride;
+import hu.bivia.view.ui_elements.CheckableLinearLayout;
+import hu.bivia.view.ui_elements.MeasuredDayButton;
+import hu.bivia.view.ui_elements.RideButton;
+import hu.bivia.viewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.text.Html;
 import android.view.LayoutInflater;

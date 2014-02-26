@@ -1,4 +1,12 @@
-package hu.bivia.bivia.view;
+package hu.bivia.view;
+
+import hu.bivia.bivia.R;
+import hu.bivia.model.MeasuredDay;
+import hu.bivia.model.Measurement;
+import hu.bivia.model.Ride;
+import hu.bivia.view.ui_elements.ErrorDialogFragment;
+import hu.bivia.view.ui_elements.SettingsActivity;
+import hu.bivia.viewModel.BiViaMainPageViewModel;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -8,15 +16,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.google.android.gms.common.GooglePlayServicesUtil;
-
-import hu.bivia.bivia.R;
-import hu.bivia.bivia.model.MeasuredDay;
-import hu.bivia.bivia.model.Measurement;
-import hu.bivia.bivia.model.Ride;
-import hu.bivia.bivia.view.ui_elements.ErrorDialogFragment;
-import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -35,9 +34,13 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+//import android.support.v7.app.ActionBar;
+
 public class BiViaMainActivityView 
 	extends 
-		FragmentActivity {  
+	FragmentActivity  {  
 		
 	private BiViaMainPageViewModel myViewModel;
 
@@ -89,9 +92,15 @@ public class BiViaMainActivityView
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.bmeter_main, menu);
+        getMenuInflater().inflate(R.menu.bmeter_main, menu);
         return true;
-    }    
+    }
+	
+	@Override 
+	public boolean onOptionsItemSelected(android.view.MenuItem item) {
+		startActivity(new Intent(this, SettingsActivity.class));
+		return true;
+	};
            
 	@Override
 	public void onDestroy(){

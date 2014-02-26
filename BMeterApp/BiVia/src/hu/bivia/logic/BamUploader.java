@@ -1,4 +1,4 @@
-package hu.bivia.bivia.logic;
+package hu.bivia.logic;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,13 +10,17 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.model.MeasuredDay;
-import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
+import hu.bivia.model.MeasuredDay;
+import hu.bivia.view.ui_elements.SettingsActivity;
+import hu.bivia.viewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 /**
@@ -28,17 +32,16 @@ public class BamUploader {
 
 	// VM-wide cookie manager
 	private static java.net.CookieManager myCookieManager = null;
- 
-	
+
 	// BAM specific formatters
 	public static final SimpleDateFormat dateFormatter = new SimpleDateFormat(
 			"yyyy-MM-dd", Locale.getDefault());
-	public static final DecimalFormat decimalFormatter = 
-  			new DecimalFormat(".000");
+	public static final DecimalFormat decimalFormatter = new DecimalFormat(
+			".000");
 
 	private String myLoginURL = "http://kerekparosklub.hu/?q=user";
-	private String myBamUser = "throbi";
-	private String myBamPassword = "olimpte";
+	private String myBamUser = SettingsActivity.NOT_SET;
+	private String myBamPassword = SettingsActivity.NOT_SET;
 	private String myUploadURL = "http://kerekparosklub.hu/save_distance";
 
 	private MeasuredDay myDay;
@@ -47,11 +50,11 @@ public class BamUploader {
 	private BiViaMainPageViewModel myViewModel;
 
 	public BamUploader(Activity activity, BiViaMainPageViewModel viewModel) {
-		if(myCookieManager == null){
+		if (myCookieManager == null) {
 			myCookieManager = new java.net.CookieManager();
 			CookieHandler.setDefault(myCookieManager);
 		}
-		
+
 		myActivity = activity;
 		myViewModel = viewModel;
 	}
@@ -74,12 +77,43 @@ public class BamUploader {
 
 	/** Uploads one measured day, overwrites previously uploaded value. */
 	public void uploadMeasuredDay(MeasuredDay measuredDay) {
-		if (isNetworkAvailable()) {
-			myDay = measuredDay;
-			uploadData(measuredDay);
-		} else {
+
+		if (!updateBamUserData()) {
 			myViewModel.uplodFinished(measuredDay);
-			myViewModel.requestEnableNetwork();			
+		} else {
+			if (isNetworkAvailable()) {
+				myDay = measuredDay;
+				uploadData(measuredDay);
+			} else {
+				myViewModel.uplodFinished(measuredDay);
+				myViewModel.requestEnableNetwork();
+			}
+		}
+	}
+
+	/**
+	 * Reads BAM user data from preferences, pops up preference window if not
+	 * set. Returns false when no user data has been set yet.
+	 */
+	private boolean updateBamUserData() {
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(myActivity);
+		myBamUser = sharedPref.getString(SettingsActivity.BAM_NAME_KEY,
+				SettingsActivity.NOT_SET);
+		myBamPassword = sharedPref.getString(SettingsActivity.BAM_PWD_KEY,
+				SettingsActivity.NOT_SET);
+
+		if (myBamUser.equals(SettingsActivity.NOT_SET)
+				|| myBamPassword.equals(SettingsActivity.NOT_SET)
+				|| myBamUser.isEmpty() || myBamPassword.isEmpty()) {
+			Toast.makeText(myActivity,
+					myActivity.getString(R.string.bam_user_not_set),
+					Toast.LENGTH_LONG).show();
+			myActivity.startActivity(new Intent(myActivity,
+					SettingsActivity.class));
+			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -92,9 +126,11 @@ public class BamUploader {
 
 		String uploadData = "datum="
 				+ dateFormatter.format(measuredDayToBeUploaded.getDate())
-				+ "&megtett_km=" + decimalFormatter.format(measuredDayToBeUploaded.getTotalDistance()).replace(",", ".")
-				+ "&vonat_km=" + "&bubi=" + "&car=" + "&suit=0"
-				+ "&child=0" + "&rain=0" + "&tire=0";
+				+ "&megtett_km="
+				+ decimalFormatter.format(
+						measuredDayToBeUploaded.getTotalDistance()).replace(
+						",", ".") + "&vonat_km=" + "&bubi=" + "&car="
+				+ "&suit=0" + "&child=0" + "&rain=0" + "&tire=0";
 
 		httpBackgroundTask.execute(myLoginURL, loginData, myUploadURL,
 				uploadData);
@@ -113,12 +149,15 @@ public class BamUploader {
 					// upload ok
 					result = myActivity.getText(R.string.bam_upload_ok) + " "
 							+ dateFormatter.format(myDay.getDate()) + ", "
-							+ decimalFormatter.format(myDay.getTotalDistance()) + " km.";
+							+ decimalFormatter.format(myDay.getTotalDistance())
+							+ " km.";
 				} else {
 					// upload failed
 					result = myActivity.getText(R.string.bam_upload_failed)
 							+ " " + dateFormatter.format(myDay.getDate())
-							+ ", " + decimalFormatter.format(myDay.getTotalDistance()) + " km.";
+							+ ", "
+							+ decimalFormatter.format(myDay.getTotalDistance())
+							+ " km.";
 				}
 			} else {
 				// login failed
@@ -133,14 +172,17 @@ public class BamUploader {
 		private boolean upload(String uploadURL, String uploadParams) {
 			String responseHTML = post(uploadURL, uploadParams);
 
-			return (responseHTML != null && (responseHTML.equals("Frissítve.") || responseHTML.equals("Mentve.")));
+			return (responseHTML != null && (responseHTML.equals("Frissítve.") || responseHTML
+					.equals("Mentve.")));
 		}
 
 		/** Performs login, returns true on success */
 		private boolean login(String loginURL, String loginParams) {
-			
+
 			String responseHTML = post(loginURL, loginParams);
-			return responseHTML.contains(myBamUser);
+			return responseHTML.contains(myBamUser)
+					&& !responseHTML
+							.contains("Ismeretlen felhasználó vagy hibás jelszó");
 		}
 
 		/** executes the HTTP POST and returns the web server response */
@@ -151,8 +193,11 @@ public class BamUploader {
 				HttpURLConnection connection = (HttpURLConnection) (new URL(url))
 						.openConnection();
 				connection.setRequestMethod("POST");
-				connection.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0");
-				connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+				connection
+						.setRequestProperty("User-Agent",
+								"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0");
+				connection.setRequestProperty("Content-Type",
+						"application/x-www-form-urlencoded");
 				connection.setDoInput(true);
 				connection.setDoOutput(true);
 				connection.connect();
@@ -169,7 +214,7 @@ public class BamUploader {
 					total.append(line);
 				}
 				result = total.toString();
-				
+
 				connection.disconnect();
 			} catch (Throwable t) {
 				result = "Hiba";

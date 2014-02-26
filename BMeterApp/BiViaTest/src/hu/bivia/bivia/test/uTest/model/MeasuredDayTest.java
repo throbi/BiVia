@@ -2,9 +2,9 @@ package hu.bivia.bivia.test.uTest.model;
 
 import java.util.Date;
 
-import hu.bivia.bivia.model.MeasuredDay;
-import hu.bivia.bivia.model.Ride;
-import hu.bivia.bivia.view.BiViaMainActivityView;
+import hu.bivia.model.MeasuredDay;
+import hu.bivia.model.Ride;
+import hu.bivia.view.BiViaMainActivityView;
 import android.test.ActivityInstrumentationTestCase2;
 
 public class MeasuredDayTest  extends

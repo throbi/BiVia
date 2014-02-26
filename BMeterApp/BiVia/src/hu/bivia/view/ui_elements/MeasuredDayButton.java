@@ -1,9 +1,9 @@
-package hu.bivia.bivia.view.ui_elements;
+package hu.bivia.view.ui_elements;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
-import hu.bivia.bivia.model.MeasuredDay;
+import hu.bivia.model.MeasuredDay;
 
 /**
  * A button that has a measured day assigned to it. 

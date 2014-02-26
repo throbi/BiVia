@@ -1,9 +1,9 @@
-package hu.bivia.bivia.view.ui_elements;
+package hu.bivia.view.ui_elements;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
-import hu.bivia.bivia.model.Ride;
+import hu.bivia.model.Ride;
 
 /**
  * A button that has a ride assigned to it. 

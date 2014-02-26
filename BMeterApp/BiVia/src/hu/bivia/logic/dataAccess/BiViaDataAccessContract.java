@@ -1,4 +1,4 @@
-package hu.bivia.bivia.logic.dataAccess;
+package hu.bivia.logic.dataAccess;
 
 import android.provider.BaseColumns;
 

@@ -51,4 +51,5 @@
     <string name="bam_preferences_password_title">Jelszó</string>
     <string name="bam_preferences_username_summary">Felhasználónév amivel regisztráltál a www.bam.hu oldalon</string>
     <string name="bam_preferences_password_summary">Jelszó amit megadtál a www.bam.hu oldalon.</string>
+    <string name="bam_user_not_set">Kérlek add meg a BAM kontód adatait, hogy feltölthesd a mért távokat!</string>
 </resources>

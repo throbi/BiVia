@@ -1,11 +1,11 @@
-package hu.bivia.bivia.logic;
+package hu.bivia.logic;
 
 import java.util.Date;
 
 import hu.bivia.bivia.R;
-import hu.bivia.bivia.model.Measurement;
-import hu.bivia.bivia.model.Ride;
-import hu.bivia.bivia.viewModel.BiViaMainPageViewModel;
+import hu.bivia.model.Measurement;
+import hu.bivia.model.Ride;
+import hu.bivia.viewModel.BiViaMainPageViewModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
