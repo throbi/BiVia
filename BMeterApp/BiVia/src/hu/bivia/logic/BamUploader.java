@@ -113,6 +113,8 @@ public class BamUploader {
 					SettingsActivity.class));
 			return false;
 		} else {
+			// reset cookies, password might have been updated since last run
+			myCookieManager.getCookieStore().removeAll();
 			return true;
 		}
 	}
