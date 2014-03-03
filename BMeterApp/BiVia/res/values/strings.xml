@@ -53,6 +53,6 @@
     <string name="bam_preferences_password_title">Password</string>
     <string name="bam_preferences_username_summary">User name as registered on the BAM web site www.bam.hu.</string>
     <string name="bam_preferences_password_summary">Password as registered on the BAM web site www.bam.hu.</string>
-    <string name="bam_user_not_set">Please set enter your BAM account details in order to be able to upload your rides!</string>
+    <string name="bam_user_not_set">Please enter your BAM account details in order to be able to upload your rides!</string>
     
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<hu.bivia.view.ui_elements.CheckableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<hu.bivia.view.ui_elements.CheckableLinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/measuredDay"
     android:layout_width="fill_parent"
@@ -10,7 +11,7 @@
     <TextView
         android:id="@+id/measuredDayData"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:gravity="left"
         android:paddingBottom="8dp"

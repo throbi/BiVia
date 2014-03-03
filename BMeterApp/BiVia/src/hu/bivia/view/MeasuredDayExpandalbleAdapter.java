@@ -1,11 +1,5 @@
 package hu.bivia.view;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
-
 import hu.bivia.bivia.R;
 import hu.bivia.model.MeasuredDay;
 import hu.bivia.model.Ride;
@@ -13,6 +7,13 @@ import hu.bivia.view.ui_elements.CheckableLinearLayout;
 import hu.bivia.view.ui_elements.MeasuredDayButton;
 import hu.bivia.view.ui_elements.RideButton;
 import hu.bivia.viewModel.BiViaMainPageViewModel;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -33,16 +34,19 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 
 	// hack for keeping track of current uploads
 	private Map<MeasuredDay, View> activeUploads = new HashMap<MeasuredDay, View>();
+	private int myScreenWidth = 480;
 
 	// region --- public API
 	// -------------------------------------------------------------------------
 	/** Constructor */
+	@SuppressWarnings("deprecation")
 	public MeasuredDayExpandalbleAdapter(Activity activity,
 			ArrayList<MeasuredDay> measuredDays,
 			BiViaMainPageViewModel viewModel) {
 		myInflater = activity.getLayoutInflater();
 		myMeasuredDays = measuredDays;
 		myViewModel = viewModel;
+		myScreenWidth  = activity.getWindowManager().getDefaultDisplay().getWidth();
 	}
 
 	/**
@@ -185,6 +189,7 @@ public class MeasuredDayExpandalbleAdapter extends BaseExpandableListAdapter {
 				+ BiViaMainActivityView.formatElapsedMillis(day
 						.getTotalTimeMillis())
 				+ " <font color=\"#352b2b\">=</font> "
+				+ ((myScreenWidth <= 480) ? "<BR>" : "") // line break for small screens, issue #9
 				+ BiViaMainActivityView.decimalFormatter.format(day
 						.getAverageSpeed()) + " km/h ";
 
