@@ -1,6 +1,6 @@
 package hu.bivia.view;
 
-import hu.bivia.bivia.R;
+import hu.bivia.R;
 import hu.bivia.model.MeasuredDay;
 import hu.bivia.model.Measurement;
 import hu.bivia.model.Ride;
@@ -63,7 +63,7 @@ public class BiViaMainActivityView
 	//endregion --- injections for testing - !!! REMOVE FROM RELEASE !!! -------
 	
     //region --- Lifecycle management ------------------------------------------
-	public static final String EXTRA_MESSAGE = "hu.bivia.bivia.MESSAGE";
+	public static final String EXTRA_MESSAGE = "hu.bivia.MESSAGE";
 	
 	/**
 	 * Constructor, creates the view model, too

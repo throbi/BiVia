@@ -2,7 +2,7 @@ package hu.bivia.logic;
 
 import java.util.Date;
 
-import hu.bivia.bivia.R;
+import hu.bivia.R;
 import hu.bivia.model.Measurement;
 import hu.bivia.model.Ride;
 import hu.bivia.viewModel.BiViaMainPageViewModel;

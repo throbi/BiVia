@@ -2,7 +2,7 @@ package hu.bivia.viewModel;
 
 import java.util.List;
 
-import hu.bivia.bivia.R;
+import hu.bivia.R;
 import hu.bivia.logic.BamUploader;
 import hu.bivia.logic.Measurer;
 import hu.bivia.logic.dataAccess.BiViaDataAccessHelper;
@@ -112,8 +112,8 @@ public class BiViaMainPageViewModel {
 		
 		// ask confirmation
 		myView.showYesNoDialog(
-				hu.bivia.bivia.R.string.delete_ride_title, 
-				hu.bivia.bivia.R.string.delete_ride_message, 
+				hu.bivia.R.string.delete_ride_title, 
+				hu.bivia.R.string.delete_ride_message, 
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int button) {

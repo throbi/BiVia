@@ -190,6 +190,38 @@
        id="radialGradient6350"
        xlink:href="#linearGradient4735-7-5"
        inkscape:collect="always" />
+    <filter
+       id="filter3427"
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow">
+      <feFlood
+         id="feFlood3429"
+         flood-opacity="0.25"
+         flood-color="rgb(0,0,0)"
+         result="flood" />
+      <feComposite
+         id="feComposite3431"
+         in2="SourceGraphic"
+         in="flood"
+         operator="in"
+         result="composite1" />
+      <feGaussianBlur
+         id="feGaussianBlur3433"
+         in="composite"
+         stdDeviation="5"
+         result="blur" />
+      <feOffset
+         id="feOffset3435"
+         dx="-5"
+         dy="-5"
+         result="offset" />
+      <feComposite
+         id="feComposite3437"
+         in2="offset"
+         in="SourceGraphic"
+         operator="over"
+         result="composite2" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -198,19 +230,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.063413069"
-     inkscape:cx="261.93338"
-     inkscape:cy="5246.3501"
+     inkscape:zoom="0.35871849"
+     inkscape:cx="1469.2156"
+     inkscape:cy="-1802.0453"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1526"
-     inkscape:window-height="873"
-     inkscape:window-x="65"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="500"
+     inkscape:window-height="442"
+     inkscape:window-x="179"
+     inkscape:window-y="120"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata4127">
     <rdf:RDF>
@@ -1339,7 +1371,11 @@
        y="1650.0638" />
     <g
        id="g6369"
-       transform="translate(32.726208,32.058565)">
+       transform="translate(116.35725,879.51976)"
+       style="filter:url(#filter3427)"
+       inkscape:export-filename="D:\_WORX\BiVia\BiVia\Logo\BiViaLogo_small.png"
+       inkscape:export-xdpi="19.183279"
+       inkscape:export-ydpi="19.183279">
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"

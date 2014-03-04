@@ -1,4 +1,4 @@
-package hu.bivia.bivia.test.uTest.viewmodel;
+package hu.bivia.test.uTest.viewmodel;
 
 import hu.bivia.logic.Measurer;
 import hu.bivia.model.Measurement;

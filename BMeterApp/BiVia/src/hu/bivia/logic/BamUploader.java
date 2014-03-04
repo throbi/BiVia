@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import hu.bivia.bivia.R;
+import hu.bivia.R;
 import hu.bivia.model.MeasuredDay;
 import hu.bivia.view.ui_elements.SettingsActivity;
 import hu.bivia.viewModel.BiViaMainPageViewModel;

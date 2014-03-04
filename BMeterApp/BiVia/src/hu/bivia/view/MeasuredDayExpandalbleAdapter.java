@@ -1,6 +1,6 @@
 package hu.bivia.view;
 
-import hu.bivia.bivia.R;
+import hu.bivia.R;
 import hu.bivia.model.MeasuredDay;
 import hu.bivia.model.Ride;
 import hu.bivia.view.ui_elements.CheckableLinearLayout;

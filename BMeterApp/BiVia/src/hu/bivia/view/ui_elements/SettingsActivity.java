@@ -1,6 +1,6 @@
 package hu.bivia.view.ui_elements;
 
-import hu.bivia.bivia.R;
+import hu.bivia.R;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 

@@ -1,4 +1,4 @@
-package hu.bivia.bivia.test.uTest.model;
+package hu.bivia.test.uTest.model;
 
 import java.util.Date;
 

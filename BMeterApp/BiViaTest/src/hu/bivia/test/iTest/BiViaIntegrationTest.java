@@ -1,12 +1,12 @@
-package hu.bivia.bivia.test.iTest;
+package hu.bivia.test.iTest;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import hu.bivia.bivia.test.uTest.view.BiViaMainPageUITest;
 import hu.bivia.logic.Measurer;
+import hu.bivia.test.uTest.view.BiViaMainPageUITest;
 import hu.bivia.view.BiViaMainActivityView;
 import android.content.Context;
 import android.location.LocationManager;
@@ -69,7 +69,7 @@ public class BiViaIntegrationTest extends
 				BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);		
 				
 				// check for visible dialog		
-				assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
+				assertFalse(solo.searchText(myTargetContext.getString(hu.bivia.R.string.enable_gps_title), true));
 			}
 		});		
 	}		
@@ -99,7 +99,7 @@ public class BiViaIntegrationTest extends
 				BiViaMainPageUITest.checkDisabledUI(myView, myTargetContext);		
 				
 				// check for visible dialog				
-				assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.bivia.R.string.enable_gps_title), true));
+				assertTrue(solo.searchText(myTargetContext.getString(hu.bivia.R.string.enable_gps_title), true));
 			}
 		});		
 	}

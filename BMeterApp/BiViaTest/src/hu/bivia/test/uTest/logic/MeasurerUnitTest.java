@@ -1,4 +1,4 @@
-package hu.bivia.bivia.test.uTest.logic;
+package hu.bivia.test.uTest.logic;
 
 import hu.bivia.logic.Measurer;
 import hu.bivia.view.BiViaMainActivityView;
